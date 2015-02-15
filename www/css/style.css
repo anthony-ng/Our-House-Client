@@ -1,82 +1,52 @@
-.bump {
-  margin-top: 50px;
-  padding-right: 30px;
-  padding-left: 30px;
-}
-
-.profile-card {
-  padding-top: 15px;
-  padding-bottom: 0px;
-  border-radius: 5px;
-  background: #2B2937;
-  overflow: hidden;
-}
-.profile-card h4 {
-  font-family: "Proxima Nova","proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight: 400;
-  color: #fff;
-  font-size: 30px;
-  line-height: 26px;
-}
-.profile-card h4 span {
-  font-size: 20px;
-  color: #8C91A7;
-  display: block;
-}
-.profile-card img {
+#profileImage {
   border-radius: 50%;
-  border: 4px solid #69708C;
-}
-.profile-card .button-group {
-  width: 101%;
-}
-.profile-card .button-group .button {
-  margin-bottom: 0;
-  border-top: none;
-  border-left: none;
-  border-right: 2px solid #2B2937;
-  border-bottom: none;
-  background-color: #394165;
-  height: 80px;
-  padding-top: 15px;
-  margin-top: 20px;
-  font-weight: 200;
-  font-size: 16px;
-  line-height: 26px;
-  color: #8C91A7;
-  box-shadow: none;
-}
-.profile-card .button-group .button span {
-  display: block;
-  font-size: 24px;
-  font-weight: 600;
-  color: #fff;
-}
-.profile-card p {
-  font-size: 16px;
-  margin-bottom: 0;
-  color: #8C91A7;
-}
-.profile-card i {
-  font-size: 26px;
-  vertical-align: middle;
-  padding-right: 5px;
-  color: #394165;
+  border: 3px solid #69708C;
 }
 
-@media only screen and (max-width: 767px) {
-  .profile-card img {
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-  }
-  .profile-card h4, .profile-card p {
-    text-align: center;
-  }
-  .profile-card .button-group .button {
-    font-size: 14px;
-  }
-  .profile-card .button-group .button span {
-    font-size: 20px;
-  }
+* {
+  /*border: 1px dashed black;*/
+}
+
+#profile-info {
+  border-bottom: 1px solid white;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+}
+
+.profile {
+  text-align: center;
+  color: white;
+}
+
+.profile h3 {
+  color: white;
+}
+
+.profile i {
+  font-size: 7vmin;
+  display: block;
+}
+
+#profile-header {
+
+}
+
+.profile:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  display: block;
+  background-image: url('https://lh6.googleusercontent.com/-HnwngPrmnwg/AAAAAAAAAAI/AAAAAAAAEBc/eK_JEkkF8PU/photo.jpg?sz=550');
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  -o-filter: blur(20px);
+  -ms-filter: blur(20px);
+  filter: blur(20px);
 }

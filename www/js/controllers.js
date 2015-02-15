@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ng-token-auth'])
+angular.module('starter.controllers', ['ng-token-auth', 'ionic'])
 
 .controller('DashCtrl', function($scope, Auth, SharedProperties) {
   //OAUTH SIGN IN
@@ -20,6 +20,10 @@ angular.module('starter.controllers', ['ng-token-auth'])
   $scope.remove = function(chat) {
     Chats.remove(chat);
   }
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
@@ -35,7 +39,7 @@ angular.module('starter.controllers', ['ng-token-auth'])
 })
 
 .controller('ProfileCtrl', function($scope, SharedProperties) {
-  $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
+  // $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
   $scope.settings = {
     enableFriends: true
     //cool example of settings in an object
