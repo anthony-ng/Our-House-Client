@@ -7,7 +7,14 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth'])
 
-.run(function($ionicPlatform) {
+.config(function($authProvider) {
+  $authProvider.configure({
+    apiUrl: 'http://localhost:3000' //your api's url
+  });
+})
+
+
+.run(function($ionicPlatform, $rootScope, $location, Auth) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,6 +25,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+  });
+
+  $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams){
+      // debugger
+      if (Auth.loggedIn()) {
+        return $location.path('/dash')
+      }
+    // transitionTo() promise will be rejected with
+    // a 'transition prevented' error
   });
 })
 
@@ -31,19 +48,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // setup an abstract state for the tabs directive
 
-    .state('tab', {
+  .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
   })
-
   // Each tab has its own nav history stack:
 
   .state('tab.dash', {
     url: '/dash',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
+      'poopsandwich': {
+        templateUrl: 'templates/tab-landing.html',
         controller: 'DashCtrl'
       }
     }

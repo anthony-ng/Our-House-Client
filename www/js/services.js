@@ -93,4 +93,14 @@ angular.module('starter.services', [])
       return friends[friendId];
     }
   }
+})
+
+
+.factory('Auth', function() {
+
+  return {
+    loggedIn: function() {
+      return false;
+    }
+  }
 });
