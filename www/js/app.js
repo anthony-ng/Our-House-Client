@@ -14,7 +14,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 })
 
 
-.run(function($ionicPlatform, $rootScope, $location, Auth) {
+.run(function($ionicPlatform, $rootScope, $location) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -30,9 +30,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams){
       // debugger
-      if (Auth.loggedIn()) {
-        return $location.path('/dash')
-      }
+      // if (!Auth.loggedIn()) {
+      //   return $location.path('/dash')
+      //   // debugger
+      // }
     // transitionTo() promise will be rejected with
     // a 'transition prevented' error
   });

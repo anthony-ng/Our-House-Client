@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['ng-token-auth'])
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
@@ -96,11 +96,32 @@ angular.module('starter.services', [])
 })
 
 
-.factory('Auth', function() {
+
+
+
+
+
+
+.factory('Auth', function($auth) {
 
   return {
-    loggedIn: function() {
-      return false;
+    signIn: function() {
+      $auth.authenticate('google')
+      .then(function(resp) {
+        //handle success
+      })
+      .catch(function(resp) {
+        // handle errors
+      })
+    },
+    signOut: function() {
+      $auth.signOut()
+      .then(function(resp) {
+        // handle success response
+      })
+      .catch(function(resp) {
+        // handle error response
+      })
     }
   }
-});
+})

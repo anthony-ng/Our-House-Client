@@ -1,28 +1,16 @@
 angular.module('starter.controllers', ['ng-token-auth'])
 
 .controller('DashCtrl', function($scope, $auth, $http, Auth) {
-
   //OAUTH SIGN IN
-  $scope.handleBtnClick = function() {
-    $auth.authenticate('google')
-    .then(function(resp) {
-      //handle success
-    })
-    .catch(function(resp) {
-      // handle errors
-    });
+  $scope.signIn = function() {
+    Auth.signIn()
   }
 
   //OAUTH SIGN OUT
-  $scope.handleSignOutBtnClick = function() {
-    $auth.signOut()
-    .then(function(resp) {
-        // handle success response
-    })
-    .catch(function(resp) {
-        // handle error response
-    });
-  };
+  $scope.signOut = function() {
+    Auth.signOut()
+  }
+
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
