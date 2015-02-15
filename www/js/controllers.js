@@ -35,8 +35,7 @@ angular.module('starter.controllers', ['ng-token-auth'])
 })
 
 .controller('ProfileCtrl', function($scope, SharedProperties) {
-  $scope.userImageUrl = SharedProperties.userImageUrl()
-  debugger
+  $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
   $scope.settings = {
     enableFriends: true
     //cool example of settings in an object
