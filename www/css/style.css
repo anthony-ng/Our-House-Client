@@ -1,1 +1,39 @@
-/* Empty. Add your own CSS if you like */
+#profileImage {
+  border-radius: 50%;
+  border: 3px solid #69708C;
+}
+
+* {
+  /*border: 1px dashed black;*/
+}
+
+#modalBackButton {
+  font-size: 35px;
+}
+
+#profile-info {
+  border-bottom: 1px solid black;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+}
+
+.profile {
+  text-align: center;
+  color: black;
+}
+
+.profile h3 {
+  color: black;
+}
+
+.profile i {
+  font-size: 7vmin;
+  display: block;
+}
+
+#profile-header {
+
+}
+
+
