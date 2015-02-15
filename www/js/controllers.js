@@ -15,14 +15,72 @@ angular.module('starter.controllers', ['ng-token-auth', 'ionic'])
   }
 })
 
-.controller('ChatsCtrl', function($scope, Chats, $ionicSideMenuDelegate) {
+.controller('ChatsCtrl', function($scope, Chats, $ionicModal) {
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
-  }
-  $scope.toggleLeft = function() {
-    $ionicSideMenuDelegate.toggleLeft();
-  };
+    }
+
+
+    $ionicModal.fromTemplateUrl('templates/filterModal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openFilterModal = function() {
+      $scope.modal.show();
+    };
+    $scope.closeFilterModal = function() {
+      $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+      // Execute action
+    });
+
+
+
+    $ionicModal.fromTemplateUrl('templates/createMessageModal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+      });
+      $scope.openMessageModal = function() {
+        $scope.modal.show();
+      };
+      $scope.closeMessageModal = function() {
+        $scope.modal.hide();
+      };
+      //Cleanup the modal when we're done with it!
+      $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+      });
+      // Execute action on hide modal
+      $scope.$on('modal.hidden', function() {
+        // Execute action
+      });
+      // Execute action on remove modal
+      $scope.$on('modal.removed', function() {
+        // Execute action
+      });
+
+
+
+
+
+
+
+
 
 })
 
@@ -39,7 +97,13 @@ angular.module('starter.controllers', ['ng-token-auth', 'ionic'])
 })
 
 .controller('ProfileCtrl', function($scope, SharedProperties) {
-  // $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
+  $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
+
+  $scope.username = SharedProperties.userName();
+
+
+
+
   $scope.settings = {
     enableFriends: true
     //cool example of settings in an object

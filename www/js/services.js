@@ -130,6 +130,9 @@ angular.module('starter.services', ['ng-token-auth'])
     },
     userImageUrl: function() {
       return currentUser.image
+    },
+    userName: function() {
+      return currentUser.name
     }
   }
 })
