@@ -1,42 +1,19 @@
 angular.module('starter.controllers', ['ng-token-auth'])
 
-.controller('DashCtrl', function($scope, $auth, $http, Auth) {
+.controller('DashCtrl', function($scope, Auth, SharedProperties) {
   //OAUTH SIGN IN
   $scope.signIn = function() {
-    $scope.currentUser = Auth.signIn()
+    Auth.signIn().then(function(data){
+      $scope.currentUser = data;
+      SharedProperties.setUser(data)
+    })
   }
   //OAUTH SIGN OUT
   $scope.signOut = function() {
     Auth.signOut()
+    $scope.currentUser = null
   }
-
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();
@@ -57,8 +34,11 @@ angular.module('starter.controllers', ['ng-token-auth'])
   $scope.friend = Friends.get($stateParams.friendId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('ProfileCtrl', function($scope, SharedProperties) {
+  $scope.userImageUrl = SharedProperties.userImageUrl()
+  debugger
   $scope.settings = {
     enableFriends: true
+    //cool example of settings in an object
   };
 });

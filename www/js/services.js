@@ -97,20 +97,17 @@ angular.module('starter.services', ['ng-token-auth'])
 
 
 
-
-
-
-
-
 .factory('Auth', function($auth) {
   var user = null
   return {
     signIn: function() {
-      $auth.authenticate('google')
+      return $auth.authenticate('google')
       .then(function(response) {
-        return response
+        console.log("hello from factory")
+        console.log(response)
+        return response;
       })
-      .catch(function(resp) {
+      .catch(function(response) {
         // handle errors
       })
     },
@@ -121,9 +118,18 @@ angular.module('starter.services', ['ng-token-auth'])
       .catch(function(resp) {
         // handle error response
       })
+    }
+  }
+})
+
+.factory('SharedProperties', function($auth) {
+  var currentUser = {}
+  return {
+    setUser: function(user) {
+      currentUser = user
     },
-    currentUser: function() {
-      return user
+    userImageUrl: function() {
+      return currentUser.image
     }
   }
 })
