@@ -97,12 +97,7 @@ angular.module('starter.controllers', ['ng-token-auth', 'ionic'])
 })
 
 .controller('ProfileCtrl', function($scope, SharedProperties) {
-  $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
-
-  $scope.username = SharedProperties.userName();
-
-
-
+  // $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
 
   $scope.settings = {
     enableFriends: true
