@@ -3,13 +3,14 @@ angular.module('starter.controllers', ['ng-token-auth'])
 .controller('DashCtrl', function($scope, $auth, $http, Auth) {
   //OAUTH SIGN IN
   $scope.signIn = function() {
-    Auth.signIn()
+    $scope.user = Auth.signIn()
   }
-
   //OAUTH SIGN OUT
   $scope.signOut = function() {
     Auth.signOut()
   }
+
+  $scope.currentUser = Auth.currentUser()
 
 })
 
