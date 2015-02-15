@@ -15,7 +15,7 @@ angular.module('starter.controllers', ['ng-token-auth', 'ionic'])
   }
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('ChatsCtrl', function($scope, Chats, $ionicSideMenuDelegate) {
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
