@@ -3,16 +3,40 @@ angular.module('starter.controllers', ['ng-token-auth'])
 .controller('DashCtrl', function($scope, $auth, $http, Auth) {
   //OAUTH SIGN IN
   $scope.signIn = function() {
-    $scope.user = Auth.signIn()
+    $scope.currentUser = Auth.signIn()
   }
   //OAUTH SIGN OUT
   $scope.signOut = function() {
     Auth.signOut()
   }
 
-  $scope.currentUser = Auth.currentUser()
-
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();

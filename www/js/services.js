@@ -103,11 +103,12 @@ angular.module('starter.services', ['ng-token-auth'])
 
 
 .factory('Auth', function($auth) {
+  var user = null
   return {
     signIn: function() {
       $auth.authenticate('google')
       .then(function(response) {
-        $scope.user = response
+        return response
       })
       .catch(function(resp) {
         // handle errors
@@ -122,7 +123,7 @@ angular.module('starter.services', ['ng-token-auth'])
       })
     },
     currentUser: function() {
-      return 'Brian'
+      return user
     }
   }
 })
