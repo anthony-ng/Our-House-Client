@@ -58,7 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab.dash', {
     url: '/dash',
     views: {
-      'poopsandwich': {
+      'tab-landing': {
         templateUrl: 'templates/tab-landing.html',
         controller: 'DashCtrl'
       }
