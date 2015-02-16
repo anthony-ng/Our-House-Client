@@ -130,28 +130,37 @@ angular.module('starter.controllers', ['ionic'])
                        { 'name': 'Anthony', 'image': 'https://lh5.googleusercontent.com/-1Y-ZXEXERWE/VBeSkL18LUI/AAAAAAAAExM/XFA1xNMzvH4/new%2Bprofile%2Bpic1.jpg?sz=115' }
                        ]
 
+
   $scope.newHousemates = [{"email":"" }]
   $scope.addNewHousemate = function() {
     $scope.newHousemates.push({"email":"" })
   }
+
+  $scope.getUser = function(userId) {
+    userService.getUser(userId).then(function(data){
+      alert("User ID: " + data.id + " Name: " + data.name)
+      console.log(data);
+    })
+  }
+
   userService.getUsers().then(function(data){
     $scope.users = data;
   })
-  // debugger;
 
-  // // Written as example in order to call API based on a button click
-  // $scope.callApi = function() {
-  //   // Just call the API as you'd do using $http
-  //   $http({
-  //     url: 'http://localhost:3000/users',
-  //     method: 'GET'
-  //   }).then(function() {
-  //     alert("We got the secured data successfully");
-  //   }, function() {
-  //     alert("Please download the API seed so that you can call it.");
-  //   });
+  // Use for DEVELOPMENT TAB to test the housemates button
+  // tied to button to click "Get Users"
+  // *****************************************************
+  // $scope.clickToGetUsers = function() {
+  //   userService.getUsers().then(function(data){
+  //     var alertData = [];
+  //     for(var i=0; i<data.length; i++) {
+  //       alertData.push(
+  //         data[i].name);
+  //     }
+  //     alert(alertData);
+  //     // $scope.users = data;
+  //   })
   // }
-  // debugger;
 
 
     $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
@@ -184,17 +193,26 @@ angular.module('starter.controllers', ['ionic'])
 
 
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
-  // refactor into a helper???
-  $scope.logout = function() {
-    auth.signout();
-    store.remove('token');
-    store.remove('profile');
-    store.remove('refreshToken');
-    $state.go('login');
+
+  paymentService.getPayment().then(function(data){
+    $scope.payment = data;
+  })
+
+})
+
+.controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http){
+
+  // needs to pass in params from a form - the params are currently hard coded in the factory helper
+  $scope.clickToCreate = function() {
+    houseService.createHouse().then(function(data){
+      alert("House has successfully been created")
+    })
   }
 
-  paymentService.getPayments().then(function(data){
-    $scope.payments = data;
-  })
+  $scope.clickToGetHouse = function() {
+    houseService.getHouse().then(function(data){
+      alert("House name: " + data.name)
+    })
+  }
 
 })
