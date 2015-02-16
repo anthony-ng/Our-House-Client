@@ -58,7 +58,7 @@ angular.module('starter', ['ionic',
     url: '/dash',
     views: {
       'tab-landing': {
-        templateUrl: 'templates/tab-landing.html',
+        templateUrl: 'templates/features/tab-landing.html',
         controller: 'DashCtrl',
         data: {
         requiresLogin: true
@@ -67,12 +67,12 @@ angular.module('starter', ['ionic',
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.messages', {
+      url: '/messages',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl',
+        'tab-messages': {
+          templateUrl: 'templates/features/tab-messages.html',
+          controller: 'MessagesCtrl',
           data: {
             requiresLogin: true
           }
@@ -80,7 +80,7 @@ angular.module('starter', ['ionic',
       }
     })
     .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+      url: '/cshats/:chatId',
       views: {
         'tab-chats': {
           templateUrl: 'templates/chat-detail.html',
@@ -92,12 +92,12 @@ angular.module('starter', ['ionic',
       }
     })
 
-  .state('tab.friends', {
-      url: '/friends',
+  .state('tab.payments', {
+      url: '/payments',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl',
+        'tab-payments': {
+          templateUrl: 'templates/features/tab-payments.html',
+          controller: 'PaymentCtrl',
           data: {
             requiresLogin: true
           }
@@ -105,18 +105,18 @@ angular.module('starter', ['ionic',
       }
     })
 
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl',
-          data: {
-            requiresLogin: true
-          }
-        }
-      }
-    })
+    // .state('tab.friend-detail', {
+    //   url: '/friend/:friendId',
+    //   views: {
+    //     'tab-friends': {
+    //       templateUrl: 'templates/friend-detail.html',
+    //       controller: 'FriendDetailCtrl',
+    //       data: {
+    //         requiresLogin: true
+    //       }
+    //     }
+    //   }
+    // })
 
     // .state('tab.friend-detail.info', {
     //   url: '/friend/:friendId/info',
@@ -127,11 +127,11 @@ angular.module('starter', ['ionic',
     //   }
     // })
 
-  .state('tab.profile', {
-    url: '/profile',
+  .state('tab.housemates', {
+    url: '/housemates',
     views: {
-      'tab-profile': {
-        templateUrl: 'templates/testing.html',
+      'tab-housemates': {
+        templateUrl: 'templates/features/tab-housemates.html',
         controller: 'UserCtrl',
         data: {
           requiresLogin: true
