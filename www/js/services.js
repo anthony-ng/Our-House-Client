@@ -115,7 +115,10 @@ angular.module('starter.services', [])
   return {
     getUsers: function(){
       // CURRENT USER IS NOT WORKING
-      return $http.get("http://localhost:3000/users")
+      // pass in params of user_id because current_user not working on server side yet
+      // hard coded current user to be user_id: 1
+      return $http.get("http://localhost:3000/users", 
+                      { params: { user_id: 1 } })
       .then(function(response){
         users = response.data;
         return users;
