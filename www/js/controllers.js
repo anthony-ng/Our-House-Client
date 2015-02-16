@@ -27,7 +27,7 @@ angular.module('starter.controllers', ['ionic'])
 
 })
 
-.controller('ChatsCtrl', function($scope, Chats, $ionicModal) {
+.controller('MessagesCtrl', function($scope, Chats, $ionicModal) {
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);

@@ -67,12 +67,12 @@ angular.module('starter', ['ionic',
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.messages', {
+      url: '/messages',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl',
+        'tab-messages': {
+          templateUrl: 'templates/features/tab-messages.html',
+          controller: 'MessagesCtrl',
           data: {
             requiresLogin: true
           }
