@@ -130,10 +130,19 @@ angular.module('starter.controllers', ['ionic'])
                        { 'name': 'Anthony', 'image': 'https://lh5.googleusercontent.com/-1Y-ZXEXERWE/VBeSkL18LUI/AAAAAAAAExM/XFA1xNMzvH4/new%2Bprofile%2Bpic1.jpg?sz=115' }
                        ]
 
-    $scope.newHousemates = [{"email":"" }]
-    $scope.addNewHousemate = function() {
+
+  $scope.newHousemates = [{"email":"" }]
+  $scope.addNewHousemate = function() {
     $scope.newHousemates.push({"email":"" })
   }
+
+  $scope.getUser = function(userId) {
+    userService.getUser(userId).then(function(data){
+      alert("User ID: " + data.id + " Name: " + data.name)
+      console.log(data);
+    })
+  }
+
   userService.getUsers().then(function(data){
     $scope.users = data;
   })

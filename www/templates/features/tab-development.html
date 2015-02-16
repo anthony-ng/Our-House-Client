@@ -1,19 +1,33 @@
 <ion-view view-title="Development">
 <ion-content class="development">
 
-	<section>
-		<h3>House Controller</h3>
+	<div class="bar bar-header">
+		<h1 class="title">House Controller</h1>
+	</div>
+	<div class="list">
 		<div ng-controller="HouseCtrl">
 			<button class="button button-balanced" ng-click="clickToCreate()">Create House</button>
 			<button class="button button-positive" ng-click="clickToGetHouse()">Get House</button>
 		</div>
-	</section>
+	</div>
 
-	<section>
-		<h3>User Controller</h3>
+
+	<div class="bar bar-subheader">
+		<h1 class="title">User Controller</h1>
 		<div ng-controller="UserCtrl">
 			<button class="button button-positive" ng-click="clickToGetUsers()">Get Users</button>
+				<form ng-submit="getUser(userId)">
+					<div class="list list-inset">
+						<label class="item item-input">
+							<input ng-model="userId" type="number" placeholder="User ID">
+						</label>
+						<label class="item item-submit">
+							<input type="submit">
+						</label>
+						
+					</div>
+				</form>
 		</div>
-	</section>
+	</div>
 </ion-content>
 </ion-view>

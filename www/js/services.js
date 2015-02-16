@@ -125,9 +125,10 @@ angular.module('starter.services', [])
       });
     },
 
-    getUser: function(){
+    getUser: function(userId){
+      // console.log("Hit the getUser function call in Factory!")
       // hard coded params for now - need to refactor to use $stateParams
-      return $http.get("http://localhost:3000/users/1")
+      return $http.get("http://localhost:3000/users/" + userId)
       .then(function(response){
         user = response.data;
         return user;
