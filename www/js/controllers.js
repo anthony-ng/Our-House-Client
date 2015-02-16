@@ -113,7 +113,7 @@ angular.module('starter.controllers', ['ionic'])
   };
 })
 
-.controller('UserCtrl', function($scope, userService, auth, store, $state, $http) {
+.controller('UserCtrl', function($scope, userService, auth, store, $state, $http, $ionicModal) {
   // refactor into a helper???
   $scope.logout = function() {
     auth.signout();
@@ -123,9 +123,21 @@ angular.module('starter.controllers', ['ionic'])
     $state.go('login');
   }
 
+  $scope.housemates = [{ 'name': 'Brian', 'image': 'https://lh6.googleusercontent.com/-HnwngPrmnwg/AAAAAAAAAAI/AAAAAAAAEBc/eK_JEkkF8PU/photo.jpg?sz=115' },
+                       { 'name': 'Ali', 'image': 'https://lh6.googleusercontent.com/-mwCXAtzGIkI/VOHexGey4qI/AAAAAAAAAGk/XNZGMzXhb5w/Ali.jpg?sz=115' },
+                       { 'name': 'Joseph', 'image': 'https://lh4.googleusercontent.com/-aM_REDBqm_Y/VJi8SkkpF_I/AAAAAAAAAz0/sFd0I5s4xcU/9a5fec30-83a1-423e-870a-2723782d19e1?sz=115' },
+                       { 'name': 'Charles', 'image': 'https://lh3.googleusercontent.com/-nHuV3Iw9jS8/T6d2GmpDX4I/AAAAAAAAADU/sZRTWXlsA8Q/122.png?sz=115' },
+                       { 'name': 'Anthony', 'image': 'https://lh5.googleusercontent.com/-1Y-ZXEXERWE/VBeSkL18LUI/AAAAAAAAExM/XFA1xNMzvH4/new%2Bprofile%2Bpic1.jpg?sz=115' }
+                       ]
+
+  $scope.newHousemates = [{"email":"" }]
+  $scope.addNewHousemate = function() {
+    $scope.newHousemates.push({"email":"" })
+  }
   userService.getUsers().then(function(data){
     $scope.users = data;
   })
+  // debugger;
 
   // // Written as example in order to call API based on a button click
   // $scope.callApi = function() {
@@ -140,7 +152,36 @@ angular.module('starter.controllers', ['ionic'])
   //   });
   // }
   // debugger;
+
+
+    $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.addHousemateModal = modal;
+    });
+    $scope.openAddHousemateModal = function() {
+      $scope.addHousemateModal.show();
+    };
+    $scope.closeAddHousemateModal = function() {
+      $scope.addHousemateModal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.addHousemateModal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('addHousemateModal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('addHousemateModal.removed', function() {
+      // Execute action
+    });
+
+
 })
+
 
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   // refactor into a helper???

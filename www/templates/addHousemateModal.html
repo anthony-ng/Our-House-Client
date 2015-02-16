@@ -1,0 +1,25 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-header">
+    <!-- <div class="buttons"> -->
+      <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeAddHousemateModal()"></i>
+  <h1 class="title">Add New Housemate:</h1>
+        <i id="modalAcceptButton" class="ion-checkmark button button-balanced" ng-click="closeAddHousemateModal()"></i>
+    <!-- </div> -->
+</ion-header-bar>
+
+  <ion-content>
+    <div class="list">
+      <label class="item item-input" ng-repeat="field in newHousemates">
+        <input type="text" placeholder="Email" ng-model="field.email">
+      </label>
+      <button class="button button-icon" ng-click="addNewHousemate()">
+        <i class="icon ion-plus-circled"> </i>
+      </button>
+
+    </div>
+    <!-- content -->
+  </ion-content>
+</ion-modal-view>
+
+
+
