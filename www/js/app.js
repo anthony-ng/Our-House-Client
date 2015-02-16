@@ -80,7 +80,7 @@ angular.module('starter', ['ionic',
       }
     })
     .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+      url: '/cshats/:chatId',
       views: {
         'tab-chats': {
           templateUrl: 'templates/chat-detail.html',
@@ -131,7 +131,7 @@ angular.module('starter', ['ionic',
     url: '/profile',
     views: {
       'tab-profile': {
-        templateUrl: 'templates/testing.html',
+        templateUrl: 'templates/features/tab-housemates.html',
         controller: 'UserCtrl',
         data: {
           requiresLogin: true

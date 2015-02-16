@@ -130,7 +130,7 @@ angular.module('starter.controllers', ['ionic'])
   }
 
   userService.getUsers().then(function(data){
-    $scope.Users = data;
+    $scope.users = data;
   })
 
 
