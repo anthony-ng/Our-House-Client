@@ -120,14 +120,13 @@ angular.module('starter.controllers', ['ionic'])
   };
 })
 
-.controller('UserCtrl', function($scope, userService) {
-  $scope.users = userService.getUsers();
+.controller('UserCtrl', function($scope, userService, auth, store, $state) {
   $scope.logout = function() {
-  auth.signout();
-  store.remove('profile');
-  store.remove('token');
-  function UserInfoCtrl($scope, auth) {
-  $scope.auth = auth;
-}
-}
+    auth.signout();
+    store.remove('token');
+    store.remove('profile');
+    store.remove('refreshToken');
+    $state.go('login');
+  }
+  $scope.users = userService.getUsers();
 })
