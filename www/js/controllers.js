@@ -21,17 +21,10 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('DashCtrl', function($scope, $http) {
 
-  $scope.callApi = function() {
-    // Just call the API as you'd do using $http
-    $http({
-      url: 'http://localhost:9393/users',
-      method: 'GET'
-    }).then(function() {
-      alert("We got the secured data successfully");
-    }, function() {
-      alert("Please download the API seed so that you can call it.");
-    });
-  }
+  // here we want to do a get request to obtain all of the messages and payments
+  // think about refactoring to use helpers to obtain all messages/payments and
+  // to list them as individual color coded notifications/widgets that appear as a notice item
+
 })
 
 .controller('ChatsCtrl', function($scope, Chats, $ionicModal) {

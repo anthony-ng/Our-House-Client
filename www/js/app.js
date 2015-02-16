@@ -58,7 +58,7 @@ angular.module('starter', ['ionic',
     url: '/dash',
     views: {
       'tab-landing': {
-        templateUrl: 'templates/tab-landing.html',
+        templateUrl: 'templates/features/tab-landing.html',
         controller: 'DashCtrl',
         data: {
         requiresLogin: true
