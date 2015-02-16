@@ -1,17 +1,36 @@
-angular.module('starter.controllers', ['ng-token-auth', 'ionic'])
+angular.module('starter.controllers', ['ionic'])
 
-.controller('DashCtrl', function($scope, Auth, SharedProperties) {
-  //OAUTH SIGN IN
-  $scope.signIn = function() {
-    Auth.signIn().then(function(data){
-      $scope.currentUser = data;
-      SharedProperties.setUser(data)
-    })
-  }
-  //OAUTH SIGN OUT
-  $scope.signOut = function() {
-    Auth.signOut()
-    $scope.currentUser = null
+// LoginCtrl.js
+.controller('LoginCtrl', function($scope, auth, $state, store) {
+  auth.signin({
+    closable: false,
+    // This asks for the refresh token
+    // So that the user never has to log in again
+    authParams: {
+      scope: 'openid offline_access'
+    }
+  }, function(profile, idToken, accessToken, state, refreshToken) {
+    store.set('profile', profile);
+    store.set('token', idToken);
+    store.set('refreshToken', refreshToken);
+    $state.go('tab.dash');
+  }, function(error) {
+    console.log("There was an error logging in", error);
+  });
+})
+
+.controller('DashCtrl', function($scope, $http) {
+
+  $scope.callApi = function() {
+    // Just call the API as you'd do using $http
+    $http({
+      url: 'http://localhost:9393',
+      method: 'GET'
+    }).then(function() {
+      alert("We got the secured data successfully");
+    }, function() {
+      alert("Please download the API seed so that you can call it.");
+    });
   }
 })
 
@@ -73,15 +92,6 @@ angular.module('starter.controllers', ['ng-token-auth', 'ionic'])
       $scope.$on('modal.removed', function() {
         // Execute action
       });
-
-
-
-
-
-
-
-
-
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
@@ -97,10 +107,27 @@ angular.module('starter.controllers', ['ng-token-auth', 'ionic'])
 })
 
 .controller('ProfileCtrl', function($scope, SharedProperties) {
+  $scope.logout = function() {
+  auth.signout();
+  store.remove('profile');
+  store.remove('token');
+}
   // $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
 
   $scope.settings = {
     enableFriends: true
     //cool example of settings in an object
   };
-});
+})
+
+.controller('UserCtrl', function($scope, userService) {
+  $scope.users = userService.getUsers();
+  $scope.logout = function() {
+  auth.signout();
+  store.remove('profile');
+  store.remove('token');
+  function UserInfoCtrl($scope, auth) {
+  $scope.auth = auth;
+}
+}
+})

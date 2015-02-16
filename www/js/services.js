@@ -1,4 +1,4 @@
-angular.module('starter.services', ['ng-token-auth'])
+angular.module('starter.services', [])
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
@@ -136,3 +136,40 @@ angular.module('starter.services', ['ng-token-auth'])
     }
   }
 })
+
+.factory('userService', function($http) {
+  var users = [];
+  return {
+    getUsers: function(){
+      return $http.get("http://localhost:3000/users").then(function(response){
+        users = response;
+        return users;
+      });
+    }
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
