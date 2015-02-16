@@ -141,8 +141,9 @@ angular.module('starter.services', [])
   var users = [];
   return {
     getUsers: function(){
-      return $http.get("http://localhost:3000/users").then(function(response){
-        users = response;
+      return $http.get("http://localhost:3000/users")
+      .then(function(response){
+        users = response.data;
         return users;
       });
     }
