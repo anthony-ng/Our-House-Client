@@ -7,6 +7,14 @@
   /*border: 1px dashed black;*/
 }
 
+.housemate{
+  display: block;
+}
+
+.housemates {
+  text-align: center;
+}
+
 #modalBackButton {
   font-size: 35px;
 }

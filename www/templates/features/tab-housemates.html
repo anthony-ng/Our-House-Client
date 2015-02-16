@@ -1,5 +1,23 @@
 <ion-view view-title="Housemates">
 <ion-content class="housemates">
-{{users}}
+<!--   <div class="row housemates">
+    <div class="col col-50 housemate">
+      I AM A HOUSEMATE
+    </div>
+    <div class="col col-50 housemate">
+      I AM A HOUSEMATE
+    </div>
+  </div> -->
+
+
+  <div ng-repeat="h in housemates">
+    <div class="row" ng-if="$even">
+      <div class="col col-50">{{housemates[$index].name}}</div>
+      <div class="col col-50">{{housemates[$index + 1].name}}</div>
+    </div>
+  </div>
+
+</div>
+
 </ion-content>
 </ion-view>

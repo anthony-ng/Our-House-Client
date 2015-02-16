@@ -123,6 +123,13 @@ angular.module('starter.controllers', ['ionic'])
     $state.go('login');
   }
 
+  $scope.housemates = [{'name': 'Ali'},
+                       {'name': 'Brian'},
+                       {'name': 'Charles'},
+                       {'name': 'Anthony'},
+                       {'name': 'Joseph'}
+                       ]
+// debugger;
   userService.getUsers().then(function(data){
     $scope.users = data;
   })

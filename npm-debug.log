@@ -1,0 +1,177 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', '-g', 'install', 'ios-sim' ]
+2 info using npm@2.1.6
+3 info using node@v0.10.33
+4 verbose node symlink /usr/local/bin/node
+5 silly cache add args [ 'ios-sim', null ]
+6 verbose cache add spec ios-sim
+7 silly cache add parsed spec { raw: 'ios-sim',
+7 silly cache add   scope: null,
+7 silly cache add   name: 'ios-sim',
+7 silly cache add   rawSpec: '',
+7 silly cache add   spec: '*',
+7 silly cache add   type: 'range' }
+8 verbose addNamed ios-sim@*
+9 silly addNamed semver.valid null
+10 silly addNamed semver.validRange *
+11 silly addNameRange { name: 'ios-sim', range: '*', hasData: false }
+12 verbose mapToRegistry name ios-sim
+13 verbose mapToRegistry uri https://registry.npmjs.org/ios-sim
+14 verbose addNameRange registry:https://registry.npmjs.org/ios-sim not in flight; fetching
+15 verbose request on initialization, where is /ios-sim
+16 verbose request after pass 1, where is /ios-sim
+17 verbose request url raw /ios-sim
+18 verbose request resolving registry [ 'https://registry.npmjs.org/', './ios-sim' ]
+19 verbose request after pass 2, where is https://registry.npmjs.org/ios-sim
+20 verbose request no auth needed
+21 info attempt registry request try #1 at 21:23:38
+22 verbose request id 3fed5e8f76ce51e7
+23 http request GET https://registry.npmjs.org/ios-sim
+24 http 200 https://registry.npmjs.org/ios-sim
+25 silly registry.get cb [ 200,
+25 silly registry.get   { date: 'Mon, 16 Feb 2015 05:23:38 GMT',
+25 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+25 silly registry.get     etag: '"5N2I9S5HWR4XHX26339ANL7X5"',
+25 silly registry.get     'content-type': 'application/json',
+25 silly registry.get     'cache-control': 'max-age=60',
+25 silly registry.get     'content-length': '16842',
+25 silly registry.get     'accept-ranges': 'bytes',
+25 silly registry.get     via: '1.1 varnish',
+25 silly registry.get     age: '0',
+25 silly registry.get     'x-served-by': 'cache-sjc3123-SJC',
+25 silly registry.get     'x-cache': 'HIT',
+25 silly registry.get     'x-cache-hits': '1',
+25 silly registry.get     'x-timer': 'S1424064218.299115,VS0,VE153',
+25 silly registry.get     vary: 'Accept',
+25 silly registry.get     'keep-alive': 'timeout=10, max=50',
+25 silly registry.get     connection: 'Keep-Alive' } ]
+26 silly addNameRange number 2 { name: 'ios-sim', range: '*', hasData: true }
+27 silly addNameRange versions [ 'ios-sim',
+27 silly addNameRange   [ '1.8.0',
+27 silly addNameRange     '1.8.1',
+27 silly addNameRange     '1.8.2',
+27 silly addNameRange     '1.9.0',
+27 silly addNameRange     '2.0.0',
+27 silly addNameRange     '2.0.1',
+27 silly addNameRange     '3.0.0',
+27 silly addNameRange     '3.1.0',
+27 silly addNameRange     '3.1.1',
+27 silly addNameRange     '4.0.0',
+27 silly addNameRange     '4.0.1' ] ]
+28 verbose addNamed ios-sim@3.1.1
+29 silly addNamed semver.valid 3.1.1
+30 silly addNamed semver.validRange 3.1.1
+31 verbose addRemoteTarball https://registry.npmjs.org/ios-sim/-/ios-sim-3.1.1.tgz not in flight; adding
+32 verbose addRemoteTarball [ 'https://registry.npmjs.org/ios-sim/-/ios-sim-3.1.1.tgz',
+32 verbose addRemoteTarball   '1129c3fda31b917ef656b8c53fd276392b51c6e8' ]
+33 info retry fetch attempt 1 at 21:23:38
+34 info attempt registry request try #1 at 21:23:38
+35 http fetch GET https://registry.npmjs.org/ios-sim/-/ios-sim-3.1.1.tgz
+36 http fetch 200 https://registry.npmjs.org/ios-sim/-/ios-sim-3.1.1.tgz
+37 silly fetchAndShaCheck shasum 1129c3fda31b917ef656b8c53fd276392b51c6e8
+38 verbose addTmpTarball /var/folders/_w/btzn3j5n3s7f409vt0zj50_00000gn/T/npm-1451-a88a8aac/registry.npmjs.org/ios-sim/-/ios-sim-3.1.1.tgz not in flight; adding
+39 verbose addTmpTarball already have metadata; skipping unpack for ios-sim@3.1.1
+40 silly cache afterAdd ios-sim@3.1.1
+41 verbose afterAdd /Users/apprentice/.npm/ios-sim/3.1.1/package/package.json not in flight; writing
+42 verbose afterAdd /Users/apprentice/.npm/ios-sim/3.1.1/package/package.json written
+43 silly install resolved [ { name: 'ios-sim',
+43 silly install resolved     version: '3.1.1',
+43 silly install resolved     description: 'launch iOS apps into the iOS Simulator from the command line (Xcode 6.0)',
+43 silly install resolved     main: 'ios-sim',
+43 silly install resolved     scripts: { preinstall: 'rake build' },
+43 silly install resolved     bin: { 'ios-sim': 'build/Release/ios-sim' },
+43 silly install resolved     repository: { type: 'git', url: 'https://github.com/phonegap/ios-sim' },
+43 silly install resolved     keywords: [ 'ios-sim', 'iOS Simulator' ],
+43 silly install resolved     author: { name: 'Landon Fuller, Jeff Haynie, Eloy Duran, Shazron Abdullah' },
+43 silly install resolved     license: 'MIT',
+43 silly install resolved     gitHead: 'c6ec64397e5fa462f1ea2d4e4fdc123a856618f9',
+43 silly install resolved     bugs: { url: 'https://github.com/phonegap/ios-sim/issues' },
+43 silly install resolved     homepage: 'https://github.com/phonegap/ios-sim',
+43 silly install resolved     _id: 'ios-sim@3.1.1',
+43 silly install resolved     _shasum: '1129c3fda31b917ef656b8c53fd276392b51c6e8',
+43 silly install resolved     _from: 'ios-sim@*',
+43 silly install resolved     _npmVersion: '1.4.14',
+43 silly install resolved     _npmUser: { name: 'shazron', email: 'shazron@gmail.com' },
+43 silly install resolved     maintainers: [ [Object] ],
+43 silly install resolved     dist:
+43 silly install resolved      { shasum: '1129c3fda31b917ef656b8c53fd276392b51c6e8',
+43 silly install resolved        tarball: 'http://registry.npmjs.org/ios-sim/-/ios-sim-3.1.1.tgz' },
+43 silly install resolved     directories: {},
+43 silly install resolved     _resolved: 'https://registry.npmjs.org/ios-sim/-/ios-sim-3.1.1.tgz' } ]
+44 info install ios-sim@3.1.1 into /usr/local/lib
+45 info installOne ios-sim@3.1.1
+46 verbose installOne of ios-sim to /usr/local/lib not in flight; installing
+47 verbose lock using /Users/apprentice/.npm/_locks/ios-sim-3bb56db538048d2f.lock for /usr/local/lib/node_modules/ios-sim
+48 silly install write writing ios-sim 3.1.1 to /usr/local/lib/node_modules/ios-sim
+49 silly cache addNamed cb ios-sim@3.1.1
+50 verbose unbuild lib/node_modules/ios-sim
+51 verbose gentlyRm vacuuming /usr/local/lib/node_modules/ios-sim
+52 verbose tar unpack /Users/apprentice/.npm/ios-sim/3.1.1/package.tgz
+53 verbose tar unpacking to /usr/local/lib/node_modules/ios-sim
+54 verbose gentlyRm vacuuming /usr/local/lib/node_modules/ios-sim
+55 silly gunzTarPerm modes [ '755', '644' ]
+56 silly gunzTarPerm extractEntry package.json
+57 silly gunzTarPerm extractEntry .npmignore
+58 silly gunzTarPerm extractEntry README.md
+59 silly gunzTarPerm extractEntry LICENSE
+60 silly gunzTarPerm extractEntry resources/buildbox/build.sh
+61 silly gunzTarPerm extractEntry CoreSimulator/CoreSimulator.h
+62 silly gunzTarPerm extractEntry CONTRIBUTING.md
+63 silly gunzTarPerm extractEntry Rakefile
+64 silly gunzTarPerm extractEntry Source/.npmignore
+65 silly gunzTarPerm extractEntry Source/NSString+expandPath.h
+66 silly gunzTarPerm extractEntry Source/NSString+expandPath.m
+67 silly gunzTarPerm extractEntry Source/iPhoneSimulator.h
+68 silly gunzTarPerm extractEntry Source/iPhoneSimulator.m
+69 silly gunzTarPerm extractEntry Source/main.m
+70 silly gunzTarPerm extractEntry Source/nsprintf.h
+71 silly gunzTarPerm extractEntry Source/nsprintf.m
+72 silly gunzTarPerm extractEntry Source/version.h
+73 silly gunzTarPerm extractEntry ios-sim.xcodeproj/.npmignore
+74 silly gunzTarPerm extractEntry ios-sim.xcodeproj/project.pbxproj
+75 silly gunzTarPerm extractEntry ios-sim.xcodeproj/xcshareddata/xcschemes/ios-sim.xcscheme
+76 silly gunzTarPerm extractEntry ios-sim_Prefix.pch
+77 silly gunzTarPerm extractEntry DVTiPhoneSimulatorRemoteClient/DVTiPhoneSimulatorRemoteClient.h
+78 silly gunzTarPerm extractEntry README.template.md
+79 info preinstall ios-sim@3.1.1
+80 verbose unsafe-perm in lifecycle true
+81 info ios-sim@3.1.1 Failed to exec preinstall script
+82 verbose unlock done using /Users/apprentice/.npm/_locks/ios-sim-3bb56db538048d2f.lock for /usr/local/lib/node_modules/ios-sim
+83 verbose stack Error: ios-sim@3.1.1 preinstall: `rake build`
+83 verbose stack Exit status 1
+83 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:212:16)
+83 verbose stack     at ChildProcess.emit (events.js:98:17)
+83 verbose stack     at maybeClose (child_process.js:756:16)
+83 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:823:5)
+84 verbose pkgid ios-sim@3.1.1
+85 verbose cwd /Users/apprentice/Documents/Ali/OurHouse-Client
+86 error Darwin 14.0.0
+87 error argv "node" "/usr/local/bin/npm" "-g" "install" "ios-sim"
+88 error node v0.10.33
+89 error npm  v2.1.6
+90 error code ELIFECYCLE
+91 error ios-sim@3.1.1 preinstall: `rake build`
+91 error Exit status 1
+92 error Failed at the ios-sim@3.1.1 preinstall script.
+92 error This is most likely a problem with the ios-sim package,
+92 error not with npm itself.
+92 error Tell the author that this fails on your system:
+92 error     rake build
+92 error You can get their info via:
+92 error     npm owner ls ios-sim
+92 error There is likely additional logging output above.
+93 verbose exit [ 1, true ]
+94 verbose unbuild lib/node_modules/ios-sim
+95 info preuninstall ios-sim@3.1.1
+96 info uninstall ios-sim@3.1.1
+97 verbose unbuild rmStuff ios-sim@3.1.1 from /usr/local/lib/node_modules
+98 verbose /usr/local/bin,[object Object] binRoot
+99 verbose gentlyRm verifying that /usr/local/lib/node_modules/ios-sim is managed by npm
+100 silly cacheAndTest /usr/local/lib/node_modules/ios-sim is inside /usr/local/lib/node_modules
+101 silly gentlyRm /usr/local/lib/node_modules/ios-sim is managed by npm
+102 silly gentlyRm /usr/local/bin/ios-sim is not under /usr/local/lib/node_modules/ios-sim
+103 silly gentlyRm checking to see if /usr/local/bin/ios-sim is a link
+104 info postuninstall ios-sim@3.1.1
+105 verbose gentlyRm vacuuming /usr/local/lib/node_modules/ios-sim
+106 silly gentlyRm purging /usr/local/lib/node_modules/ios-sim
+107 silly gentlyRm quitting because other entries in /usr/local/lib/node_modules
