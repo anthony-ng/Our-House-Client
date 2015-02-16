@@ -129,4 +129,5 @@ angular.module('starter.controllers', ['ionic'])
     $state.go('login');
   }
   $scope.users = userService.getUsers();
+  // debugger;
 })

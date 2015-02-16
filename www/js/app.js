@@ -104,6 +104,7 @@ angular.module('starter', ['ionic',
         }
       }
     })
+
     .state('tab.friend-detail', {
       url: '/friend/:friendId',
       views: {
@@ -116,6 +117,15 @@ angular.module('starter', ['ionic',
         }
       }
     })
+
+    // .state('tab.friend-detail.info', {
+    //   url: '/friend/:friendId/info',
+    //   views: {
+    //     'info': {
+    //       template: '<h1>hello</h1>',
+    //     }
+    //   }
+    // })
 
   .state('tab.profile', {
     url: '/profile',
