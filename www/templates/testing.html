@@ -1,0 +1,35 @@
+<ion-view view-title="anythign ">
+<ion-content class="profile">
+<div class="row" id="profile-header">
+  <div class="col col-100">
+    <img id="profileImage" src="https://lh6.googleusercontent.com/-HnwngPrmnwg/AAAAAAAAAAI/AAAAAAAAEBc/eK_JEkkF8PU/photo.jpg?sz=150" />
+  </div>
+</div>
+<div class="row">
+  <div class="col col-100" id="profile-info">
+    <h3>Brian fuck</h3>
+    <p>Something witty about me </p>
+  </div>
+</div>
+<div class="row" id="profile-icons">
+  <div class="col col-33">
+    <i class="ion-ios7-star"></i>
+    59
+  </div>
+  <div class="col col-33">
+    <i class="ion-ios7-chatbubble"></i>
+    22
+  </div>
+  <div class="col col-33">
+    <i class="ion-ios7-people"></i>
+    80
+  </div>
+</div>
+<div class="row">
+  <span>His name is {{auth.profile.nickname}}</span>
+  <div class="col col-100">
+    <button class="button button-positive button-block" ng-click="logout()">
+  </div>
+</div>
+</ion-content>
+</ion-view>

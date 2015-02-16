@@ -32,10 +32,11 @@
     cordova plugin add org.apache.cordova.device
     
 
-## Параметры
+## Свойства
 
 *   device.cordova
 *   device.model
+*   device.name
 *   device.platform
 *   device.uuid
 *   device.version
@@ -46,10 +47,9 @@
 
 ### Поддерживаемые платформы
 
-*   Amazon Fire OS
+*   Amazon Fire ОС
 *   Android
 *   BlackBerry 10
-*   Обозреватель
 *   Firefox OS
 *   iOS
 *   Tizen
@@ -64,7 +64,6 @@
 
 *   Android
 *   BlackBerry 10
-*   Обозреватель
 *   iOS
 *   Tizen
 *   Windows Phone 7 и 8
@@ -75,8 +74,6 @@
     // Android:    Nexus One       returns "Passion" (Nexus One code name)
     //             Motorola Droid  returns "voles"
     // BlackBerry: Torch 9800      returns "9800"
-    // Browser:    Google Chrome   returns "Chrome"
-    //             Safari          returns "Safari"
     // iOS:     for the iPad Mini, returns iPad2,5; iPhone 5 is iPhone 5,1. See http://theiphonewiki.com/wiki/index.php?title=Models
     //
     var model = device.model;
@@ -97,6 +94,10 @@
 
 *   Возвращает модель устройства, указанной заводом-изготовителем. Например Samsung Focus возвращает `SGH-i917`.
 
+## device.name
+
+**ПРЕДУПРЕЖДЕНИЕ**: `device.name` является устаревшим свойством начиная с версии 2.3.0. Используйте `device.model` вместо этогого свойства.
+
 ## device.platform
 
 Получите имя операционной системы устройства.
@@ -108,7 +109,6 @@
 
 *   Android
 *   BlackBerry 10
-*   Браузером4
 *   Firefox OS
 *   iOS
 *   Tizen
@@ -120,8 +120,6 @@
     // Depending on the device, a few examples are:
     //   - "Android"
     //   - "BlackBerry 10"
-    //   - Browser:         returns "MacIntel" on Mac
-    //                      returns "Win32" on Windows
     //   - "iOS"
     //   - "WinCE"
     //   - "Tizen"
@@ -196,7 +194,6 @@ Windows Phone 7 устройства сообщают платформу как 
 
 *   Android 2.1 +
 *   BlackBerry 10
-*   Обозреватель
 *   iOS
 *   Tizen
 *   Windows Phone 7 и 8
@@ -204,16 +201,14 @@ Windows Phone 7 устройства сообщают платформу как 
 
 ### Краткий пример
 
-    // Android:    Froyo OS would return "2.2"
-    //             Eclair OS would return "2.1", "2.0.1", or "2.0"
-    //             Version can also return update level "2.1-update1"
-    //
-    // BlackBerry: Torch 9800 using OS 6.0 would return "6.0.0.600"
-    //
-    // Browser:    Returns version number for the browser
-    //
-    // iPhone:     iOS 3.2 returns "3.2"
-    //
-    // Windows Phone 7: returns current OS version number, ex. on Mango returns 7.10.7720
+    // Android: Froyo ОС будет возвращать «2.2» 
+    // Eclair OS будет возвращать «2.1», «2.0.1» или «2.0» 
+    // версия также может возвращать информацию об обновлении «2.1-update1» 
+    // 
+    // BlackBerry: Torch 9800, используя OS 6.0 будет возвращатся «6.0.0.600» 
+    // 
+    // iPhone: iOS 3.2 возвращает «3.2» 
+    // 
+    // Windows Phone 7: Возвращает номер текущей версии ОС. on Mango returns 7.10.7720
     // Tizen: returns "TIZEN_20120425_2"
     var deviceVersion = device.version;
