@@ -109,40 +109,85 @@ angular.module('starter.services', [])
   }
 })
 
+// USERS FACTORY
 .factory('userService', function($http) {
   var users = [];
   return {
     getUsers: function(){
+      // CURRENT USER IS NOT WORKING
       return $http.get("http://localhost:3000/users")
       .then(function(response){
         users = response.data;
         return users;
       });
+    },
+
+    getUser: function(){
+      // hard coded params for now - need to refactor to use $stateParams
+      return $http.get("http://localhost:3000/users/1")
+      .then(function(response){
+        user = response.data;
+        return user;
+      })
     }
   }
 })
 
+// PAYMENTS FACTORY
 .factory('paymentService', function($http) {
   var payments = [];
+  var payment;
   return {
     getPayments: function(){
       // hard coded params for now - need to refactor to use $stateParams
       // need to check if routes are correct - does not show payment
       // need to be refactored to show all payments for all users in current house
-      return $http.get("http://localhost:3000/users/1/houses/1/payments/10")
+      return $http.get("http://localhost:3000/users/1/houses/1/payments")
       .then(function(response){
         payments = response.data;
         return payments;
+      });
+    },
+    
+    getPayment: function(){
+      // hard coded params for now - need to refactor to use $stateParams
+      return $http.get("http://localhost:3000/users/1/houses/1/payments/1")
+      .then(function(response){
+        payment = response.data;
+        console.log(payment);
+        return payment;
       });
     }
   }
 })
 
+// HOUSE FACTORY
+.factory('houseService', function($http) {
+  var house;
+  return {
+    getHouse: function(){
+      // hard coded params for now - need to refactor to use $stateParams
+      return $http.get("http://localhost:3000/users/1/houses/1")
+      .then(function(response){
+        house = response.data;
+        return house;
+      });
+    },
 
+    postHouse: function(){
+      return $http.post("https://localhost:3000/1/houses", {param: value})
+      .then(function(response){
 
+      })
+    }
+  }
+})
 
-
-
+// example of post factory
+// return $http.post("https://www.yoursite.com/method",{param: value}).then(function(response){
+//   users = response;
+//   return users;
+// });
 
 
 

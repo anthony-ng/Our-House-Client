@@ -193,8 +193,8 @@ angular.module('starter.controllers', ['ionic'])
     $state.go('login');
   }
 
-  paymentService.getPayments().then(function(data){
-    $scope.payments = data;
+  paymentService.getPayment().then(function(data){
+    $scope.payment = data;
   })
 
 })
