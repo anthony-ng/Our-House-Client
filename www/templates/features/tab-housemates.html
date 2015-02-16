@@ -10,10 +10,16 @@
   </div> -->
 
 
-  <div ng-repeat="h in housemates">
+  <div ng-repeat="housemate in housemates">
     <div class="row" ng-if="$even">
-      <div class="col col-50">{{housemates[$index].name}}</div>
-      <div class="col col-50">{{housemates[$index + 1].name}}</div>
+      <div class="col col-50">
+        <img ng-src="{{housemates[$index].image}}"/><br>
+        {{housemates[$index].name}}
+      </div>
+      <div class="col col-50">
+        <img ng-src="{{housemates[$index + 1].image}}"/><br>
+        {{housemates[$index + 1].name}}
+      </div>
     </div>
   </div>
 
