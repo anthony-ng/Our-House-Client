@@ -193,10 +193,21 @@ angular.module('starter.controllers', ['ionic'])
 
 
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
+  
+  $scope.clickToGetPayments = function() {
+    paymentService.getPayments().then(function(data){
+      alert(data); // returns an array
+      // $scope.payment = data;
+    }) 
+  }
 
-  paymentService.getPayment().then(function(data){
-    $scope.payment = data;
-  })
+  $scope.getPayment = function(paymentId) {
+    paymentService.getPayment(paymentId).then(function(data){
+      alert(data.description);
+      // $scope.payment = data;
+    }) 
+  }
+
 
 })
 

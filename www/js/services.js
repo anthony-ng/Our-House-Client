@@ -153,9 +153,9 @@ angular.module('starter.services', [])
       });
     },
     
-    getPayment: function(){
+    getPayment: function(paymentId){
       // hard coded params for now - need to refactor to use $stateParams
-      return $http.get("http://localhost:3000/users/1/houses/1/payments/1")
+      return $http.get("http://localhost:3000/users/1/houses/1/payments/" + paymentId)
       .then(function(response){
         payment = response.data;
         return payment;
