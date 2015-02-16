@@ -184,14 +184,6 @@ angular.module('starter.controllers', ['ionic'])
 
 
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
-  // refactor into a helper???
-  $scope.logout = function() {
-    auth.signout();
-    store.remove('token');
-    store.remove('profile');
-    store.remove('refreshToken');
-    $state.go('login');
-  }
 
   paymentService.getPayment().then(function(data){
     $scope.payment = data;
