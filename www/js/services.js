@@ -154,7 +154,10 @@ angular.module('starter.services', [])
   var payments = [];
   return {
     getPayments: function(){
-      return $http.get("http://localhost:3000/users/1/houses/1/payments")
+      // hard coded params for now - need to refactor to use $stateParams
+      // need to check if routes are correct - does not show payment
+      // need to be refactored to show all payments for all users in current house
+      return $http.get("http://localhost:3000/users/1/houses/1/payments/10")
       .then(function(response){
         payments = response.data;
         return payments;

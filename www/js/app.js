@@ -93,11 +93,11 @@ angular.module('starter', ['ionic',
     })
 
   .state('tab.friends', {
-      url: '/friends',
+      url: '/payments',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl',
+        'tab-payments': {
+          templateUrl: 'templates/features/tab-payments.html',
+          controller: 'PaymentCtrl',
           data: {
             requiresLogin: true
           }

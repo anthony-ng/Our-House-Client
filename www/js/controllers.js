@@ -121,6 +121,7 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 .controller('UserCtrl', function($scope, userService, auth, store, $state, $http) {
+  // refactor into a helper???
   $scope.logout = function() {
     auth.signout();
     store.remove('token');
@@ -133,17 +134,33 @@ angular.module('starter.controllers', ['ionic'])
     $scope.users = data;
   })
 
-
-  $scope.callApi = function() {
-    // Just call the API as you'd do using $http
-    $http({
-      url: 'http://localhost:3000/users',
-      method: 'GET'
-    }).then(function() {
-      alert("We got the secured data successfully");
-    }, function() {
-      alert("Please download the API seed so that you can call it.");
-    });
-  }
+  // // Written as example in order to call API based on a button click
+  // $scope.callApi = function() {
+  //   // Just call the API as you'd do using $http
+  //   $http({
+  //     url: 'http://localhost:3000/users',
+  //     method: 'GET'
+  //   }).then(function() {
+  //     alert("We got the secured data successfully");
+  //   }, function() {
+  //     alert("Please download the API seed so that you can call it.");
+  //   });
+  // }
   // debugger;
+})
+
+.controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
+  // refactor into a helper???
+  $scope.logout = function() {
+    auth.signout();
+    store.remove('token');
+    store.remove('profile');
+    store.remove('refreshToken');
+    $state.go('login');
+  }
+
+  paymentService.getPayments().then(function(data){
+    $scope.payments = data;
+  })
+
 })
