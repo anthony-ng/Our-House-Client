@@ -92,7 +92,7 @@ angular.module('starter', ['ionic',
       }
     })
 
-  .state('tab.friends', {
+  .state('tab.payments', {
       url: '/payments',
       views: {
         'tab-payments': {
@@ -127,7 +127,7 @@ angular.module('starter', ['ionic',
     //   }
     // })
 
-  .state('tab.profile', {
+  .state('tab.housemates', {
     url: '/housemates',
     views: {
       'tab-housemates': {
