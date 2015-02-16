@@ -109,40 +109,91 @@ angular.module('starter.services', [])
   }
 })
 
+// USERS FACTORY
 .factory('userService', function($http) {
   var users = [];
   return {
     getUsers: function(){
-      return $http.get("http://localhost:3000/users")
+      // CURRENT USER IS NOT WORKING
+      // pass in params of user_id because current_user not working on server side yet
+      // hard coded current user to be user_id: 1
+      return $http.get("http://localhost:3000/users", 
+                      { params: { user_id: 1 } })
       .then(function(response){
         users = response.data;
         return users;
       });
+    },
+
+    getUser: function(userId){
+      // console.log("Hit the getUser function call in Factory!")
+      // hard coded params for now - need to refactor to use $stateParams
+      return $http.get("http://localhost:3000/users/" + userId)
+      .then(function(response){
+        user = response.data;
+        return user;
+      })
     }
   }
 })
 
+// PAYMENTS FACTORY
 .factory('paymentService', function($http) {
   var payments = [];
+  var payment;
   return {
     getPayments: function(){
       // hard coded params for now - need to refactor to use $stateParams
       // need to check if routes are correct - does not show payment
       // need to be refactored to show all payments for all users in current house
-      return $http.get("http://localhost:3000/users/1/houses/1/payments/10")
+      return $http.get("http://localhost:3000/users/1/houses/1/payments")
       .then(function(response){
         payments = response.data;
         return payments;
+      });
+    },
+    
+    getPayment: function(){
+      // hard coded params for now - need to refactor to use $stateParams
+      return $http.get("http://localhost:3000/users/1/houses/1/payments/1")
+      .then(function(response){
+        payment = response.data;
+        return payment;
       });
     }
   }
 })
 
+// HOUSE FACTORY
+.factory('houseService', function($http) {
+  var house;
+  var createdHouse;
+  return {
+    getHouse: function(){
+      // hard coded params for now - need to refactor to use $stateParams
+      return $http.get("http://localhost:3000/users/1/houses/1")
+      .then(function(response){
+        house = response.data;
+        return house;
+      });
+    },
 
+      // Want to refactor this to pass in form-data from the view into this function and pass in form-data
+      // as second argument to $http.post method
+      // Check to see if current_user is being updated to the newly created house
+    createHouse: function(){
+      return $http.post("http://localhost:3000/users/6/houses", 
+                      { "house": { "name": "DevBootCamp Test House" } },
+                { headers: { 'Content-Type': 'application/json' } })
+    }
+  }
+})
 
-
-
-
+// example of post factory
+// return $http.post("https://www.yoursite.com/method",{param: value}).then(function(response){
+//   users = response;
+//   return users;
+// });
 
 
 

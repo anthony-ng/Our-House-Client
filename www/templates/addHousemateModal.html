@@ -1,11 +1,12 @@
 <ion-modal-view>
-  <ion-header-bar align-title="left" class="bar-stable">
-  <div class="buttons">
-    <i id="modalBackButton" class="ion-chevron-left" ng-click="closeAddHousemateModal()"></i>
-  </div>
+  <ion-header-bar class="bar-header">
+    <!-- <div class="buttons"> -->
+      <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeAddHousemateModal()"></i>
   <h1 class="title">Add New Housemate:</h1>
-
+        <i id="modalAcceptButton" class="ion-checkmark button button-balanced" ng-click="closeAddHousemateModal()"></i>
+    <!-- </div> -->
 </ion-header-bar>
+
   <ion-content>
     <div class="list">
       <label class="item item-input" ng-repeat="field in newHousemates">
@@ -19,3 +20,6 @@
     <!-- content -->
   </ion-content>
 </ion-modal-view>
+
+
+
