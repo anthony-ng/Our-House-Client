@@ -113,7 +113,7 @@ angular.module('starter.controllers', ['ionic'])
   };
 })
 
-.controller('UserCtrl', function($scope, userService, auth, store, $state, $http) {
+.controller('UserCtrl', function($scope, userService, auth, store, $state, $http, $ionicModal) {
   // refactor into a helper???
   $scope.logout = function() {
     auth.signout();
@@ -129,7 +129,7 @@ angular.module('starter.controllers', ['ionic'])
                        { 'name': 'Charles', 'image': 'https://lh3.googleusercontent.com/-nHuV3Iw9jS8/T6d2GmpDX4I/AAAAAAAAADU/sZRTWXlsA8Q/122.png?sz=115' },
                        { 'name': 'Anthony', 'image': 'https://lh5.googleusercontent.com/-1Y-ZXEXERWE/VBeSkL18LUI/AAAAAAAAExM/XFA1xNMzvH4/new%2Bprofile%2Bpic1.jpg?sz=115' }
                        ]
-// debugger;
+
   userService.getUsers().then(function(data){
     $scope.users = data;
   })
@@ -147,7 +147,36 @@ angular.module('starter.controllers', ['ionic'])
   //   });
   // }
   // debugger;
+
+
+    $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.addHousemateModal = modal;
+    });
+    $scope.openAddHousemateModal = function() {
+      $scope.addHousemateModal.show();
+    };
+    $scope.closeAddHousemateModal = function() {
+      $scope.addHousemateModal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.addHousemateModal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('addHousemateModal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('addHousemateModal.removed', function() {
+      // Execute action
+    });
+
+
 })
+
 
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   // refactor into a helper???
