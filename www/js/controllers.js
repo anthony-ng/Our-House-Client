@@ -130,9 +130,14 @@ angular.module('starter.controllers', ['ionic'])
                        { 'name': 'Anthony', 'image': 'https://lh5.googleusercontent.com/-1Y-ZXEXERWE/VBeSkL18LUI/AAAAAAAAExM/XFA1xNMzvH4/new%2Bprofile%2Bpic1.jpg?sz=115' }
                        ]
 
+  $scope.newHousemates = [{"email":"" }]
+  $scope.addNewHousemate = function() {
+    $scope.newHousemates.push({"email":"" })
+  }
   userService.getUsers().then(function(data){
     $scope.users = data;
   })
+  // debugger;
 
   // // Written as example in order to call API based on a button click
   // $scope.callApi = function() {
