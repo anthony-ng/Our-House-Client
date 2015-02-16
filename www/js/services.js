@@ -174,12 +174,13 @@ angular.module('starter.services', [])
       });
     },
 
+      // Want to refactor this to pass in form-data from the view into this function and pass in form-data
+      // as second argument to $http.post method
+      // Check to see if current_user is being updated to the newly created house
     createHouse: function(){
-      return $http.post("https://localhost:3000/users/1/houses", { house: { name: "DevBootCamp Test House" } })
-      .then(function(response){
-        createHouse = response.data;
-        return createHouse;
-      })
+      return $http.post("http://localhost:3000/users/6/houses", 
+                      { "house": { "name": "DevBootCamp Test House" } },
+                { headers: { 'Content-Type': 'application/json' } })
     }
   }
 })

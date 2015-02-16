@@ -198,3 +198,20 @@ angular.module('starter.controllers', ['ionic'])
   })
 
 })
+
+.controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http){
+
+  // needs to pass in params from a form - the params are currently hard coded in the factory helper
+  $scope.clickToCreate = function() {
+    houseService.createHouse().then(function(data){
+      alert("House has successfully been created")
+    })
+  }
+
+  $scope.clickToGetHouse = function() {
+    houseService.getHouse().then(function(data){
+      alert("House name: " + data.name)
+    })
+  }
+
+})

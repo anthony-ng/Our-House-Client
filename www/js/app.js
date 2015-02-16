@@ -138,6 +138,19 @@ angular.module('starter', ['ionic',
         }
       }
     }
+  })
+
+  .state('tab.development', {
+    url: '/development',
+    views: {
+      'tab-development': {
+        templateUrl: 'templates/features/tab-development.html',
+        controller: 'UserCtrl',
+        data: {
+          requiresLogin: true
+        }
+      }
+    }
   });
 
   // Configure Auth0
