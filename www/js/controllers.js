@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ionic'])
+angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 // LoginCtrl.js
 .controller('LoginCtrl', function($scope, auth, $state, store) {
@@ -19,7 +19,15 @@ angular.module('starter.controllers', ['ionic'])
   });
 })
 
-.controller('DashCtrl', function($scope, $http) {
+.controller('DashCtrl', function($scope, $http, auth, store, $state) {
+  $scope.logout = function() {
+    auth.signout();
+    store.remove('token');
+    store.remove('profile');
+    store.remove('refreshToken');
+    $state.go('login');
+  }
+
 
   // here we want to do a get request to obtain all of the messages and payments
   // think about refactoring to use helpers to obtain all messages/payments and
@@ -100,11 +108,7 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 .controller('ProfileCtrl', function($scope, SharedProperties) {
-  $scope.logout = function() {
-  auth.signout();
-  store.remove('profile');
-  store.remove('token');
-}
+
   // $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
 
   $scope.settings = {
@@ -191,6 +195,15 @@ angular.module('starter.controllers', ['ionic'])
     store.remove('profile');
     store.remove('refreshToken');
     $state.go('login');
+  }
+
+  var venmoAuthUrl = "https://api.venmo.com/v1/oauth/authorize?client_id=2374&scope=make_payments%20access_profile%20access_email%20access_phone%20access_balance&response_type=code"
+
+
+
+  $scope.venmoLogin = function(){
+    var ref = window.open(venmoAuthUrl, '_blank', 'location=no');
+    ref.addEventListener('loadstart');
   }
 
   paymentService.getPayments().then(function(data){

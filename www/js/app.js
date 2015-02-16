@@ -10,6 +10,7 @@ angular.module('starter', ['ionic',
   'starter.services',
   'auth0',
   'angular-storage',
+  'ngCordova',
   'angular-jwt'])
 
 
