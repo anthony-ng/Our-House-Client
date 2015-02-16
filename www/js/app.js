@@ -105,18 +105,18 @@ angular.module('starter', ['ionic',
       }
     })
 
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl',
-          data: {
-            requiresLogin: true
-          }
-        }
-      }
-    })
+    // .state('tab.friend-detail', {
+    //   url: '/friend/:friendId',
+    //   views: {
+    //     'tab-friends': {
+    //       templateUrl: 'templates/friend-detail.html',
+    //       controller: 'FriendDetailCtrl',
+    //       data: {
+    //         requiresLogin: true
+    //       }
+    //     }
+    //   }
+    // })
 
     // .state('tab.friend-detail.info', {
     //   url: '/friend/:friendId/info',
@@ -128,9 +128,9 @@ angular.module('starter', ['ionic',
     // })
 
   .state('tab.profile', {
-    url: '/profile',
+    url: '/housemates',
     views: {
-      'tab-profile': {
+      'tab-housemates': {
         templateUrl: 'templates/features/tab-housemates.html',
         controller: 'UserCtrl',
         data: {

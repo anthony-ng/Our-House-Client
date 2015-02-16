@@ -150,6 +150,18 @@ angular.module('starter.services', [])
   }
 })
 
+.factory('paymentService', function($http) {
+  var payments = [];
+  return {
+    getPayments: function(){
+      return $http.get("http://localhost:3000/users/1/houses/1/payments")
+      .then(function(response){
+        payments = response.data;
+        return payments;
+      });
+    }
+  }
+})
 
 
 
