@@ -154,7 +154,6 @@ angular.module('starter.services', [])
       return $http.get("http://localhost:3000/users/1/houses/1/payments/1")
       .then(function(response){
         payment = response.data;
-        console.log(payment);
         return payment;
       });
     }
@@ -164,6 +163,7 @@ angular.module('starter.services', [])
 // HOUSE FACTORY
 .factory('houseService', function($http) {
   var house;
+  var createdHouse;
   return {
     getHouse: function(){
       // hard coded params for now - need to refactor to use $stateParams
@@ -174,10 +174,11 @@ angular.module('starter.services', [])
       });
     },
 
-    postHouse: function(){
-      return $http.post("https://localhost:3000/1/houses", {param: value})
+    createHouse: function(){
+      return $http.post("https://localhost:3000/users/1/houses", { house: { name: "DevBootCamp Test House" } })
       .then(function(response){
-
+        createHouse = response.data;
+        return createHouse;
       })
     }
   }
