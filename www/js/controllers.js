@@ -24,7 +24,7 @@ angular.module('starter.controllers', ['ionic'])
   $scope.callApi = function() {
     // Just call the API as you'd do using $http
     $http({
-      url: 'http://localhost:9393',
+      url: 'http://localhost:9393/users',
       method: 'GET'
     }).then(function() {
       alert("We got the secured data successfully");
@@ -120,7 +120,7 @@ angular.module('starter.controllers', ['ionic'])
   };
 })
 
-.controller('UserCtrl', function($scope, userService, auth, store, $state) {
+.controller('UserCtrl', function($scope, userService, auth, store, $state, $http) {
   $scope.logout = function() {
     auth.signout();
     store.remove('token');
@@ -128,5 +128,22 @@ angular.module('starter.controllers', ['ionic'])
     store.remove('refreshToken');
     $state.go('login');
   }
-  $scope.users = userService.getUsers();
+
+  userService.getUsers().then(function(data){
+    $scope.Users = data;
+  })
+
+
+  $scope.callApi = function() {
+    // Just call the API as you'd do using $http
+    $http({
+      url: 'http://localhost:3000/users',
+      method: 'GET'
+    }).then(function() {
+      alert("We got the secured data successfully");
+    }, function() {
+      alert("Please download the API seed so that you can call it.");
+    });
+  }
+  // debugger;
 })
