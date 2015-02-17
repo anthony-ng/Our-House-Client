@@ -37,60 +37,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   }
 })
 
-.controller('MessagesCtrl', function($scope, Chats, $ionicModal) {
-
-    $ionicModal.fromTemplateUrl('templates/filterModal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-    $scope.openFilterModal = function() {
-      $scope.modal.show();
-    };
-    $scope.closeFilterModal = function() {
-      $scope.modal.hide();
-    };
-    //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-      $scope.modal.remove();
-    });
-    // Execute action on hide modal
-    $scope.$on('modal.hidden', function() {
-      // Execute action
-    });
-    // Execute action on remove modal
-    $scope.$on('modal.removed', function() {
-      // Execute action
-    });
-
-    $ionicModal.fromTemplateUrl('templates/createMessageModal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function(modal) {
-        $scope.modal = modal;
-      });
-      $scope.openMessageModal = function() {
-        $scope.modal.show();
-      };
-      $scope.closeMessageModal = function() {
-        $scope.modal.hide();
-      };
-      //Cleanup the modal when we're done with it!
-      $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-      });
-      // Execute action on hide modal
-      $scope.$on('modal.hidden', function() {
-        // Execute action
-      });
-      // Execute action on remove modal
-      $scope.$on('modal.removed', function() {
-        // Execute action
-      });
-})
-
-
 .controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
 
   console.log('INSIDE USERCTRL')
@@ -115,6 +61,13 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       console.log(data);
     })
   };
+
+  // DEVELOPMENT ONLY
+  $scope.getHousemate = function(userId) {
+    userFactory.getHousemate(userId).then(function(data){
+      console.log(data);
+    })
+  }
 
 $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     scope: $scope,

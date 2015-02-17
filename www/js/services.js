@@ -38,7 +38,7 @@ angular.module('starter.services', [])
       });
     },
 
-    getUser: function(userId){
+    getHousemate: function(userId){
       // console.log("Hit the getUser function call in Factory!")
       // hard coded params for now - need to refactor to use $stateParams
       return $http.get("http://localhost:3000/users/" + userId)
@@ -63,13 +63,17 @@ angular.module('starter.services', [])
   var payments = [];
   var payment;
   var currentUser = userService.currentUser();
-  
+
   return {
     getPayments: function(){
       // hard coded params for now - need to refactor to use $stateParams
       // need to check if routes are correct - does not show payment
       // need to be refactored to show all payments for all users in current house
-      return $http.get("http://localhost:3000/users/1/houses/1/payments")
+      return $http.get("http://localhost:3000/users/" 
+                      + currentUser.id 
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/payments")
       .then(function(response){
         payments = response.data;
         return payments;
@@ -77,7 +81,12 @@ angular.module('starter.services', [])
     },
     getPayment: function(paymentId){
       // hard coded params for now - need to refactor to use $stateParams
-      return $http.get("http://localhost:3000/users/1/houses/1/payments/" + paymentId)
+      return $http.get("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/payments/" 
+                      + paymentId)
       .then(function(response){
         payment = response.data;
         return payment;
