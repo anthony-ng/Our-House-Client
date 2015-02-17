@@ -209,6 +209,11 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   $scope.venmoLogin = function(){
     var ref = window.open(venmoAuthUrl, '_blank', 'location=no');
     ref.addEventListener('loadstart');
+    ref.addEventListener('loadstop', function(event){
+      if (event.url.match("/close")) {
+        ref.close();
+      }
+    })
   }
 
   paymentService.getPayments().then(function(data){
