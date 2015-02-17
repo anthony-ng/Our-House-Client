@@ -101,12 +101,21 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('profile');
     store.remove('refreshToken');
     $state.go('login');
-  }
-    $scope.currentUser = store.get('currentUser')
+  };
 
+  $scope.currentUser = store.get('currentUser');
+
+  userFactory.getHousemates().then(function(data){
+    $scope.housemates = data
+  });
+
+  // for Development Testing Only
+  $scope.clickToGetUsers = function() {
     userFactory.getHousemates().then(function(data){
-      $scope.housemates = data
+      console.log(data);
     })
+  };
+
 
 
 $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
