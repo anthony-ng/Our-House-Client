@@ -16,7 +16,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.set('profile', profile);
     store.set('token', idToken);
     store.set('refreshToken', refreshToken);
-    $state.go('tab.dash');
+    $state.go('tab.home');
     $http.post('http://localhost:3000/users', store.inMemoryCache.profile).then(function(response){
       //STORE  response.data SOMEWHERE, it's the USER OBJECT, BRO
     });
@@ -25,7 +25,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('DashCtrl', function($scope, $http, auth, store, $state) {
+.controller('WelcomeCtrl', function() {
+})
+
+.controller('HomeCtrl', function($scope, $http, auth, store, $state) {
   $scope.logout = function() {
     auth.signout();
     store.remove('token');
@@ -47,7 +50,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   $scope.remove = function(chat) {
     Chats.remove(chat);
     }
-
 
     $ionicModal.fromTemplateUrl('templates/filterModal.html', {
       scope: $scope,
@@ -73,8 +75,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.$on('modal.removed', function() {
       // Execute action
     });
-
-
 
     $ionicModal.fromTemplateUrl('templates/createMessageModal.html', {
         scope: $scope,
@@ -221,19 +221,19 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   paymentService.getPayment().then(function(data){
     $scope.payment = data;
   })
-  
+
   $scope.clickToGetPayments = function() {
     paymentService.getPayments().then(function(data){
       console.log(data); // returns an array
       // $scope.payment = data;
-    }) 
+    })
   }
 
   $scope.getPayment = function(paymentId) {
     paymentService.getPayment(paymentId).then(function(data){
       console.log(data.description);
       // $scope.payment = data;
-    }) 
+    })
   }
 })
 
@@ -255,7 +255,7 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
 })
 
 .controller('MessageCtrl', function($scope, messageService, auth, store, $state, $http){
-  
+
   $scope.clickToGetMessages = function() {
     messageService.getMessages().then(function(data){
       console.log(data);

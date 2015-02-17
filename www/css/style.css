@@ -40,8 +40,7 @@
   display: block;
 }
 
-#profile-header {
-
+#welcome-button {
+  margin: 300px auto;
+  margin-left: 80px;
 }
-
-

@@ -60,45 +60,31 @@ angular.module('starter', ['ionic',
         requiresLogin: true
     }
   })
-  // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.welcome', {
+    url: '/welcome',
+    views: {
+      'tab-welcome': {
+        templateUrl: 'templates/features/tab-welcome.html',
+        controller: 'WelcomeCtrl',
+        data: {
+        }
+      }
+    }
+  })
+
+  .state('tab.home', {
+    url: '/home',
     views: {
       'tab-landing': {
         templateUrl: 'templates/features/tab-landing.html',
-        controller: 'DashCtrl',
+        controller: 'HomeCtrl',
         data: {
         requiresLogin: true
         }
       }
     }
   })
-
-  .state('tab.messages', {
-      url: '/messages',
-      views: {
-        'tab-messages': {
-          templateUrl: 'templates/features/tab-messages.html',
-          controller: 'MessagesCtrl',
-          data: {
-            requiresLogin: true
-          }
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/cshats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl',
-          data: {
-            requiresLogin: true
-          }
-        }
-      }
-    })
 
   .state('tab.payments', {
       url: '/payments',
@@ -112,47 +98,6 @@ angular.module('starter', ['ionic',
         }
       }
     })
-
-    // .state('tab.friend-detail', {
-    //   url: '/friend/:friendId',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/friend-detail.html',
-    //       controller: 'FriendDetailCtrl',
-    //       data: {
-    //         requiresLogin: true
-    //       }
-    //     }
-    //   }
-    // })
-
-    // .state('tab.friend-detail.info', {
-    //   url: '/friend/:friendId/info',
-    //   views: {
-    //     'info': {
-    //       template: '<h1>hello</h1>',
-    //     }
-    //   }
-    // })
-
-  .state('tab.housemates', {
-    url: '/housemates',
-    resolve: {
-      fetchUserPhotos: function (userFactory, userService) {
-        console.log('running resolve')
-        return userService.users || (userService.users = userFactory.getUsers());
-      }
-    },
-    views: {
-      'tab-housemates': {
-        templateUrl: 'templates/features/tab-housemates.html',
-        controller: 'UserCtrl',
-        data: {
-          requiresLogin: true
-        }
-      }
-    }
-  })
 
   .state('tab.development', {
     url: '/development',
@@ -175,7 +120,7 @@ angular.module('starter', ['ionic',
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/home');
 
   jwtInterceptorProvider.tokenGetter = function(store, jwtHelper, auth) {
     var idToken = store.get('token');
@@ -205,3 +150,35 @@ angular.module('starter', ['ionic',
 
   });
 });
+
+  // .state('tab.messages', {
+  //     url: '/messages',
+  //     views: {
+  //       'tab-messages': {
+  //         templateUrl: 'templates/features/tab-messages.html',
+  //         controller: 'MessagesCtrl',
+  //         data: {
+  //           requiresLogin: true
+  //         }
+  //       }
+  //     }
+  //   })
+
+  // .state('tab.housemates', {
+  //   url: '/housemates',
+  //   resolve: {
+  //     fetchUserPhotos: function (userFactory, userService) {
+  //       console.log('running resolve')
+  //       return userService.users || (userService.users = userFactory.getUsers());
+  //     }
+  //   },
+  //   views: {
+  //     'tab-housemates': {
+  //       templateUrl: 'templates/features/tab-housemates.html',
+  //       controller: 'UserCtrl',
+  //       data: {
+  //         requiresLogin: true
+  //       }
+  //     }
+  //   }
+  // })
