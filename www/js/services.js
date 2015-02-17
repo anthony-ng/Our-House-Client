@@ -48,19 +48,15 @@ angular.module('starter.services', [])
 
 // USERS FACTORY
 .factory('userFactory', function($q, $http, userService) {
+  var housemates;
   return {
     getHousemates: function(){
-      console.log('inside Factory function');
-      var d = $q.defer();
-
-      $http.get("http://localhost:3000/users")
-      .success(function(response){
-        d.resolve(response.data);
-      }).error(function(error) {
-        console.log(error);
-        d.reject(error);
+      // hard coded params for now - need to refactor to use $stateParams
+      return $http.get("http://localhost:3000/users")
+      .then(function(response){
+        housemates = response.data;
+        return housemates;
       });
-      return d.promise;
     },
 
     getUser: function(userId){
@@ -105,9 +101,6 @@ angular.module('starter.services', [])
         return payments;
       });
     },
-
-
-    
     getPayment: function(paymentId){
       // hard coded params for now - need to refactor to use $stateParams
       return $http.get("http://localhost:3000/users/1/houses/1/payments/" + paymentId)

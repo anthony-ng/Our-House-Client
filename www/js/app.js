@@ -38,14 +38,6 @@ angular.module('starter', ['ionic',
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-
-  .state('venmoAuth', {
-    url: '/venmoAuth',
-    templateUrl: 'templates/venmoAuth.html',
-    controller: 'venmoCtrl',
-  })
-
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
@@ -101,12 +93,12 @@ angular.module('starter', ['ionic',
 
   .state('tab.housemates', {
     url: '/housemates',
-    resolve: {
-      fetchUserPhotos: function (userFactory, userService) {
-        console.log('running resolve')
-        return userService.users || (userService.users = userFactory.getUsers());
-      }
-    },
+    // resolve: {
+    //   fetchUserPhotos: function (userFactory, userService) {
+    //     console.log('running resolve')
+    //     return userService.housemates || (userService.housemates = userFactory.getHousemates());
+    //   }
+    // },
     views: {
       'tab-housemates': {
         templateUrl: 'templates/features/tab-housemates.html',
@@ -123,7 +115,7 @@ angular.module('starter', ['ionic',
     views: {
       'tab-development': {
         templateUrl: 'templates/features/tab-development.html',
-        controller: 'UserCtrl',
+        controller: 'HousemateCtrl',
         data: {
           requiresLogin: true
         }

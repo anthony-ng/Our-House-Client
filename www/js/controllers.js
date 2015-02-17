@@ -124,7 +124,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $state.go('login');
   }
 
-  $scope.housemates = userFactory.getHousemates
+    userFactory.getHousemates().then(function(data){
+      $scope.housemates = data
+    })
+
 
 
 
@@ -199,7 +202,8 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   paymentService.getPayments().then(function(data){
     $scope.payments = data;
   })
-  paymentService.getPayment().then(function(data){
+  //1 should be repalced with the variable id, i.e. getPayment(id) 
+  paymentService.getPayment(1).then(function(data){
     $scope.payment = data;
   })
 
