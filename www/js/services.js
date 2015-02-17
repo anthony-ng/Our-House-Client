@@ -71,11 +71,11 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('userService', function () {
+.factory('userService', function (store) {
   var currentUser = {};
   return {
     currentUser: function(){
-      return currentUser;
+      return store.inMemoryCache.currentUser
     },
     setCurrentUser: function(user) {
       currentUser = user;

@@ -18,6 +18,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.set('refreshToken', refreshToken);
     $http.post('http://localhost:3000/users', store.inMemoryCache.profile).then(function(response){
       userService.setCurrentUser(response.data)
+      store.set('currentUser', response.data);
+      debugger;
     })
     $state.go('tab.home');
   }, function(error) {
@@ -34,9 +36,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('token');
     store.remove('profile');
     store.remove('refreshToken');
+    // store.remove('currentUser');
+
     $state.go('login');
   }
-  // debugger;
 
 
   // here we want to do a get request to obtain all of the messages and payments
@@ -112,7 +115,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 //   };
 // })
 
-.controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal, userService) {
+.controller('HousemateCtrl', function($scope, userService, userFactory, auth, store, $state, $http, $ionicModal, userService) {
 
   console.log('INSIDE USERCTRL')
   // refactor into a helper???
@@ -124,11 +127,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $state.go('login');
   }
 
+  debugger;
     userFactory.getHousemates().then(function(data){
       $scope.housemates = data
     })
-
-
 
 
   // userService.getUsers().then(function(data){
