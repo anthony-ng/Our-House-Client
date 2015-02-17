@@ -110,19 +110,25 @@ angular.module('starter.services', [])
 })
 
 // USERS FACTORY
-.factory('userService', function($http) {
-  var users = [];
+////// .factory('userService', function($http) {
+.factory('userFactory', function($q, $http, userService) {
   return {
     getUsers: function(){
+      console.log('inside Factory function');
+      var d = $q.defer();
       // CURRENT USER IS NOT WORKING
       // pass in params of user_id because current_user not working on server side yet
       // hard coded current user to be user_id: 1
-      return $http.get("http://localhost:3000/users", 
-                      { params: { user_id: 1 } })
-      .then(function(response){
-        users = response.data;
-        return users;
+      $http.get("http://localhost:3000/users",
+        { params: { user_id: 1 } })
+      .success(function(response){
+        console.log(response);
+        d.resolve(response.data);
+      }).error(function(error) {
+        console.log(error);
+        d.reject(error);
       });
+      return d.promise;
     },
 
     getUser: function(userId){
@@ -135,6 +141,10 @@ angular.module('starter.services', [])
       })
     }
   }
+})
+
+.factory('userService', function () {
+  return {};
 })
 
 // PAYMENTS FACTORY
@@ -152,6 +162,8 @@ angular.module('starter.services', [])
         return payments;
       });
     },
+
+
     
     getPayment: function(paymentId){
       // hard coded params for now - need to refactor to use $stateParams
@@ -181,6 +193,7 @@ angular.module('starter.services', [])
       // as second argument to $http.post method
       // Check to see if current_user is being updated to the newly created house
     createHouse: function(){
+
       return $http.post("http://localhost:3000/users/6/houses", 
                        { "house": { "name": "DevBootCamp Test House" } },
                        { headers: { 'Content-Type': 'application/json' } })

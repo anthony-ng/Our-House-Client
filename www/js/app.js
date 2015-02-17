@@ -39,6 +39,7 @@ angular.module('starter', ['ionic',
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+
   .state('venmoAuth', {
     url: '/venmoAuth',
     templateUrl: 'templates/venmoAuth.html',
@@ -136,6 +137,12 @@ angular.module('starter', ['ionic',
 
   .state('tab.housemates', {
     url: '/housemates',
+    resolve: {
+      fetchUserPhotos: function (userFactory, userService) {
+        console.log('running resolve')
+        return userService.users || (userService.users = userFactory.getUsers());
+      }
+    },
     views: {
       'tab-housemates': {
         templateUrl: 'templates/features/tab-housemates.html',
