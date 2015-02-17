@@ -110,7 +110,7 @@ angular.module('starter', ['ionic',
     views: {
       'tab-housemates': {
         templateUrl: 'templates/features/tab-housemates.html',
-        controller: 'UserCtrl',
+        controller: 'HousemateCtrl',
         data: {
           requiresLogin: true
         }

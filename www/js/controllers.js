@@ -112,9 +112,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 //   };
 // })
 
-.controller('UserCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal, userService) {
-  // var user = userService.getUser($scope.id);
-  // userService.users = userFactory.getUsers()
+.controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal, userService) {
+
   console.log('INSIDE USERCTRL')
   // refactor into a helper???
   $scope.logout = function() {
@@ -125,27 +124,9 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $state.go('login');
   }
 
-  $scope.housemates = userService.users;
-  console.log($scope.housemates);
-  // [{ 'name': 'Brian', 'image': 'https://lh6.googleusercontent.com/-HnwngPrmnwg/AAAAAAAAAAI/AAAAAAAAEBc/eK_JEkkF8PU/photo.jpg?sz=115' },
-  //                      { 'name': 'Ali', 'image': 'https://lh6.googleusercontent.com/-mwCXAtzGIkI/VOHexGey4qI/AAAAAAAAAGk/XNZGMzXhb5w/Ali.jpg?sz=115' },
-  //                      { 'name': 'Joseph', 'image': 'https://lh4.googleusercontent.com/-aM_REDBqm_Y/VJi8SkkpF_I/AAAAAAAAAz0/sFd0I5s4xcU/9a5fec30-83a1-423e-870a-2723782d19e1?sz=115' },
-  //                      { 'name': 'Charles', 'image': 'https://lh3.googleusercontent.com/-nHuV3Iw9jS8/T6d2GmpDX4I/AAAAAAAAADU/sZRTWXlsA8Q/122.png?sz=115' },
-  //                      { 'name': 'Anthony', 'image': 'https://lh5.googleusercontent.com/-1Y-ZXEXERWE/VBeSkL18LUI/AAAAAAAAExM/XFA1xNMzvH4/new%2Bprofile%2Bpic1.jpg?sz=115' }
-  //                      ]
+  $scope.housemates = userFactory.getHousemates
 
 
-  // $scope.newHousemates = [{"email":"" }]
-  // $scope.addNewHousemate = function() {
-  //   $scope.newHousemates.push({"email":"" })
-  // }
-
-  // $scope.getUser = function(userId) {
-  //   userService.getUser(userId).then(function(data){
-  //     alert("User ID: " + data.id + " Name: " + data.name)
-  //     console.log(data);
-  //   })
-  // }
 
   // userService.getUsers().then(function(data){
   //   $scope.users = data;

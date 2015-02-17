@@ -47,19 +47,14 @@ angular.module('starter.services', [])
 })
 
 // USERS FACTORY
-////// .factory('userService', function($http) {
 .factory('userFactory', function($q, $http, userService) {
   return {
-    getUsers: function(){
+    getHousemates: function(){
       console.log('inside Factory function');
       var d = $q.defer();
-      // CURRENT USER IS NOT WORKING
-      // pass in params of user_id because current_user not working on server side yet
-      // hard coded current user to be user_id: 1
-      $http.get("http://localhost:3000/users",
-        { params: { user_id: 1 } })
+
+      $http.get("http://localhost:3000/users")
       .success(function(response){
-        console.log(response);
         d.resolve(response.data);
       }).error(function(error) {
         console.log(error);
