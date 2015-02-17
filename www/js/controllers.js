@@ -125,6 +125,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('refreshToken');
     $state.go('login');
   }
+    $scope.currentUser = store.get('currentUser')
     userFactory.getHousemates().then(function(data){
       $scope.housemates = data
     })
