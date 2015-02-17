@@ -6,16 +6,21 @@
   <div ng-repeat="housemate in housemates">
     <div class="row" ng-if="$even">
       <div class="col col-50">
-        <img ng-src="{{housemates[$index].image}}"/><br>
-        {{housemates[$index].name}}
+          <img ng-src="{{housemates[$index].image}}?sz=115"/><br>
+          {{housemates[$index].name}}
       </div>
       <div class="col col-50">
-        <img ng-src="{{housemates[$index + 1].image}}"/><br>
-        {{housemates[$index + 1].name}}
+          <img ng-src="{{housemates[$index + 1].image}}?sz=115"/><br>
+          {{housemates[$index + 1].name}}
       </div>
     </div>
   </div>
 </div>
+
+
+  <!-- {{housemates}} -->
+
+
 
 </ion-content>
 </ion-view>

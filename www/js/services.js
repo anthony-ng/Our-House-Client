@@ -47,25 +47,16 @@ angular.module('starter.services', [])
 })
 
 // USERS FACTORY
-////// .factory('userService', function($http) {
 .factory('userFactory', function($q, $http, userService) {
+  var housemates;
   return {
-    getUsers: function(){
-      console.log('inside Factory function');
-      var d = $q.defer();
-      // CURRENT USER IS NOT WORKING
-      // pass in params of user_id because current_user not working on server side yet
-      // hard coded current user to be user_id: 1
-      $http.get("http://localhost:3000/users",
-        { params: { user_id: 1 } })
-      .success(function(response){
-        console.log(response);
-        d.resolve(response.data);
-      }).error(function(error) {
-        console.log(error);
-        d.reject(error);
+    getHousemates: function(){
+      // hard coded params for now - need to refactor to use $stateParams
+      return $http.get("http://localhost:3000/users")
+      .then(function(response){
+        housemates = response.data;
+        return housemates;
       });
-      return d.promise;
     },
 
     getUser: function(userId){
@@ -80,8 +71,7 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('userService', function () {
-  return {};
+.factory('userService', function (store) {
 })
 
 // PAYMENTS FACTORY
@@ -99,9 +89,6 @@ angular.module('starter.services', [])
         return payments;
       });
     },
-
-
-    
     getPayment: function(paymentId){
       // hard coded params for now - need to refactor to use $stateParams
       return $http.get("http://localhost:3000/users/1/houses/1/payments/" + paymentId)

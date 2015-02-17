@@ -38,14 +38,6 @@ angular.module('starter', ['ionic',
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-
-  .state('venmoAuth', {
-    url: '/venmoAuth',
-    templateUrl: 'templates/venmoAuth.html',
-    controller: 'venmoCtrl',
-  })
-
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
@@ -87,24 +79,37 @@ angular.module('starter', ['ionic',
   })
 
   .state('tab.payments', {
-      url: '/payments',
-      views: {
-        'tab-payments': {
-          templateUrl: 'templates/features/tab-payments.html',
-          controller: 'PaymentCtrl',
-          data: {
-            requiresLogin: true
-          }
+    url: '/payments',
+    views: {
+      'tab-payments': {
+        templateUrl: 'templates/features/tab-payments.html',
+        controller: 'PaymentCtrl',
+        data: {
+          requiresLogin: true
         }
       }
-    })
+    }
+  })  
+
+  .state('tab.housemates', {
+    url: '/housemates',
+    views: {
+      'tab-housemates': {
+        templateUrl: 'templates/features/tab-housemates.html',
+        controller: 'HousemateCtrl',
+        data: {
+          requiresLogin: true
+        }
+      }
+    }
+  })
 
   .state('tab.development', {
     url: '/development',
     views: {
       'tab-development': {
         templateUrl: 'templates/features/tab-development.html',
-        controller: 'UserCtrl',
+        controller: 'HousemateCtrl',
         data: {
           requiresLogin: true
         }
@@ -164,21 +169,4 @@ angular.module('starter', ['ionic',
   //     }
   //   })
 
-  // .state('tab.housemates', {
-  //   url: '/housemates',
-  //   resolve: {
-  //     fetchUserPhotos: function (userFactory, userService) {
-  //       console.log('running resolve')
-  //       return userService.users || (userService.users = userFactory.getUsers());
-  //     }
-  //   },
-  //   views: {
-  //     'tab-housemates': {
-  //       templateUrl: 'templates/features/tab-housemates.html',
-  //       controller: 'UserCtrl',
-  //       data: {
-  //         requiresLogin: true
-  //       }
-  //     }
-  //   }
-  // })
+
