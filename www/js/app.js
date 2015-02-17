@@ -89,7 +89,7 @@ angular.module('starter', ['ionic',
         }
       }
     }
-  })  
+  })
 
   .state('tab.housemates', {
     url: '/housemates',
@@ -155,18 +155,3 @@ angular.module('starter', ['ionic',
 
   });
 });
-
-  // .state('tab.messages', {
-  //     url: '/messages',
-  //     views: {
-  //       'tab-messages': {
-  //         templateUrl: 'templates/features/tab-messages.html',
-  //         controller: 'MessagesCtrl',
-  //         data: {
-  //           requiresLogin: true
-  //         }
-  //       }
-  //     }
-  //   })
-
-
