@@ -1,15 +1,26 @@
 <ion-view view-title="Development">
 <ion-content class="development">
 
+<div ng-controller="HousemateCtrl">
+	<div class="row">
+		<p>
+			<strong>Welcome, currently logged in as {{currentUser.name}}</strong>
+
+			Details: {{currentUser}}
+		</p>
+	</div>
+</div>
+
 <!-- HOUSE CONTROLLER -->
 <h1 class="title">House Controller</h1>
 <button class="button button-positive button-block" ng-click="logout()">Logout</button>
 <div ng-controller='HouseCtrl'>
 	<div class="row">
 		<div class="col col-50">
-			<button class="button button-balanced" ng-click="clickToCreate()">
-				Create House
-			</button>
+			<form ng-submit="clickToCreate(house)">
+				<input ng-model="house.name" type="text" placeholder="House Name">
+				<input type="submit">
+			</form>
 		</div>
 		<div class='col col-50'>
 			<button class="button button-positive" ng-click="clickToGetHouse()">
@@ -19,11 +30,12 @@
 	</div>
 </div>
 
+
 <!-- USER CONTROLLER -->
 <h1 class="title">User Controller</h1>
 <div ng-controller="HousemateCtrl">
 	<button class="button button-positive" ng-click="clickToGetUsers()">Get Users</button>
-	<form ng-submit="getUser(userId)">
+	<form ng-submit="getHousemate(userId)">
 		<div class="list list-inset">
 			<label class="item item-input">
 				<input ng-model="userId" type="number" placeholder="User ID">

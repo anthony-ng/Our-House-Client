@@ -46,60 +46,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 })
 
-.controller('MessagesCtrl', function($scope, Chats, $ionicModal) {
-
-    $ionicModal.fromTemplateUrl('templates/filterModal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-    $scope.openFilterModal = function() {
-      $scope.modal.show();
-    };
-    $scope.closeFilterModal = function() {
-      $scope.modal.hide();
-    };
-    //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-      $scope.modal.remove();
-    });
-    // Execute action on hide modal
-    $scope.$on('modal.hidden', function() {
-      // Execute action
-    });
-    // Execute action on remove modal
-    $scope.$on('modal.removed', function() {
-      // Execute action
-    });
-
-    $ionicModal.fromTemplateUrl('templates/createMessageModal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function(modal) {
-        $scope.modal = modal;
-      });
-      $scope.openMessageModal = function() {
-        $scope.modal.show();
-      };
-      $scope.closeMessageModal = function() {
-        $scope.modal.hide();
-      };
-      //Cleanup the modal when we're done with it!
-      $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-      });
-      // Execute action on hide modal
-      $scope.$on('modal.hidden', function() {
-        // Execute action
-      });
-      // Execute action on remove modal
-      $scope.$on('modal.removed', function() {
-        // Execute action
-      });
-})
-
-
 .controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
 
   console.log('INSIDE USERCTRL')
@@ -111,42 +57,57 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('refreshToken');
     $state.go('login');
   }
-  $scope.currentUser = store.get('currentUser')
-  userFactory.getHousemates().then(function(data){
-    $scope.housemates = data
-  })
 
-  //for adding additional housemates
   $scope.newHousemates = [{"email":"" }]
   $scope.addNewHousemate = function() {
     $scope.newHousemates.push({"email":"" })
+  };
+
+  $scope.currentUser = store.get('currentUser');
+
+  userFactory.getHousemates().then(function(data){
+    $scope.housemates = data
+  });
+
+  // DEVELOPMENT ONLY
+  $scope.clickToGetUsers = function() {
+    userFactory.getHousemates().then(function(data){
+      console.log(data);
+    })
+  };
+
+  // DEVELOPMENT ONLY
+  $scope.getHousemate = function(userId) {
+    userFactory.getHousemate(userId).then(function(data){
+      console.log(data);
+    })
   }
 
-$ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
+  $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     scope: $scope,
     animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.addHousemateModal = modal;
-  });
-  $scope.openAddHousemateModal = function() {
-    $scope.addHousemateModal.show();
-  };
-  $scope.closeAddHousemateModal = function() {
-    $scope.addHousemateModal.hide();
-  };
-  //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.addHousemateModal.remove();
-  });
-  // Execute action on hide modal
-  $scope.$on('addHousemateModal.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove modal
-  $scope.$on('addHousemateModal.removed', function() {
-    // Execute action
-  });
-})
+    }).then(function(modal) {
+      $scope.addHousemateModal = modal;
+    });
+    $scope.openAddHousemateModal = function() {
+      $scope.addHousemateModal.show();
+    };
+    $scope.closeAddHousemateModal = function() {
+      $scope.addHousemateModal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.addHousemateModal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('addHousemateModal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('addHousemateModal.removed', function() {
+      // Execute action
+    });
+  })
 
 //DEVELOPMENT CONTROLLER
 .controller('developmentCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
@@ -192,14 +153,17 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     })
   }
 
+  // DEVELOPMENT ONLY
   paymentService.getPayments().then(function(data){
     $scope.payments = data;
   })
-  //1 should be repalced with the variable id, i.e. getPayment(id)
+
+  // DEVELOPMENT ONLY ***** replace hard coded payment ID *******
   paymentService.getPayment(1).then(function(data){
     $scope.payment = data;
   })
 
+  // DEVELOPMENT ONLY
   $scope.clickToGetPayments = function() {
     paymentService.getPayments().then(function(data){
       console.log(data); // returns an array
@@ -207,6 +171,7 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     })
   }
 
+  // DEVELOPMENT ONLY
   $scope.getPayment = function(paymentId) {
     paymentService.getPayment(paymentId).then(function(data){
       console.log(data.description);
@@ -218,13 +183,14 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
 // HOUSE CONTROLLER
 .controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http){
 
-  // needs to pass in params from a form - the params are currently hard coded in the factory helper
-  $scope.clickToCreate = function() {
-    houseService.createHouse().then(function(data){
-      console.log("House has successfully been created");
+  // DEVELOPMENT ONLY
+  $scope.clickToCreate = function(house) {
+    houseService.createHouse(house).then(function(data){
+      console.log(data.data);
     })
   }
 
+  // DEVELOPMENT ONLY
   $scope.clickToGetHouse = function() {
     houseService.getHouse().then(function(data){
       console.log("House name: " + data.name);
@@ -234,18 +200,21 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
 
 .controller('MessageCtrl', function($scope, messageService, auth, store, $state, $http){
 
+  // DEVELOPMENT ONLY
   $scope.clickToGetMessages = function() {
     messageService.getMessages().then(function(data){
       console.log(data);
     })
   }
 
-  $scope.getMessage = function() {
-    messageService.getMessage().then(function(data){
+  // DEVELOPMENT ONLY
+  $scope.getMessage = function(messageId) {
+    messageService.getMessage(messageId).then(function(data){
       console.log(data);
     })
   }
 
+  // DEVELOPMENT ONLY
   $scope.createMessage = function(message) {
     messageService.createMessage(message).then(function(data){
       console.log(data);

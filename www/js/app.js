@@ -53,18 +53,6 @@ angular.module('starter', ['ionic',
     }
   })
 
-  .state('tab.welcome', {
-    url: '/welcome',
-    views: {
-      'tab-welcome': {
-        templateUrl: 'templates/features/tab-welcome.html',
-        controller: 'WelcomeCtrl',
-        data: {
-        }
-      }
-    }
-  })
-
   .state('tab.home', {
     url: '/home',
     views: {
