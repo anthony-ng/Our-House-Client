@@ -194,14 +194,14 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   
   $scope.clickToGetPayments = function() {
     paymentService.getPayments().then(function(data){
-      alert(data); // returns an array
+      console.log(data); // returns an array
       // $scope.payment = data;
     }) 
   }
 
   $scope.getPayment = function(paymentId) {
     paymentService.getPayment(paymentId).then(function(data){
-      alert(data.description);
+      console.log(data.description);
       // $scope.payment = data;
     }) 
   }
@@ -213,13 +213,13 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   // needs to pass in params from a form - the params are currently hard coded in the factory helper
   $scope.clickToCreate = function() {
     houseService.createHouse().then(function(data){
-      alert("House has successfully been created");
+      console.log("House has successfully been created");
     })
   }
 
   $scope.clickToGetHouse = function() {
     houseService.getHouse().then(function(data){
-      alert("House name: " + data.name);
+      console.log("House name: " + data.name);
     })
   }
 })
@@ -228,19 +228,19 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   
   $scope.clickToGetMessages = function() {
     messageService.getMessages().then(function(data){
-      alert(data);
+      console.log(data);
     })
   }
 
   $scope.getMessage = function() {
     messageService.getMessage().then(function(data){
-      alert(data);
+      console.log(data);
     })
   }
 
   $scope.createMessage = function(message) {
     messageService.createMessage(message).then(function(data){
-      alert(data);
+      console.log(data);
     })
   }
 })
