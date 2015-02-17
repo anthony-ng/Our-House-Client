@@ -59,9 +59,11 @@ angular.module('starter.services', [])
 })
 
 // PAYMENTS FACTORY
-.factory('paymentService', function($http) {
+.factory('paymentService', function($http, userService) {
   var payments = [];
   var payment;
+  var currentUser = userService.currentUser();
+  
   return {
     getPayments: function(){
       // hard coded params for now - need to refactor to use $stateParams

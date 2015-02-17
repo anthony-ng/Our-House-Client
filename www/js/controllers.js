@@ -109,14 +109,12 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.housemates = data
   });
 
-  // for Development Testing Only
+  // DEVELOPMENT ONLY
   $scope.clickToGetUsers = function() {
     userFactory.getHousemates().then(function(data){
       console.log(data);
     })
   };
-
-
 
 $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     scope: $scope,
@@ -167,14 +165,17 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     })
   }
 
+  // DEVELOPMENT ONLY
   paymentService.getPayments().then(function(data){
     $scope.payments = data;
   })
-  //1 should be repalced with the variable id, i.e. getPayment(id) 
+
+  // DEVELOPMENT ONLY ***** replace hard coded payment ID *******
   paymentService.getPayment(1).then(function(data){
     $scope.payment = data;
   })
 
+  // DEVELOPMENT ONLY
   $scope.clickToGetPayments = function() {
     paymentService.getPayments().then(function(data){
       console.log(data); // returns an array
@@ -182,6 +183,7 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     })
   }
 
+  // DEVELOPMENT ONLY
   $scope.getPayment = function(paymentId) {
     paymentService.getPayment(paymentId).then(function(data){
       console.log(data.description);
@@ -193,13 +195,14 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
 // HOUSE CONTROLLER
 .controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http){
 
-  // needs to pass in params from a form - the params are currently hard coded in the factory helper
+  // DEVELOPMENT ONLY
   $scope.clickToCreate = function(house) {
     houseService.createHouse(house).then(function(data){
       console.log(data.data);
     })
   }
 
+  // DEVELOPMENT ONLY
   $scope.clickToGetHouse = function() {
     houseService.getHouse().then(function(data){
       console.log("House name: " + data.name);
@@ -209,18 +212,21 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
 
 .controller('MessageCtrl', function($scope, messageService, auth, store, $state, $http){
 
+  // DEVELOPMENT ONLY
   $scope.clickToGetMessages = function() {
     messageService.getMessages().then(function(data){
       console.log(data);
     })
   }
 
+  // DEVELOPMENT ONLY
   $scope.getMessage = function() {
     messageService.getMessage().then(function(data){
       console.log(data);
     })
   }
 
+  // DEVELOPMENT ONLY
   $scope.createMessage = function(message) {
     messageService.createMessage(message).then(function(data){
       console.log(data);
