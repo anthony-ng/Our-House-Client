@@ -19,7 +19,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $http.post('http://localhost:3000/users', store.inMemoryCache.profile).then(function(response){
       userService.setCurrentUser(response.data)
       store.set('currentUser', response.data);
-      debugger;
     })
     $state.go('tab.home');
   }, function(error) {
@@ -126,8 +125,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('refreshToken');
     $state.go('login');
   }
-
-  debugger;
     userFactory.getHousemates().then(function(data){
       $scope.housemates = data
     })
