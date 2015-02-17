@@ -199,6 +199,13 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
+  $scope.payment = {}
+
+  $scope.sendPayment = function() {
+    $http.post('http://localhost:3000/venmo', $scope.payment).then(function(response){
+      //DO SOMETHING ON SUCCESS (REMOVE FIELDS, SUCCESS MODAL...ETC)
+    })
+  }
   var user = store.inMemoryCache.profile.user_id
   var venmoAuthUrl = "https://api.venmo.com/v1/oauth/authorize?client_id=2374&scope=make_payments%20access_profile%20access_email%20access_phone%20access_balance&response_type=code&state=" + user
 
@@ -207,7 +214,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     ref.addEventListener('loadstart');
     ref.addEventListener('loadstart', function() { alert(event.url); });
     ref.addEventListener('loadstop', function(event){
-      debugger;
       if (event.url.match("/close")) {
         ref.close();
       }

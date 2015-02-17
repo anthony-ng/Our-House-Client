@@ -1,15 +1,22 @@
 <ion-view view-title="Payments">
 <ion-content class="payments">
+<form ng-submit="sendPayment()">
   <label class="item item-input">
-    <span class="input-label">Recipient</span>
-    <input type="email">
+    <span class="input-label">Receivers Email</span>
+    <input ng-model="payment.receiver_email" type="email" placeholder="someone@gmail.com">
   </label>
   <label class="item item-input">
-    <span class="input-label">Payment Amount</span>
-    <input type="number">
+    <span class="input-label">Amount</span>
+    <input ng-model="payment.amount" type="text" placeholder="$10.00">
   </label>
-  <a href="#" class="button button-positive button-block" ng-click="venmoLogin()">
-    Login to Venmo
-  </a>
+  <label class="item item-input">
+    <span class="input-label">Note</span>
+    <input ng-model="payment.note" type="text" placeholder="Electric bill">
+  </label>
+  <button type="submit" class="button button-block button-calm">Send Payment</button>
+</form>
+<a href="#" class="button button-positive button-block" ng-click="venmoLogin()">
+    Connect account to venmo
+</a>
 </ion-content>
 </ion-view>
