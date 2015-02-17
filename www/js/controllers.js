@@ -163,35 +163,33 @@ angular.module('starter.controllers', ['ionic'])
   // }
 
 
-    $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.addHousemateModal = modal;
-    });
-    $scope.openAddHousemateModal = function() {
-      $scope.addHousemateModal.show();
-    };
-    $scope.closeAddHousemateModal = function() {
-      $scope.addHousemateModal.hide();
-    };
-    //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-      $scope.addHousemateModal.remove();
-    });
-    // Execute action on hide modal
-    $scope.$on('addHousemateModal.hidden', function() {
-      // Execute action
-    });
-    // Execute action on remove modal
-    $scope.$on('addHousemateModal.removed', function() {
-      // Execute action
-    });
-
-
+$ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.addHousemateModal = modal;
+  });
+  $scope.openAddHousemateModal = function() {
+    $scope.addHousemateModal.show();
+  };
+  $scope.closeAddHousemateModal = function() {
+    $scope.addHousemateModal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.addHousemateModal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('addHousemateModal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('addHousemateModal.removed', function() {
+    // Execute action
+  });
 })
 
-
+// PAYMENT CONTROLLER
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   
   $scope.clickToGetPayments = function() {
@@ -207,23 +205,48 @@ angular.module('starter.controllers', ['ionic'])
       // $scope.payment = data;
     }) 
   }
-
-
 })
 
+// HOUSE CONTROLLER
 .controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http){
 
   // needs to pass in params from a form - the params are currently hard coded in the factory helper
   $scope.clickToCreate = function() {
     houseService.createHouse().then(function(data){
-      alert("House has successfully been created")
+      alert("House has successfully been created");
     })
   }
 
   $scope.clickToGetHouse = function() {
     houseService.getHouse().then(function(data){
-      alert("House name: " + data.name)
+      alert("House name: " + data.name);
+    })
+  }
+})
+
+.controller('MessageCtrl', function($scope, messageService, auth, store, $state, $http){
+  
+  $scope.clickToGetMessages = function() {
+    messageService.getMessages().then(function(data){
+      alert(data);
     })
   }
 
+  $scope.getMessage = function() {
+    messageService.getMessage().then(function(data){
+      alert(data);
+    })
+  }
+
+  $scope.createMessage = function(message) {
+    messageService.createMessage(message).then(function(data){
+      alert(data);
+    })
+  }
 })
+
+
+
+
+
+

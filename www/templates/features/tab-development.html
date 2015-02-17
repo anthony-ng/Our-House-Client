@@ -1,6 +1,7 @@
 <ion-view view-title="Development">
 <ion-content class="development">
 
+<!-- HOUSE CONTROLLER -->
 <h1 class="title">House Controller</h1>
 <div ng-controller='HouseCtrl'>
 	<div class="row">
@@ -18,7 +19,7 @@
 </div>
 
 
-
+<!-- USER CONTROLLER -->
 <h1 class="title">User Controller</h1>
 <div ng-controller="UserCtrl">
 	<button class="button button-positive" ng-click="clickToGetUsers()">Get Users</button>
@@ -27,7 +28,7 @@
 			<label class="item item-input">
 				<input ng-model="userId" type="number" placeholder="User ID">
 			</label>
-			<label class="item item-submit">
+			<label class="submit">
 				<input type="submit">
 			</label>
 			
@@ -35,7 +36,7 @@
 	</form>
 </div>
 
-
+<!-- PAYMENT CONTROLLER -->
 <h1 class="title">Payment Controller</h1>
 <div ng-controller="PaymentCtrl">
 	<button class="button button-positive" ng-click="clickToGetPayments()">Get Payments</button>
@@ -45,7 +46,7 @@
 			<label class="item item-input">
 				<input ng-model="paymentId" type="number" placeholder="Payment ID">
 			</label>
-			<label class="item item-submit">
+			<label class="submit">
 				<input type="submit">
 			</label>
 			
@@ -53,7 +54,43 @@
 	</form>
 </div>
 
+<!-- MESSAGE CONTROLLER -->
+<h1 class="title">Message Controller</h1>
+<div ng-controller="MessageCtrl">
+	<button class="button button-positive" ng-click="clickToGetMessages()">Get Messages</button>
 
+	<form ng-submit="getMessage(messageId)">
+		<div class="list list-inset">
+			<label class="item item-input">
+				<input ng-model="messageId" type="number" placeholder="message ID">
+			</label>
+			<label class="submit">
+				<input type="submit">
+			</label>
+			
+		</div>
+	</form>
 
+	<form ng-submit="createMessage(message)">
+		<div class="list list-inset">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Message Type
+				</div>
+				<select ng-model="message.type">
+					<option>Notif</option>
+					<option>Task</option>
+					<option>Activity</option>
+				</select>
+			</label>
+			<label class="item item-input">
+				<input ng-model="message.content" type="text" placeholder="Type your message here...">
+			</label>
+			<label class="item item-submit">
+				<input type="submit">
+			</label>
+		</div>
+	</form>
+</div>
 </ion-content>
 </ion-view>

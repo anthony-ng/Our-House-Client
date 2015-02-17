@@ -166,8 +166,7 @@ angular.module('starter.services', [])
 
 // HOUSE FACTORY
 .factory('houseService', function($http) {
-  var house;
-  var createdHouse;
+  var house, createdHouse;
   return {
     getHouse: function(){
       // hard coded params for now - need to refactor to use $stateParams
@@ -183,17 +182,39 @@ angular.module('starter.services', [])
       // Check to see if current_user is being updated to the newly created house
     createHouse: function(){
       return $http.post("http://localhost:3000/users/6/houses", 
-                      { "house": { "name": "DevBootCamp Test House" } },
-                { headers: { 'Content-Type': 'application/json' } })
+                       { "house": { "name": "DevBootCamp Test House" } },
+                       { headers: { 'Content-Type': 'application/json' } })
     }
   }
 })
 
-// example of post factory
-// return $http.post("https://www.yoursite.com/method",{param: value}).then(function(response){
-//   users = response;
-//   return users;
-// });
+.factory('messageService', function($http) {
+  var message, messages;
+  return {
+    getMessages: function(){
+      return $http.get("http://localhost:3000/users/1/houses/1/messages")
+      .then(function(response){
+        message = response.data;
+        return message;
+      })
+    },
+
+    getMessage: function(){
+      return $http.get("http://localhost:3000/users/1/houses/1/messages/1")
+      .then(function(response){
+        messages = response.data;
+        return messages;
+      })
+    },
+
+    createMessage: function(message){
+      console.log(message)
+      return $http.post('http://localhost:3000/users/1/houses/1/messages', 
+                       { "message": message },
+                       { headers: { 'Content-Type': 'application/json' } }) 
+    }
+  }
+})
 
 
 
