@@ -42,9 +42,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   // Feature code for Housemates View
   $scope.newHousematesToBeAdded = [ { "email": "" } ];
   // Set up basic templating function
-  $scope.addNewHousemates = function() {
+  $scope.addNewHousemate = function() {
     $scope.newHousematesToBeAdded.push({"email":""});
   }
+
 
   // refactor into a helper???
   $scope.logout = function() {
@@ -92,7 +93,7 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   $scope.submitAddHousemateModal = function() {
     // invoke a factory to submit a post request to update the users
     // and invite them to the house
-    
+
     // $scope.newHousemates
 
     $scope.addHousemateModal.hide();
