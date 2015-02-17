@@ -93,12 +93,6 @@ angular.module('starter', ['ionic',
 
   .state('tab.housemates', {
     url: '/housemates',
-    // resolve: {
-    //   fetchUserPhotos: function (userFactory, userService) {
-    //     console.log('running resolve')
-    //     return userService.housemates || (userService.housemates = userFactory.getHousemates());
-    //   }
-    // },
     views: {
       'tab-housemates': {
         templateUrl: 'templates/features/tab-housemates.html',
