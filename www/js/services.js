@@ -81,7 +81,18 @@ angular.module('starter.services', [])
 })
 
 .factory('userService', function () {
-  return {};
+  var currentUser = {};
+  return {
+    currentUser: function(){
+      return currentUser;
+    },
+    setCurrentUser: function(user) {
+      currentUser = user;
+    },
+    removeCurrentUser: function() {
+      currentUser = null;
+    }
+  } 
 })
 
 // PAYMENTS FACTORY

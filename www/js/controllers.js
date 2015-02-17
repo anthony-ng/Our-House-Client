@@ -4,7 +4,7 @@
 angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 // LoginCtrl.js
-.controller('LoginCtrl', function($scope, auth, $state, store, $http) {
+.controller('LoginCtrl', function($scope, auth, $state, store, $http, userService) {
   auth.signin({
     closable: false,
     // This asks for the refresh token
@@ -16,10 +16,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.set('profile', profile);
     store.set('token', idToken);
     store.set('refreshToken', refreshToken);
-    $state.go('tab.home');
     $http.post('http://localhost:3000/users', store.inMemoryCache.profile).then(function(response){
-      //STORE  response.data SOMEWHERE, it's the USER OBJECT, BRO
-    });
+      userService.setCurrentUser(response.data)
+    })
+    $state.go('tab.home');
   }, function(error) {
     console.log("There was an error logging in", error);
   });
@@ -112,7 +112,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 //   };
 // })
 
-.controller('UserCtrl', function($scope, userService, userFactory, auth, store, $state, $http, $ionicModal, userService) {
+.controller('UserCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal, userService) {
   // var user = userService.getUser($scope.id);
   // userService.users = userFactory.getUsers()
   console.log('INSIDE USERCTRL')
