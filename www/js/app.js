@@ -60,7 +60,15 @@ angular.module('starter', ['ionic',
         requiresLogin: true
     }
   })
-  // Each tab has its own nav history stack:
+
+  .state('tab.welcome', {
+    url: "/welcome",
+    abstract: true,
+    templateUrl: "templates/features/tab-welcome.html",
+    data: {
+        requiresLogin: true
+    }
+  })
 
   .state('tab.home', {
     url: '/home',
@@ -87,7 +95,6 @@ angular.module('starter', ['ionic',
         }
       }
     })
-
 
   .state('tab.development', {
     url: '/development',
@@ -154,27 +161,6 @@ angular.module('starter', ['ionic',
   //     }
   //   })
 
-    // .state('tab.friend-detail', {
-    //   url: '/friend/:friendId',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/friend-detail.html',
-    //       controller: 'FriendDetailCtrl',
-    //       data: {
-    //         requiresLogin: true
-    //       }
-    //     }
-    //   }
-    // })
-
-    // .state('tab.friend-detail.info', {
-    //   url: '/friend/:friendId/info',
-    //   views: {
-    //     'info': {
-    //       template: '<h1>hello</h1>',
-    //     }
-    //   }
-    // })
   // .state('tab.housemates', {
   //   url: '/housemates',
   //   resolve: {
