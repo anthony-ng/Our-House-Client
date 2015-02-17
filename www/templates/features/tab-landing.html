@@ -1,11 +1,57 @@
 <ion-view view-title="Welcome to OurHouse">
 <ion-content class="padding">
-<div class="add-house">
+<div class="add-house" ng-hide="currentUser.house_id">
   <div class="row row-top">
     <div class="col">
-      HOME?
+      <h6>It looks like you're not linked up to a house yet:<h6>
     </div>
   </div>
+  <div class="row">
+    <form ng-submit="findOrCreateHouse()">
+      <div ng-hide="house.joinCode">
+        <h5 style="text-align: center;">Create a new house</h5>
+        <label class="item item-input" ng-hide="house.joinCode">
+          <span class="input-label">House Name</span>
+          <input ng-model="house.name" type="text" placeholder="i.e. DevBootCamp House">
+        </label>
+      </div>
+      <div ng-hide="house.name">
+        <h5 style="text-align: center;">Connect to an existing house</h5>
+        <label class="item item-input">
+          <span class="input-label">Join Code</span>
+          <input ng-model="house.joinCode" type="text" placeholder="5xYw485">
+        </label>
+      </div>
+      <button type="submit" class="button button-block button-calm" ng-show="house.joinCode">Connect me!</button>
+      <button ng-click="addHousemates" type="submit" class="button button-block button-positive" ng-show="house.name">Create House</button>
+    </form>
+  </div>
+</div>
+<div class="add-roommates">
+  <div class="row">
+    <h5>Looks like you don't have any roommates yet</h5>
+  </div>
+  <div class="row">
+    <div class="list">
+      <label class="item item-input" ng-repeat="field in newHousemates">
+        <input type="text" placeholder="Email" ng-model="field.email">
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-50">
+      <button class="button button-icon" ng-click="addNewHousemate()">
+        <i class="icon ion-plus-circled"> </i>
+      </button>
+    </div>
+    <div class="col col-50">
+      <button class="button button-icon" ng-click="addNewHousemate()">
+        <i class="icon ion-plus-circled"> </i>
+      </button>
+    </div>
+  </div>
+  </div>
+</div>
 </div>
 </ion-content>
 </ion-view>

@@ -23,8 +23,27 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('HomeCtrl', function($scope, $http, store, $state) {
+.controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory) {
+  $scope.house = {}
   $scope.currentUser = store.get('currentUser')
+  userFactory.getHousemates().then(function(data){
+      $scope.housemates = data
+    })
+
+  //for adding housemates
+  $scope.newHousemates = [{"email":"" }]
+  $scope.addNewHousemate = function() {
+    $scope.newHousemates.push({"email":"" })
+  }
+
+
+  $scope.findOrCreateHouse = function() {
+    houseService.createHouse($scope.house.name).then(function(){
+      userService.updateCurrentUser($scope.currentUser)
+      $scope.currentUser = store.get('currentUser')
+    })
+  }
+
 })
 
 .controller('MessagesCtrl', function($scope, Chats, $ionicModal) {
@@ -92,11 +111,16 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('refreshToken');
     $state.go('login');
   }
-    $scope.currentUser = store.get('currentUser')
-    userFactory.getHousemates().then(function(data){
-      $scope.housemates = data
-    })
+  $scope.currentUser = store.get('currentUser')
+  userFactory.getHousemates().then(function(data){
+    $scope.housemates = data
+  })
 
+  //for adding additional housemates
+  $scope.newHousemates = [{"email":"" }]
+  $scope.addNewHousemate = function() {
+    $scope.newHousemates.push({"email":"" })
+  }
 
 $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     scope: $scope,

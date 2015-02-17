@@ -71,7 +71,14 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('userService', function (store) {
+.factory('userService', function(store, $http) {
+  return {
+    updateCurrentUser: function(user){
+      $http.get('http://localhost:3000/users/'+ user.id).then(function(response){
+        store.set('currentUser', response.data);
+      })
+    }
+  }
 })
 
 // PAYMENTS FACTORY
@@ -101,7 +108,7 @@ angular.module('starter.services', [])
 })
 
 // HOUSE FACTORY
-.factory('houseService', function($http) {
+.factory('houseService', function($http, store) {
   var house, createdHouse;
   return {
     getHouse: function(){
@@ -116,11 +123,12 @@ angular.module('starter.services', [])
       // Want to refactor this to pass in form-data from the view into this function and pass in form-data
       // as second argument to $http.post method
       // Check to see if current_user is being updated to the newly created house
-    createHouse: function(){
-
-      return $http.post("http://localhost:3000/users/6/houses", 
-                       { "house": { "name": "DevBootCamp Test House" } },
-                       { headers: { 'Content-Type': 'application/json' } })
+    createHouse: function(houseName){
+      return $http.post("http://localhost:3000/users/" + store.get('currentUser').id + "/houses", {"house": {"name": houseName}})
+    },
+    //THIS IS NOT IMPLIMENTED ON SERVER YET
+    findHouse: function(code){
+      return $http.post("http://localhost:3000/users/" + store.get('currentUser').id + "/houses", code)
     }
   }
 })
@@ -146,9 +154,9 @@ angular.module('starter.services', [])
 
     createMessage: function(message){
       console.log(message)
-      return $http.post('http://localhost:3000/users/1/houses/1/messages', 
+      return $http.post('http://localhost:3000/users/1/houses/1/messages',
                        { "message": message },
-                       { headers: { 'Content-Type': 'application/json' } }) 
+                       { headers: { 'Content-Type': 'application/json' } })
     }
   }
 })
