@@ -195,8 +195,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.$on('addHousemateModal.removed', function() {
       // Execute action
     });
-
-
 })
 
 
@@ -204,12 +202,12 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   var user = store.inMemoryCache.profile.user_id
   var venmoAuthUrl = "https://api.venmo.com/v1/oauth/authorize?client_id=2374&scope=make_payments%20access_profile%20access_email%20access_phone%20access_balance&response_type=code&state=" + user
 
-
-
   $scope.venmoLogin = function(){
     var ref = window.open(venmoAuthUrl, '_blank', 'location=no');
     ref.addEventListener('loadstart');
+    ref.addEventListener('loadstart', function() { alert(event.url); });
     ref.addEventListener('loadstop', function(event){
+      debugger;
       if (event.url.match("/close")) {
         ref.close();
       }
