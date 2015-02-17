@@ -124,6 +124,27 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   });
 })
 
+//DEVELOPMENT CONTROLLER
+.controller('developmentCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
+
+  console.log('INSIDE USERCTRL')
+  // refactor into a helper???
+  $scope.logout = function() {
+    auth.signout();
+    store.remove('token');
+    store.remove('profile');
+    store.remove('refreshToken');
+    $state.go('login');
+  }
+    $scope.currentUser = store.get('currentUser')
+    userFactory.getHousemates().then(function(data){
+      $scope.housemates = data
+    })
+})
+
+
+
+
 // PAYMENT CONTROLLER
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   $scope.payment = {}
