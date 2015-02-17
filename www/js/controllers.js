@@ -170,34 +170,33 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   //   })
   // }
 
-
-    $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.addHousemateModal = modal;
-    });
-    $scope.openAddHousemateModal = function() {
-      $scope.addHousemateModal.show();
-    };
-    $scope.closeAddHousemateModal = function() {
-      $scope.addHousemateModal.hide();
-    };
-    //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-      $scope.addHousemateModal.remove();
-    });
-    // Execute action on hide modal
-    $scope.$on('addHousemateModal.hidden', function() {
-      // Execute action
-    });
-    // Execute action on remove modal
-    $scope.$on('addHousemateModal.removed', function() {
-      // Execute action
-    });
+$ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.addHousemateModal = modal;
+  });
+  $scope.openAddHousemateModal = function() {
+    $scope.addHousemateModal.show();
+  };
+  $scope.closeAddHousemateModal = function() {
+    $scope.addHousemateModal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.addHousemateModal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('addHousemateModal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('addHousemateModal.removed', function() {
+    // Execute action
+  });
 })
 
-
+// PAYMENT CONTROLLER
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   var user = store.inMemoryCache.profile.user_id
   var venmoAuthUrl = "https://api.venmo.com/v1/oauth/authorize?client_id=2374&scope=make_payments%20access_profile%20access_email%20access_phone%20access_balance&response_type=code&state=" + user
@@ -220,22 +219,62 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   paymentService.getPayment().then(function(data){
     $scope.payment = data;
   })
+  
+  $scope.clickToGetPayments = function() {
+    paymentService.getPayments().then(function(data){
+      console.log(data); // returns an array
+      // $scope.payment = data;
+    }) 
+  }
 
+  $scope.getPayment = function(paymentId) {
+    paymentService.getPayment(paymentId).then(function(data){
+      console.log(data.description);
+      // $scope.payment = data;
+    }) 
+  }
 })
 
+// HOUSE CONTROLLER
 .controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http){
 
   // needs to pass in params from a form - the params are currently hard coded in the factory helper
   $scope.clickToCreate = function() {
     houseService.createHouse().then(function(data){
-      alert("House has successfully been created")
+      console.log("House has successfully been created");
     })
   }
 
   $scope.clickToGetHouse = function() {
     houseService.getHouse().then(function(data){
-      alert("House name: " + data.name)
+      console.log("House name: " + data.name);
+    })
+  }
+})
+
+.controller('MessageCtrl', function($scope, messageService, auth, store, $state, $http){
+  
+  $scope.clickToGetMessages = function() {
+    messageService.getMessages().then(function(data){
+      console.log(data);
     })
   }
 
+  $scope.getMessage = function() {
+    messageService.getMessage().then(function(data){
+      console.log(data);
+    })
+  }
+
+  $scope.createMessage = function(message) {
+    messageService.createMessage(message).then(function(data){
+      console.log(data);
+    })
+  }
 })
+
+
+
+
+
+
