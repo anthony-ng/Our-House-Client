@@ -1,6 +1,11 @@
 <ion-view view-title="Development">
 <ion-content class="development">
 
+Welcome, currently logged in as {{currentUser.name}}
+
+<p>Details:</p>
+{{currentUser}}
+
 <!-- HOUSE CONTROLLER -->
 <h1 class="title">House Controller</h1>
 <div ng-controller='HouseCtrl'>
@@ -17,6 +22,7 @@
 		</div>
 	</div>
 </div>
+
 
 <!-- USER CONTROLLER -->
 <h1 class="title">User Controller</h1>

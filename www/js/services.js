@@ -72,6 +72,11 @@ angular.module('starter.services', [])
 })
 
 .factory('userService', function (store) {
+  return {
+    currentUser: function() {
+      return store.get('currentUser');
+    }
+  }
 })
 
 // PAYMENTS FACTORY
@@ -101,12 +106,14 @@ angular.module('starter.services', [])
 })
 
 // HOUSE FACTORY
-.factory('houseService', function($http) {
+.factory('houseService', function($http, userService) {
   var house, createdHouse;
+  var currentUser = userService.currentUser();
+  
   return {
     getHouse: function(){
       // hard coded params for now - need to refactor to use $stateParams
-      return $http.get("http://localhost:3000/users/1/houses/1")
+      return $http.get("http://localhost:3000/users/" + currentUser.id + "/houses/" + currentUser.house_id)
       .then(function(response){
         house = response.data;
         return house;
