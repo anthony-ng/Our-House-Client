@@ -23,9 +23,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('WelcomeCtrl', function() {
-})
-
 .controller('HomeCtrl', function($scope, $http, auth, store, $state) {
   $scope.logout = function() {
     auth.signout();
@@ -160,7 +157,7 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   paymentService.getPayments().then(function(data){
     $scope.payments = data;
   })
-  //1 should be repalced with the variable id, i.e. getPayment(id) 
+  //1 should be repalced with the variable id, i.e. getPayment(id)
   paymentService.getPayment(1).then(function(data){
     $scope.payment = data;
   })
