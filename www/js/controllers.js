@@ -23,15 +23,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('HomeCtrl', function($scope, $http, auth, store, $state) {
-  $scope.logout = function() {
-    auth.signout();
-    store.remove('token');
-    store.remove('profile');
-    store.remove('refreshToken');
-    store.remove('currentUser');
-    $state.go('login');
-  }
+.controller('HomeCtrl', function($scope, $http, store, $state) {
+  $scope.currentUser = store.get('currentUser')
 })
 
 .controller('MessagesCtrl', function($scope, Chats, $ionicModal) {
