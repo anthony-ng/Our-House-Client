@@ -38,7 +38,7 @@ angular.module('starter', ['ionic',
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  .state('login', {
+  .state('tab.login', {
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl',
@@ -129,6 +129,12 @@ angular.module('starter', ['ionic',
 
   .state('tab.housemates', {
     url: '/housemates',
+    resolve: {
+      fetchUserPhotos: function (userFactory, userService) {
+        console.log('running resolve')
+        return userService.users || (userService.users = userFactory.getUsers());
+      }
+    },
     views: {
       'tab-housemates': {
         templateUrl: 'templates/features/tab-housemates.html',
