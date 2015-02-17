@@ -1,26 +1,5 @@
 angular.module('starter.services', [])
 
-.factory('Messages', function() {
-  // Might use a resource here that returns a JSON array
-
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
-    }
-  }
-})
-
 .factory('Auth', function($auth) {
   var user = null
   return {
@@ -59,7 +38,7 @@ angular.module('starter.services', [])
       });
     },
 
-    getUser: function(userId){
+    getHousemate: function(userId){
       // console.log("Hit the getUser function call in Factory!")
       // hard coded params for now - need to refactor to use $stateParams
       return $http.get("http://localhost:3000/users/" + userId)
@@ -72,18 +51,30 @@ angular.module('starter.services', [])
 })
 
 .factory('userService', function (store) {
+  return {
+    currentUser: function() {
+      return store.get('currentUser');
+    }
+  }
 })
 
 // PAYMENTS FACTORY
-.factory('paymentService', function($http) {
+.factory('paymentService', function($http, userService) {
   var payments = [];
   var payment;
+  var currentUser = userService.currentUser();
+
   return {
     getPayments: function(){
       // hard coded params for now - need to refactor to use $stateParams
       // need to check if routes are correct - does not show payment
       // need to be refactored to show all payments for all users in current house
-      return $http.get("http://localhost:3000/users/1/houses/1/payments")
+      return $http.get("http://localhost:3000/users/" 
+                      + currentUser.id 
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/payments")
+      
       .then(function(response){
         payments = response.data;
         return payments;
@@ -91,7 +82,13 @@ angular.module('starter.services', [])
     },
     getPayment: function(paymentId){
       // hard coded params for now - need to refactor to use $stateParams
-      return $http.get("http://localhost:3000/users/1/houses/1/payments/" + paymentId)
+      return $http.get("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/payments/" 
+                      + paymentId)
+
       .then(function(response){
         payment = response.data;
         return payment;
@@ -101,12 +98,18 @@ angular.module('starter.services', [])
 })
 
 // HOUSE FACTORY
-.factory('houseService', function($http) {
+.factory('houseService', function($http, userService) {
   var house, createdHouse;
+  var currentUser = userService.currentUser();
+
   return {
     getHouse: function(){
       // hard coded params for now - need to refactor to use $stateParams
-      return $http.get("http://localhost:3000/users/1/houses/1")
+      return $http.get("http://localhost:3000/users/" 
+                        + currentUser.id 
+                        + "/houses/" 
+                        + currentUser.house_id)
+
       .then(function(response){
         house = response.data;
         return house;
@@ -116,28 +119,44 @@ angular.module('starter.services', [])
       // Want to refactor this to pass in form-data from the view into this function and pass in form-data
       // as second argument to $http.post method
       // Check to see if current_user is being updated to the newly created house
-    createHouse: function(){
+    createHouse: function(house){
 
-      return $http.post("http://localhost:3000/users/6/houses", 
-                       { "house": { "name": "DevBootCamp Test House" } },
+      return $http.post("http://localhost:3000/users/" 
+                        + currentUser.id
+                        + "/houses", 
+
+                       { "house": { "name": house.name } },
                        { headers: { 'Content-Type': 'application/json' } })
     }
   }
 })
 
-.factory('messageService', function($http) {
+.factory('messageService', function($http, userService) {
   var message, messages;
+  var currentUser = userService.currentUser();
+
   return {
     getMessages: function(){
-      return $http.get("http://localhost:3000/users/1/houses/1/messages")
+      return $http.get("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/messages")
+
       .then(function(response){
         message = response.data;
         return message;
       })
     },
 
-    getMessage: function(){
-      return $http.get("http://localhost:3000/users/1/houses/1/messages/1")
+    getMessage: function(messageId){
+      return $http.get("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/" 
+                      + currentUser.house_id
+                      + "/messages/"
+                      + messageId)
+
       .then(function(response){
         messages = response.data;
         return messages;
@@ -146,7 +165,12 @@ angular.module('starter.services', [])
 
     createMessage: function(message){
       console.log(message)
-      return $http.post('http://localhost:3000/users/1/houses/1/messages', 
+      return $http.post("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/messages", 
+
                        { "message": message },
                        { headers: { 'Content-Type': 'application/json' } }) 
     }
