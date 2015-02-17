@@ -3,12 +3,10 @@
 
 angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
-// LoginCtrl.js
-.controller('LoginCtrl', function($scope, auth, $state, store, $http, userService) {
+// LOGIN CONTROLLER
+.controller('LoginCtrl', function($scope, auth, $state, store, $http) {
   auth.signin({
     closable: false,
-    // This asks for the refresh token
-    // So that the user never has to log in again
     authParams: {
       scope: 'openid offline_access'
     }
@@ -17,7 +15,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.set('token', idToken);
     store.set('refreshToken', refreshToken);
     $http.post('http://localhost:3000/users', store.inMemoryCache.profile).then(function(response){
-      userService.setCurrentUser(response.data)
       store.set('currentUser', response.data);
     })
     $state.go('tab.home');
@@ -35,23 +32,12 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('token');
     store.remove('profile');
     store.remove('refreshToken');
-    // store.remove('currentUser');
-
+    store.remove('currentUser');
     $state.go('login');
   }
-
-
-  // here we want to do a get request to obtain all of the messages and payments
-  // think about refactoring to use helpers to obtain all messages/payments and
-  // to list them as individual color coded notifications/widgets that appear as a notice item
-
 })
 
 .controller('MessagesCtrl', function($scope, Chats, $ionicModal) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-    }
 
     $ionicModal.fromTemplateUrl('templates/filterModal.html', {
       scope: $scope,
@@ -105,16 +91,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 })
 
 
-// .controller('ProfileCtrl', function($scope, SharedProperties) {
-
-//   $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
-
-//   $scope.settings = {
-//     enableFriends: true
-//   };
-// })
-
-.controller('HousemateCtrl', function($scope, userService, userFactory, auth, store, $state, $http, $ionicModal, userService) {
+.controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
 
   console.log('INSIDE USERCTRL')
   // refactor into a helper???
@@ -130,25 +107,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       $scope.housemates = data
     })
 
-
-  // userService.getUsers().then(function(data){
-  //   $scope.users = data;
-  // })
-
-  // Use for DEVELOPMENT TAB to test the housemates button
-  // tied to button to click "Get Users"
-  // *****************************************************
-  // $scope.clickToGetUsers = function() {
-  //   userService.getUsers().then(function(data){
-  //     var alertData = [];
-  //     for(var i=0; i<data.length; i++) {
-  //       alertData.push(
-  //         data[i].name);
-  //     }
-  //     alert(alertData);
-  //     // $scope.users = data;
-  //   })
-  // }
 
 $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     scope: $scope,

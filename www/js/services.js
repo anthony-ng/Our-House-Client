@@ -47,7 +47,7 @@ angular.module('starter.services', [])
 })
 
 // USERS FACTORY
-.factory('userFactory', function($q, $http, userService) {
+.factory('userFactory', function($http) {
   var housemates;
   return {
     getHousemates: function(){
