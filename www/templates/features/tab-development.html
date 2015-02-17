@@ -1,19 +1,25 @@
 <ion-view view-title="Development">
 <ion-content class="development">
 
-Welcome, currently logged in as {{currentUser.name}}
+<div ng-controller="HousemateCtrl">
+	<div class="row">
+		<p>
+			<strong>Welcome, currently logged in as {{currentUser.name}}</strong>
 
-<p>Details:</p>
-{{currentUser}}
+			Details: {{currentUser}}
+		</p>
+	</div>
+</div>
 
 <!-- HOUSE CONTROLLER -->
 <h1 class="title">House Controller</h1>
 <div ng-controller='HouseCtrl'>
 	<div class="row">
 		<div class="col col-50">
-			<button class="button button-balanced" ng-click="clickToCreate()">
-				Create House
-			</button>
+			<form ng-submit="clickToCreate(house)">
+				<input ng-model="house.name" type="text" placeholder="House Name">
+				<input type="submit">
+			</form>
 		</div>
 		<div class='col col-50'>
 			<button class="button button-positive" ng-click="clickToGetHouse()">

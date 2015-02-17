@@ -103,7 +103,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $state.go('login');
   }
     $scope.currentUser = store.get('currentUser')
-    
+
     userFactory.getHousemates().then(function(data){
       $scope.housemates = data
     })
@@ -185,9 +185,9 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
 .controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http){
 
   // needs to pass in params from a form - the params are currently hard coded in the factory helper
-  $scope.clickToCreate = function() {
-    houseService.createHouse().then(function(data){
-      console.log("House has successfully been created");
+  $scope.clickToCreate = function(house) {
+    houseService.createHouse(house).then(function(data){
+      console.log(data.data);
     })
   }
 

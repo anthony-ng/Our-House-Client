@@ -109,11 +109,14 @@ angular.module('starter.services', [])
 .factory('houseService', function($http, userService) {
   var house, createdHouse;
   var currentUser = userService.currentUser();
-  
+
   return {
     getHouse: function(){
       // hard coded params for now - need to refactor to use $stateParams
-      return $http.get("http://localhost:3000/users/" + currentUser.id + "/houses/" + currentUser.house_id)
+      return $http.get("http://localhost:3000/users/" 
+                        + currentUser.id 
+                        + "/houses/" 
+                        + currentUser.house_id)
       .then(function(response){
         house = response.data;
         return house;
@@ -123,10 +126,12 @@ angular.module('starter.services', [])
       // Want to refactor this to pass in form-data from the view into this function and pass in form-data
       // as second argument to $http.post method
       // Check to see if current_user is being updated to the newly created house
-    createHouse: function(){
+    createHouse: function(house){
 
-      return $http.post("http://localhost:3000/users/6/houses", 
-                       { "house": { "name": "DevBootCamp Test House" } },
+      return $http.post("http://localhost:3000/users/" 
+                        + currentUser.id
+                        + "/houses", 
+                       { "house": { "name": house.name } },
                        { headers: { 'Content-Type': 'application/json' } })
     }
   }
