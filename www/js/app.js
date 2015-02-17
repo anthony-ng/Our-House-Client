@@ -88,24 +88,6 @@ angular.module('starter', ['ionic',
       }
     })
 
-  // .state('tab.housemates', {
-  //   url: '/housemates',
-  //   resolve: {
-  //     fetchUserPhotos: function (userFactory, userService) {
-  //       console.log('running resolve')
-  //       return userService.users || (userService.users = userFactory.getUsers());
-  //     }
-  //   },
-  //   views: {
-  //     'tab-housemates': {
-  //       templateUrl: 'templates/features/tab-housemates.html',
-  //       controller: 'UserCtrl',
-  //       data: {
-  //         requiresLogin: true
-  //       }
-  //     }
-  //   }
-  // })
 
   .state('tab.development', {
     url: '/development',
@@ -193,3 +175,21 @@ angular.module('starter', ['ionic',
     //     }
     //   }
     // })
+  // .state('tab.housemates', {
+  //   url: '/housemates',
+  //   resolve: {
+  //     fetchUserPhotos: function (userFactory, userService) {
+  //       console.log('running resolve')
+  //       return userService.users || (userService.users = userFactory.getUsers());
+  //     }
+  //   },
+  //   views: {
+  //     'tab-housemates': {
+  //       templateUrl: 'templates/features/tab-housemates.html',
+  //       controller: 'UserCtrl',
+  //       data: {
+  //         requiresLogin: true
+  //       }
+  //     }
+  //   }
+  // })
