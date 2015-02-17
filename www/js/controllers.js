@@ -1,7 +1,7 @@
-angular.module('starter.controllers', ['ionic'])
+angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 // LoginCtrl.js
-.controller('LoginCtrl', function($scope, auth, $state, store) {
+.controller('LoginCtrl', function($scope, auth, $state, store, $http) {
   auth.signin({
     closable: false,
     // This asks for the refresh token
@@ -14,12 +14,24 @@ angular.module('starter.controllers', ['ionic'])
     store.set('token', idToken);
     store.set('refreshToken', refreshToken);
     $state.go('tab.dash');
+    $http.post('http://localhost:3000/users', store.inMemoryCache.profile).then(function(response){
+      //STORE  response.data SOMEWHERE, it's the USER OBJECT, BRO
+    });
   }, function(error) {
     console.log("There was an error logging in", error);
   });
 })
 
-.controller('DashCtrl', function($scope, $http) {
+.controller('DashCtrl', function($scope, $http, auth, store, $state) {
+  $scope.logout = function() {
+    auth.signout();
+    store.remove('token');
+    store.remove('profile');
+    store.remove('refreshToken');
+    $state.go('login');
+  }
+  // debugger;
+
 
   // here we want to do a get request to obtain all of the messages and payments
   // think about refactoring to use helpers to obtain all messages/payments and
@@ -100,11 +112,7 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 .controller('ProfileCtrl', function($scope, SharedProperties) {
-  $scope.logout = function() {
-  auth.signout();
-  store.remove('profile');
-  store.remove('token');
-}
+
   // $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
 
   $scope.settings = {
@@ -162,7 +170,6 @@ angular.module('starter.controllers', ['ionic'])
   //   })
   // }
 
-
 $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -191,6 +198,27 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
 
 // PAYMENT CONTROLLER
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
+  var user = store.inMemoryCache.profile.user_id
+  var venmoAuthUrl = "https://api.venmo.com/v1/oauth/authorize?client_id=2374&scope=make_payments%20access_profile%20access_email%20access_phone%20access_balance&response_type=code&state=" + user
+
+  $scope.venmoLogin = function(){
+    var ref = window.open(venmoAuthUrl, '_blank', 'location=no');
+    ref.addEventListener('loadstart');
+    ref.addEventListener('loadstart', function() { alert(event.url); });
+    ref.addEventListener('loadstop', function(event){
+      debugger;
+      if (event.url.match("/close")) {
+        ref.close();
+      }
+    })
+  }
+
+  paymentService.getPayments().then(function(data){
+    $scope.payments = data;
+  })
+  paymentService.getPayment().then(function(data){
+    $scope.payment = data;
+  })
   
   $scope.clickToGetPayments = function() {
     paymentService.getPayments().then(function(data){

@@ -10,6 +10,7 @@ angular.module('starter', ['ionic',
   'starter.services',
   'auth0',
   'angular-storage',
+  'ngCordova',
   'angular-jwt'])
 
 
@@ -37,6 +38,12 @@ angular.module('starter', ['ionic',
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
+
+  .state('venmoAuth', {
+    url: '/venmoAuth',
+    templateUrl: 'templates/venmoAuth.html',
+    controller: 'venmoCtrl',
+  })
 
   .state('login', {
     url: '/login',
