@@ -173,8 +173,8 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   }
 
   // DEVELOPMENT ONLY
-  $scope.getMessage = function() {
-    messageService.getMessage().then(function(data){
+  $scope.getMessage = function(messageId) {
+    messageService.getMessage(messageId).then(function(data){
       console.log(data);
     })
   }

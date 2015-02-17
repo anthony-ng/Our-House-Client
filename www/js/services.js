@@ -74,6 +74,7 @@ angular.module('starter.services', [])
                       + "/houses/"
                       + currentUser.house_id
                       + "/payments")
+      
       .then(function(response){
         payments = response.data;
         return payments;
@@ -87,6 +88,7 @@ angular.module('starter.services', [])
                       + currentUser.house_id
                       + "/payments/" 
                       + paymentId)
+
       .then(function(response){
         payment = response.data;
         return payment;
@@ -107,6 +109,7 @@ angular.module('starter.services', [])
                         + currentUser.id 
                         + "/houses/" 
                         + currentUser.house_id)
+
       .then(function(response){
         house = response.data;
         return house;
@@ -121,25 +124,39 @@ angular.module('starter.services', [])
       return $http.post("http://localhost:3000/users/" 
                         + currentUser.id
                         + "/houses", 
+
                        { "house": { "name": house.name } },
                        { headers: { 'Content-Type': 'application/json' } })
     }
   }
 })
 
-.factory('messageService', function($http) {
+.factory('messageService', function($http, userService) {
   var message, messages;
+  var currentUser = userService.currentUser();
+
   return {
     getMessages: function(){
-      return $http.get("http://localhost:3000/users/1/houses/1/messages")
+      return $http.get("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/messages")
+
       .then(function(response){
         message = response.data;
         return message;
       })
     },
 
-    getMessage: function(){
-      return $http.get("http://localhost:3000/users/1/houses/1/messages/1")
+    getMessage: function(messageId){
+      return $http.get("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/" 
+                      + currentUser.house_id
+                      + "/messages/"
+                      + messageId)
+
       .then(function(response){
         messages = response.data;
         return messages;
@@ -148,7 +165,12 @@ angular.module('starter.services', [])
 
     createMessage: function(message){
       console.log(message)
-      return $http.post('http://localhost:3000/users/1/houses/1/messages', 
+      return $http.post("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/messages", 
+
                        { "message": message },
                        { headers: { 'Content-Type': 'application/json' } }) 
     }
