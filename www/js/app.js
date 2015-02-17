@@ -62,11 +62,14 @@ angular.module('starter', ['ionic',
   })
 
   .state('tab.welcome', {
-    url: "/welcome",
-    abstract: true,
-    templateUrl: "templates/features/tab-welcome.html",
-    data: {
-        requiresLogin: true
+    url: '/welcome',
+    views: {
+      'tab-welcome': {
+        templateUrl: 'templates/features/tab-welcome.html',
+        controller: 'WelcomeCtrl',
+        data: {
+        }
+      }
     }
   })
 
@@ -75,7 +78,7 @@ angular.module('starter', ['ionic',
     views: {
       'tab-landing': {
         templateUrl: 'templates/features/tab-landing.html',
-        controller: 'DashCtrl',
+        controller: 'HomeCtrl',
         data: {
         requiresLogin: true
         }

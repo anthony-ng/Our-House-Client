@@ -22,7 +22,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('DashCtrl', function($scope, $http, auth, store, $state) {
+.controller('WelcomeCtrl', function() {
+})
+
+.controller('HomeCtrl', function($scope, $http, auth, store, $state) {
   $scope.logout = function() {
     auth.signout();
     store.remove('token');
