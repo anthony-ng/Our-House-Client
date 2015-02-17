@@ -1,3 +1,6 @@
+
+
+
 angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 // LoginCtrl.js
@@ -99,27 +102,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       });
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
+// .controller('ProfileCtrl', function($scope, SharedProperties) {
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
+//   $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
 
-.controller('ProfileCtrl', function($scope, SharedProperties) {
-
-  // $scope.userImageUrl = SharedProperties.userImageUrl().replace("sz=50", "sz=150")
-
-  $scope.settings = {
-    enableFriends: true
-    //cool example of settings in an object
-  };
-})
+//   $scope.settings = {
+//     enableFriends: true
+//   };
+// })
 
 .controller('UserCtrl', function($scope, userService, userFactory, auth, store, $state, $http, $ionicModal, userService) {
   // var user = userService.getUser($scope.id);
