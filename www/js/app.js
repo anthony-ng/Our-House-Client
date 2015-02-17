@@ -39,6 +39,12 @@ angular.module('starter', ['ionic',
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+  .state('venmoAuth', {
+    url: '/venmoAuth',
+    templateUrl: 'templates/venmoAuth.html',
+    controller: 'venmoCtrl',
+  })
+
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
