@@ -50,8 +50,13 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('userService', function (store) {
+.factory('userService', function(store, $http) {
   return {
+    updateCurrentUser: function(userId){
+      $http.get('http://localhost:3000/users/'+ userId).then(function(response){
+        store.set('currentUser', response.data);
+      })
+    },
     currentUser: function() {
       return store.get('currentUser');
     }
@@ -69,12 +74,12 @@ angular.module('starter.services', [])
       // hard coded params for now - need to refactor to use $stateParams
       // need to check if routes are correct - does not show payment
       // need to be refactored to show all payments for all users in current house
-      return $http.get("http://localhost:3000/users/" 
-                      + currentUser.id 
+      return $http.get("http://localhost:3000/users/"
+                      + currentUser.id
                       + "/houses/"
                       + currentUser.house_id
                       + "/payments")
-      
+
       .then(function(response){
         payments = response.data;
         return payments;
@@ -86,7 +91,7 @@ angular.module('starter.services', [])
                       + currentUser.id
                       + "/houses/"
                       + currentUser.house_id
-                      + "/payments/" 
+                      + "/payments/"
                       + paymentId)
 
       .then(function(response){
@@ -105,9 +110,9 @@ angular.module('starter.services', [])
   return {
     getHouse: function(){
       // hard coded params for now - need to refactor to use $stateParams
-      return $http.get("http://localhost:3000/users/" 
-                        + currentUser.id 
-                        + "/houses/" 
+      return $http.get("http://localhost:3000/users/"
+                        + currentUser.id
+                        + "/houses/"
                         + currentUser.house_id)
 
       .then(function(response){
@@ -119,14 +124,23 @@ angular.module('starter.services', [])
       // Want to refactor this to pass in form-data from the view into this function and pass in form-data
       // as second argument to $http.post method
       // Check to see if current_user is being updated to the newly created house
-    createHouse: function(house){
 
-      return $http.post("http://localhost:3000/users/" 
-                        + currentUser.id
-                        + "/houses", 
+    //THIS IS NOT IMPLIMENTED ON SERVER YET - where am I trying to use this? Come back and review -Brian
+    findHouse: function(code){
+      return $http.post("http://localhost:3000/users/" + store.get('currentUser').id + "/houses", code)
+    },
+    createHouse: function(house, userId){
+      return $http.post("http://localhost:3000/users/"
+                        + userId
+                        + "/houses",
 
-                       { "house": { "name": house.name } },
+                       { "house": { "name": house } },
                        { headers: { 'Content-Type': 'application/json' } })
+      .then(function(response){
+        userService.updateCurrentUser(userId);
+      }, function(error){
+        //handle failure
+      })
     }
   }
 })
@@ -152,7 +166,7 @@ angular.module('starter.services', [])
     getMessage: function(messageId){
       return $http.get("http://localhost:3000/users/"
                       + currentUser.id
-                      + "/houses/" 
+                      + "/houses/"
                       + currentUser.house_id
                       + "/messages/"
                       + messageId)
@@ -164,15 +178,14 @@ angular.module('starter.services', [])
     },
 
     createMessage: function(message){
-      console.log(message)
       return $http.post("http://localhost:3000/users/"
                       + currentUser.id
                       + "/houses/"
                       + currentUser.house_id
-                      + "/messages", 
+                      + "/messages",
 
                        { "message": message },
-                       { headers: { 'Content-Type': 'application/json' } }) 
+                       { headers: { 'Content-Type': 'application/json' } })
     }
   }
 })

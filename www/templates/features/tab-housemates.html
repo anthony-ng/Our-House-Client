@@ -9,21 +9,15 @@
       <div class="col col-50">
           <img ng-click="openProfileModal({{housemates[$index].id}})" ng-src="{{housemates[$index].image}}?sz=115"/><br>
           {{housemates[$index].name}}
-          
+
       </div>
       <div class="col col-50">
           <img ng-click="openProfileModal({{housemates[$index + 1].id}})" ng-src="{{housemates[$index + 1].image}}?sz=115"/><br>
           {{housemates[$index + 1].name}}
-          
+
       </div>
     </div>
   </div>
 </div>
-
-
-  <!-- {{housemates}} -->
-
-
-
 </ion-content>
 </ion-view>
