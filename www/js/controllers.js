@@ -34,7 +34,30 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   $scope.addHousemates = false;
   messageService.getMessages().then(function(response){
     $scope.messages = response;
+    debugger;
   })
+
+  $scope.showMessageDetail = function(message){
+    messageService.readMessage(message.view.id)
+    var id = "message" + message.id
+    $scope.noMessageDetail = false
+    $scope[id] = true
+  }
+  $scope.closeMessageDetail = function(message){
+    var id = "message" + message.id
+    $scope.noMessageDetail = true
+    $scope[id] = false
+  }
+
+  $scope.deleteMessage = function(message){
+    //locate and slice object from array
+    // debugger;
+    var id = "message" + message.id
+    messageService.deleteMessage(message.view.id)
+    $scope.noMessageDetail = true
+    $scope[id] = false
+    $scope.messages.slice($scope.messages.indexOf(message),1)
+  }
 
 
   //logic to decide if they need to add/create a house

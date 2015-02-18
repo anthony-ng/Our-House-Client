@@ -45,18 +45,34 @@
   margin-left: 80px;
 }
 
-/*.Activity {
+.Activity.read-false {
+  background-color: rgba(74,135,238,0.4);
+}
+
+.Task.read-false {
+  background-color: rgba(102,204,51,0.4);
+}
+
+.Notif.read-false {
+  background-color: rgba(67,206,230,0.4);
+}
+
+.Activity.read-true {
   background-color: rgba(74,135,238,0.1);
 }
 
-.Task {
+.Task.read-true {
   background-color: rgba(102,204,51,0.1);
 }
 
-.Notif {
+.Notif.read-true {
   background-color: rgba(67,206,230,0.1);
 }
-*/
+
+.removed-true {
+  display: none;
+}
+
 
 #profileImage {
   width: 50%;
