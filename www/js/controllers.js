@@ -41,10 +41,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.messages = response;
   })
 
-  $scope.showFeedFilter = function(){
-    $scope.showFeed = !$scope.showFeed;
-    $scope.showFilter = !$scope.showFilter;
-  }
+  // $scope.showFeedFilter = function(){
+  //   $scope.showFeed = !$scope.showFeed;
+  //   $scope.showFilter = !$scope.showFilter;
+  // }
 
   $scope.deleteMessage = function(message){
     var id = "message" + message.id
@@ -74,19 +74,35 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     var id = "message" + message.id
     $scope[id] = false;
   };
-  //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.messageDetailModal.remove();
   });
-  // Execute action on hide modal
   $scope.$on('messageDetailModal.hidden', function() {
-    // Execute action
   });
-  // Execute action on remove modal
   $scope.$on('messageDetailModal.removed', function() {
-    // Execute action
   });
 
+
+  //show feed filter modal
+  $ionicModal.fromTemplateUrl('templates/viewFeedFilterHome.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.feedFilterModal = modal;
+  });
+  $scope.openfeedFilterModal = function() {
+    $scope.feedFilterModal.show();
+  };
+  $scope.closefeedFilterModal = function() {
+    $scope.feedFilterModal.hide();
+  };
+  $scope.$on('$destroy', function() {
+    $scope.feedFilterModal.remove();
+  });
+  $scope.$on('feedFilterModal.hidden', function() {
+  });
+  $scope.$on('feedFilterModal.removed', function() {
+  });
 
 
 
