@@ -59,7 +59,7 @@ Messages
 <div ng-show="!addHousemates && !NoHouse && noMessageDetail">
   <div class="list">
     <div ng-repeat="message in messages"
-      <a class="item item-avatar {{message.type}}" ng-show="{{message.type}}">
+      <a class="item item-avatar {{message.type}}" ng-show="{{message.type}}" ng-click="showMessageDetail(message)">
         <img ng-src="{{message.image}}?sz=40">
         <h2><b>{{message.type}}</b></h2>
         <p>{{message.content}}</p>
@@ -69,34 +69,26 @@ Messages
 </div>
 
 
-<!-- Message Cards -->
-  <div class="list card">
+<div ng-repeat="message in messages" ng-show="message{{message.id}}">
+<div class="list card">
   <div class="item item-avatar">
     <img ng-src="{{message.image}}?sz=40">
     <h2>{{message.name}}</h2>
     <p>November 05, 1955</p>
   </div>
-
   <div class="item item-body">
     <p>{{message.content}}</p>
-<!--     <p>
-      <a href="#" class="subdued">5 Going</a>
-    </p> -->
   </div>
-
   <div class="item tabs tabs-secondary tabs-icon-left">
-    <a class="tab-item" href="#">
+    <a class="tab-item" ng-click="closeMessageDetail(message)">
       <i class="icon ion-chevron-left"></i>
       Back
     </a>
-
     <a class="tab-item" href="#">
       <i class="icon ion-trash-b"></i>
       Delete
     </a>
-
   </div>
-
 </div>
 
   </ion-content>

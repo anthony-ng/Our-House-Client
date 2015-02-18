@@ -36,6 +36,17 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.messages = response;
   })
 
+  $scope.showMessageDetail = function(message){
+    var id = "message" + message.id
+    $scope.noMessageDetail = false
+    $scope[id] = true
+  }
+  $scope.closeMessageDetail = function(message){
+    var id = "message" + message.id
+    $scope.noMessageDetail = true
+    $scope[id] = false
+  }
+
 
   //logic to decide if they need to add/create a house
   if ($scope.currentUser.house_id === null) {
