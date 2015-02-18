@@ -3,14 +3,14 @@
     <!-- <div class="buttons"> -->
       <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeAddHousemateModal()"></i>
   <h1 class="title">Add New Housemate:</h1>
-        <i id="modalAcceptButton" class="ion-checkmark button button-balanced" ng-click="closeAddHousemateModal()"></i>
+        <i id="modalAcceptButton" class="ion-checkmark button button-balanced" ng-click="submitAddHousemateModal()"></i>
     <!-- </div> -->
-</ion-header-bar>
+  </ion-header-bar>
 
   <ion-content>
     <div class="list">
-      <label class="item item-input" ng-repeat="field in newHousemates">
-        <input type="text" placeholder="Email" ng-model="field.email">
+      <label class="item item-input" ng-repeat="housemate in newHousematesToBeAdded">
+        <input type="text" placeholder="Email" ng-model="housemate.email">
       </label>
       <button class="button button-icon" ng-click="addNewHousemate()">
         <i class="icon ion-plus-circled"> </i>
