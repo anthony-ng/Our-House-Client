@@ -67,15 +67,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 })
 
-// CREATEMESSAGES CONTROLLER
-.controller('CreateMessagesCtrl', function($scope, store, $state, $http) {
-  $scope.createmessages = {}
-
-})
-
-
-
-
 
 // HOUSEMATE CONTROLLER
 .controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
@@ -279,7 +270,11 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   }
 })
 
-.controller('MessageCtrl', function($scope, messageService, auth, store, $state, $http){
+
+
+
+.controller('CreateMessageCtrl', function($scope, messageService, auth, store, $state, $http){
+  $scope.createmessages = {}
 
   // DEVELOPMENT ONLY
   $scope.clickToGetMessages = function() {
