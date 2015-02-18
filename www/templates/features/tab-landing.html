@@ -54,19 +54,50 @@
       </div>
     </div>
 <!--
-show if
+Messages
 -->
-<div ng-show="!addHousemates && !NoHouse">
+<div ng-show="!addHousemates && !NoHouse && noMessageDetail">
   <div class="list">
-
-    <a class="item item-avatar" href="#">
-      <img src="venkman.jpg">
-      <h2>Venkman</h2>
-      <p>Back off, man. I'm a scientist.</p>
-    </a>
+    <div ng-repeat="message in messages"
+      <a class="item item-avatar {{message.type}}" ng-show="{{message.type}}">
+        <img ng-src="{{message.image}}?sz=40">
+        <h2><b>{{message.type}}</b></h2>
+        <p>{{message.content}}</p>
+      </a>
+    </div>
   </div>
 </div>
 
+
+<!-- Message Cards -->
+  <div class="list card">
+  <div class="item item-avatar">
+    <img ng-src="{{message.image}}?sz=40">
+    <h2>{{message.name}}</h2>
+    <p>November 05, 1955</p>
+  </div>
+
+  <div class="item item-body">
+    <p>{{message.content}}</p>
+<!--     <p>
+      <a href="#" class="subdued">5 Going</a>
+    </p> -->
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" href="#">
+      <i class="icon ion-chevron-left"></i>
+      Back
+    </a>
+
+    <a class="tab-item" href="#">
+      <i class="icon ion-trash-b"></i>
+      Delete
+    </a>
+
+  </div>
+
+</div>
 
   </ion-content>
 </ion-view>
