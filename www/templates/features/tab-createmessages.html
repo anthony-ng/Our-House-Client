@@ -5,38 +5,54 @@
   <button class="button button-icon button-clear ion-paper-airplane" ng-click="sendMessage()"></button>
 </ion-nav-buttons>
 
-<ion-content>
+<ion-content ng-congroller="CreateMessageCtrl">
   <div class="list">
-    <label class="item item-radio">
-      <input type="radio" name="message" ng-model="task">
-      <div class="item-content">
-        Task
+    <form name="createMessage" >
+      <div class="row">
+        <div class="col col-30">
+          <label class="item item-radio">
+            <input type="radio" name="message" ng-model="message.type" value="Task">
+            <div class="item-content">
+              Task
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        </div>
+        <div class="col col-30">
+          <label class="item item-radio">
+            <input type="radio" name="message" ng-model="message.type" value="Notif">
+            <div class="item-content">
+              Notification
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        </div>
+        <div class="col col-30">
+          <label class="item item-radio">
+            <input type="radio" name="message" ng-model="message.type" value="Activity">
+            <div class="item-content">
+              Activity
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        </div>
+    <!--   <label class="item item-input">
+        <span class="input-label">
+          Content
+        </span>
+        <input type="text">
+      </label> -->
+    </div>
+    <div class="row">
+      <div class="col col-100">
+        <label class="item item-input">
+          <input class="box" type="text" placeholder="Content">
+        </label>
       </div>
-      <i class="radio-icon ion-checkmark"></i>
-    </label>
-    <label class="item item-radio">
-      <input type="radio" name="message">
-      <div class="item-content">
-        Notification
-      </div>
-      <i class="radio-icon ion-checkmark"></i>
-    </label>
-    <label class="item item-radio">
-      <input type="radio" name="message">
-      <div class="item-content">
-        Activity
-      </div>
-      <i class="radio-icon ion-checkmark"></i>
-    </label>
-<!--   <label class="item item-input">
-    <span class="input-label">
-      Content
-    </span>
-    <input type="text">
-  </label> -->
-    <label class="item item-input">
-      <input class="box" type="text" placeholder="Content">
-    </label>
+    </div>
+
+    </form>
+    {{message.type}}
   </div>
 </ion-content>
 </ion-view>

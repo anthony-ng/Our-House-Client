@@ -275,7 +275,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 .controller('CreateMessageCtrl', function($scope, messageService, auth, store, $state, $http){
   $scope.createmessages = {}
-
+  // $scope.task = false;
   // DEVELOPMENT ONLY
   $scope.clickToGetMessages = function() {
     messageService.getMessages().then(function(data){
