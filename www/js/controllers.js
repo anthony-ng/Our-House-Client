@@ -37,9 +37,22 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   }
 })
 
+// CREATEMESSAGES CONTROLLER
+.controller('CreateMessagesCtrl', function($scope, store, $state, $http){
+  $scope.createmessages = {}
+
+})
+
 .controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
 
-  console.log('INSIDE USERCTRL')
+  // Feature code for Housemates View
+  $scope.newHousematesToBeAdded = [ { "email": "" } ];
+  // Set up basic templating function
+  $scope.addNewHousemate = function() {
+    $scope.newHousematesToBeAdded.push({"email":""});
+  }
+
+
   // refactor into a helper???
   $scope.logout = function() {
     auth.signout();
@@ -81,7 +94,18 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   };
   $scope.closeAddHousemateModal = function() {
     $scope.addHousemateModal.hide();
+    // empty out the template form
+    $scope.newHousemates = [ {"email": ""}]
   };
+  $scope.submitAddHousemateModal = function() {
+    // invoke a factory to submit a post request to update the users
+    // and invite them to the house
+
+    // $scope.newHousemates
+
+    $scope.addHousemateModal.hide();
+  }
+  // TEMPLATE CODE FOR MODAL
   //Cleanup the modal when we're done with it!
   // $scope.$on('$destroy', function() {
   //   $scope.addHousemateModal.remove();
