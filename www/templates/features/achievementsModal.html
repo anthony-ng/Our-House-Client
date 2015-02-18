@@ -4,4 +4,40 @@
     <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeAchievementsModal()"></i>
     <h1 class="title">Tasks Completed</h1>
   </ion-header-bar>
+
+  <ion-content class="profile">
+    <div class="row" id="profile-icons">
+      <div class="col col-33">
+        Tasks
+        <i class="ion-ribbon-a" ng-click="openAchievementsModal()"></i>
+        <!-- Insert Tasks Count -->
+      </div>
+      <div class="col col-33">
+        Notifs
+        <i class="ion-chatbox" ng-click="openNotifsModal()"></i>
+        <!-- Insert Notif Count -->
+      </div>
+      <div class="col col-33">
+        Activities
+        <i class="ion-wineglass" ng-click="openActivitiesModal()"></i>
+        <!-- Insert Activities Count -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-100">
+        <div class="list">
+          <div ng-repeat="message in messages">
+            <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-if="message.type === 'Task'">
+            <img ng-src="{{message.image}}?sz=40">
+            <h2><b>{{message.type}}</b></h2>
+            <p>{{message.content}}</p>
+            <p>{{message.user_id}}</p>
+            <p>{{currentUser.id}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
 </ion-modal-view>

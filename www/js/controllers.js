@@ -149,6 +149,21 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     // Execute action
   }); // END PROFILE MODAL
 
+
+  $scope.messages = [];
+  messageService.getMessages().then(function(response){
+    $scope.messages = response;
+    console.log($scope.messages);
+  });
+
+    // TASKS SCOPED FOR THE INDIVIDUAL'S PROFILE
+    // response.forEach(function(message) {
+    //     $scope.tasks.push(message);
+    // })
+
+    // console.log("Tasks Are");
+    // console.log($scope.tasks);
+
 // PROFILE DETAILS
 // ACHIEVEMENTS MODAL
   $ionicModal.fromTemplateUrl('templates/features/achievementsModal.html', {
@@ -158,6 +173,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.achievementsModal = modal;
   });
   $scope.openAchievementsModal = function() {
+    $scope.notifsModal.hide();
+    $scope.activitiesModal.hide();
     $scope.achievementsModal.show();
   }
   $scope.closeAchievementsModal = function() {
