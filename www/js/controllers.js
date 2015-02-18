@@ -156,6 +156,20 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.messagesModal.hide();
   }
 
+// ACTIVITIES MODAL
+  $ionicModal.fromTemplateUrl('templates/features/activitiesModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.activitiesModal = modal;
+  });
+  $scope.openActivitiesModal = function() {
+    $scope.activitiesModal.show();
+  }
+  $scope.closeActivitiesModal = function() {
+    $scope.activitiesModal.hide();
+  }
+
 
 
 
