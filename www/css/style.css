@@ -3,6 +3,10 @@
   border: 3px solid #69708C;
 }
 
+.housemateImage {
+  border-radius: 55px;
+}
+
 * {
   /*border: 1px dashed black;*/
 }
