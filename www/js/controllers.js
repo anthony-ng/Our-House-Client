@@ -135,6 +135,9 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   }).then(function(modal) {
     $scope.achievementsModal = modal;
   });
+  $scope.openAchievementsModal = function() {
+    $scope.achievementsModal.show();
+  }
 
 // HOUSEMATE MODAL
   $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
