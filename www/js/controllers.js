@@ -251,7 +251,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 // PAYMENT CONTROLLER
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   $scope.payment = {}
-  
   $scope.currentUser = store.get('currentUser');
 
   $scope.sendPayment = function() {
@@ -278,10 +277,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.payments = data;
   })
 
-  // DEVELOPMENT ONLY ***** replace hard coded payment ID *******
-  paymentService.getPayment(1).then(function(data){
-    $scope.payment = data;
-  })
 
   // DEVELOPMENT ONLY
   $scope.clickToGetPayments = function() {
