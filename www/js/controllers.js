@@ -67,15 +67,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 })
 
-// CREATEMESSAGES CONTROLLER
-.controller('CreateMessagesCtrl', function($scope, store, $state, $http) {
-  $scope.createmessages = {}
-
-})
-
-
-
-
 
 // HOUSEMATE CONTROLLER
 .controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
@@ -279,28 +270,38 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   }
 })
 
-.controller('MessageCtrl', function($scope, messageService, auth, store, $state, $http){
 
-  // DEVELOPMENT ONLY
-  $scope.clickToGetMessages = function() {
-    messageService.getMessages().then(function(data){
+.controller('CreateMessageCtrl', function($scope, messageService, auth, store, $state, $http){
+  $scope.message = { content: "", type: "" };
+
+  $scope.createMessage = function() {
+    // console.log($scope.message)
+    messageService.createMessage($scope.message).then(function(data){
       console.log(data);
+      $scope.message = { content: "", type: "" };
     })
   }
-
+  // $scope.task = false;
   // DEVELOPMENT ONLY
-  $scope.getMessage = function(messageId) {
-    messageService.getMessage(messageId).then(function(data){
-      console.log(data);
-    })
-  }
+  // $scope.clickToGetMessages = function() {
+  //   messageService.getMessages().then(function(data){
+  //     console.log(data);
+  //   })
+  // }
 
-  // DEVELOPMENT ONLY
-  $scope.createMessage = function(message) {
-    messageService.createMessage(message).then(function(data){
-      console.log(data);
-    })
-  }
+  // // DEVELOPMENT ONLY
+  // $scope.getMessage = function(messageId) {
+  //   messageService.getMessage(messageId).then(function(data){
+  //     console.log(data);
+  //   })
+  // }
+
+  // // DEVELOPMENT ONLY
+  // $scope.createMessage = function(message) {
+  //   messageService.createMessage(message).then(function(data){
+  //     console.log(data);
+  //   })
+  // }
 })
 
 

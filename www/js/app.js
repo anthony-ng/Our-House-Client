@@ -58,7 +58,7 @@ angular.module('starter', ['ionic',
     views: {
       'tab-createmessages': {
         templateUrl: 'templates/features/tab-createmessages.html',
-        controller: 'CreateMessagesCtrl',
+        controller: 'CreateMessageCtrl',
         data: {
           requiresLogin: true
         }

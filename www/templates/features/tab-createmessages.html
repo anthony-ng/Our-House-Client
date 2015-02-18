@@ -1,42 +1,59 @@
-<ion-view view-title="New Message">
+<ion-view view-title="New Message" ng-controller="CreateMessageCtrl">
 
 <ion-nav-buttons side="right">
   <!-- ng-click="sendMessage()" is currently not attached to anything -->
-  <button class="button button-icon button-clear ion-paper-airplane" ng-click="sendMessage()"></button>
+  <button class="button button-icon button-clear ion-paper-airplane" ng-click="createMessage()"></button>
 </ion-nav-buttons>
 
 <ion-content>
   <div class="list">
-    <label class="item item-radio">
-      <input type="radio" name="group">
-      <div class="item-content">
-        Task
+    <form ng-submit="createMessage()">
+      <div class="row">
+        <div class="col col-30">
+          <label class="item item-radio">
+            <input type="radio" name="message" ng-model="message.type" value="Task">
+            <div class="item-content">
+              Task
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        </div>
+        <div class="col col-30">
+          <label class="item item-radio">
+            <input type="radio" name="message" ng-model="message.type" value="Notif">
+            <div class="item-content">
+              Notification
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        </div>
+        <div class="col col-30">
+          <label class="item item-radio">
+            <input type="radio" name="message" ng-model="message.type" value="Activity">
+            <div class="item-content">
+              Activity
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        </div>
+    <!--   <label class="item item-input">
+        <span class="input-label">
+          Content
+        </span>
+        <input type="text">
+      </label> -->
+    </div>
+    <div class="row">
+      <div class="col col-100">
+        <label class="item item-input">
+          <input class="box" ng-model="message.content" type="text" placeholder="Content">
+        </label>
       </div>
-      <i class="radio-icon ion-checkmark"></i>
-    </label>
-    <label class="item item-radio">
-      <input type="radio" name="group">
-      <div class="item-content">
-        Notification
-      </div>
-      <i class="radio-icon ion-checkmark"></i>
-    </label>
-    <label class="item item-radio">
-      <input type="radio" name="group">
-      <div class="item-content">
-        Activity
-      </div>
-      <i class="radio-icon ion-checkmark"></i>
-    </label>
-<!--   <label class="item item-input">
-    <span class="input-label">
-      Content
-    </span>
-    <input type="text">
-  </label> -->
-    <label class="item item-input">
-      <input class="box" type="text" placeholder="Content">
-    </label>
+    </div>
+    <!-- <button type="submit">Create Message</button> -->
+    <!-- <button type="submit" ng-click="createMessage(message)" class="button button-primary">TEST!!!</button> -->
+    </form>
+    <!-- {{message}} -->
   </div>
 </ion-content>
 </ion-view>
