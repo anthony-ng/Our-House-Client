@@ -142,6 +142,21 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.achievementsModal.hide();
   }
 
+// MESSAGES MODAL
+  $ionicModal.fromTemplateUrl('templates/features/messagesModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.messagesModal = modal;
+  });
+  $scope.openMessagesModal = function() {
+    $scope.messagesModal.show();
+  }
+  $scope.closeMessagesModal = function() {
+    $scope.messagesModal.hide();
+  }
+
+
 
 
 // HOUSEMATE MODAL
