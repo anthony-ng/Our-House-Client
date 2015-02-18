@@ -274,28 +274,33 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 
 .controller('CreateMessageCtrl', function($scope, messageService, auth, store, $state, $http){
-  $scope.createmessages = {}
-  // $scope.task = false;
-  // DEVELOPMENT ONLY
-  $scope.clickToGetMessages = function() {
-    messageService.getMessages().then(function(data){
-      console.log(data);
-    })
-  }
-
-  // DEVELOPMENT ONLY
-  $scope.getMessage = function(messageId) {
-    messageService.getMessage(messageId).then(function(data){
-      console.log(data);
-    })
-  }
-
-  // DEVELOPMENT ONLY
   $scope.createMessage = function(message) {
+    console.log(message);
     messageService.createMessage(message).then(function(data){
       console.log(data);
     })
   }
+  // $scope.task = false;
+  // DEVELOPMENT ONLY
+  // $scope.clickToGetMessages = function() {
+  //   messageService.getMessages().then(function(data){
+  //     console.log(data);
+  //   })
+  // }
+
+  // // DEVELOPMENT ONLY
+  // $scope.getMessage = function(messageId) {
+  //   messageService.getMessage(messageId).then(function(data){
+  //     console.log(data);
+  //   })
+  // }
+
+  // // DEVELOPMENT ONLY
+  // $scope.createMessage = function(message) {
+  //   messageService.createMessage(message).then(function(data){
+  //     console.log(data);
+  //   })
+  // }
 })
 
 
