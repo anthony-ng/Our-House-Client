@@ -93,7 +93,34 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   $scope.$on('addHousemateModal.removed', function() {
     // Execute action
   });
-})
+
+$ionicModal.fromTemplateUrl('templates/tab-profile.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.profileModal = modal;
+  });
+  $scope.openProfileModal = function() {
+    $scope.profileModal.show();
+  };
+  $scope.closeProfileModal = function() {
+    $scope.profileModal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.profileModal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('profileModal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('profileModal.removed', function() {
+    // Execute action
+  });
+
+
+}) // housemate controller
 
 // PAYMENT CONTROLLER
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
