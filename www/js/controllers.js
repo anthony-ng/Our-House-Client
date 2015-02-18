@@ -131,13 +131,18 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 // ACHIEVEMENTS MODAL
   $ionicModal.fromTemplateUrl('templates/features/achievementsModal.html', {
     scope: $scope,
-    animation: 'slide-left-right'
+    animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.achievementsModal = modal;
   });
   $scope.openAchievementsModal = function() {
     $scope.achievementsModal.show();
   }
+  $scope.closeAchievementsModal = function() {
+    $scope.achievementsModal.hide();
+  }
+
+
 
 // HOUSEMATE MODAL
   $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
