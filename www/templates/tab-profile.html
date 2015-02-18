@@ -4,18 +4,17 @@
       <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeProfileModal()"></i>
   <h1 class="title">{{currentUserProfile.name}}</h1>
   </ion-header-bar>
-{{currentUserProfile}}
 
 <ion-content class="profile">
 <div class="row" id="profile-header">
   <div class="col col-100">
-    <img id="profileImage" src="https://lh6.googleusercontent.com/-HnwngPrmnwg/AAAAAAAAAAI/AAAAAAAAEBc/eK_JEkkF8PU/photo.jpg?sz=150" />
+    <img id="profileImage" ng-src={{currentUserProfile.image}} />
   </div>
 </div>
 <div class="row">
   <div class="col col-100" id="profile-info">
-    <h3>{{housemates[3].name}}</h3>
-    <p>Something witty about me </p>
+    <h3>{{currentUserProfile.name}}</h3>
+    <h4>{{currentUserProfile.email}}</h4>
   </div>
 </div>
 <div class="row" id="profile-icons">
