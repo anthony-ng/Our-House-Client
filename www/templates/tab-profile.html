@@ -2,9 +2,9 @@
   <ion-header-bar class="bar-header">
     <!-- <div class="buttons"> -->
       <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeProfileModal()"></i>
-  <h1 class="title">Profile</h1>
+  <h1 class="title">{{currentUserProfile.name}}</h1>
   </ion-header-bar>
-
+{{currentUserProfile}}
 
 <ion-content class="profile">
 <div class="row" id="profile-header">
@@ -14,7 +14,7 @@
 </div>
 <div class="row">
   <div class="col col-100" id="profile-info">
-    <h3>Brian Vogelgesang</h3>
+    <h3>{{housemates[3].name}}</h3>
     <p>Something witty about me </p>
   </div>
 </div>

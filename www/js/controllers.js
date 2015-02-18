@@ -100,7 +100,11 @@ $ionicModal.fromTemplateUrl('templates/tab-profile.html', {
   }).then(function(modal) {
     $scope.profileModal = modal;
   });
-  $scope.openProfileModal = function() {
+  // Get Individual Profile Modal
+  $scope.openProfileModal = function(userId) {
+    userFactory.getHousemate(userId).then(function(data) {
+      $scope.currentUserProfile = data;
+    })
     $scope.profileModal.show();
   };
   $scope.closeProfileModal = function() {
