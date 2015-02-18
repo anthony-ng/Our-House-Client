@@ -128,6 +128,14 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     })
   }
 
+// ACHIEVEMENTS MODAL
+  $ionicModal.fromTemplateUrl('templates/features/achievementsModal.html', {
+    scope: $scope,
+    animation: 'slide-left-right'
+  }).then(function(modal) {
+    $scope.achievementsModal = modal;
+  });
+
 // HOUSEMATE MODAL
   $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     scope: $scope,
@@ -166,7 +174,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   // });
 
 // PROFILE Modal
-  $ionicModal.fromTemplateUrl('templates/tab-profile.html', {
+  $ionicModal.fromTemplateUrl('templates/profileOverviewModal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
