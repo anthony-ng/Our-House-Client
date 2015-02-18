@@ -164,18 +164,18 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.achievementsModal.hide();
   }
 
-// MESSAGES MODAL
-  $ionicModal.fromTemplateUrl('templates/features/messagesModal.html', {
+// NOTIFS MODAL
+  $ionicModal.fromTemplateUrl('templates/features/notifsModal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
-    $scope.messagesModal = modal;
+    $scope.notifsModal = modal;
   });
-  $scope.openMessagesModal = function() {
-    $scope.messagesModal.show();
+  $scope.openNotifsModal = function() {
+    $scope.notifsModal.show();
   }
-  $scope.closeMessagesModal = function() {
-    $scope.messagesModal.hide();
+  $scope.closeNotifsModal = function() {
+    $scope.notifsModal.hide();
   }
 
 // ACTIVITIES MODAL
