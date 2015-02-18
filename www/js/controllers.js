@@ -251,8 +251,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 // PAYMENT CONTROLLER
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   $scope.payment = {}
-  $scope.payment.amount = null
-
   $scope.currentUser = store.get('currentUser');
 
   $scope.sendPayment = function() {
