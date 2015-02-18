@@ -27,12 +27,10 @@
       <div class="col col-100">
         <div class="list">
           <div ng-repeat="message in messages">
-            <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-if="message.type === 'Task'">
+            <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-if="message.type === 'Task' && message.user_id === currentUserProfile.id">
             <img ng-src="{{message.image}}?sz=40">
             <h2><b>{{message.type}}</b></h2>
             <p>{{message.content}}</p>
-            <p>{{message.user_id}}</p>
-            <p>{{currentUser.id}}</p>
             </a>
           </div>
         </div>
