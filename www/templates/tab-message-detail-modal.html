@@ -1,1 +1,28 @@
-tab-message-detail-modal
+<ion-modal-view>
+<!-- Content -->
+<div ng-repeat="message in messages" ng-show="message{{message.id}}" id="target">
+  <div class="list card">
+    <div class="item item-avatar">
+      <img ng-src="{{message.image}}?sz=40">
+      <h2><b>{{message.fname}}</b></h2>
+      <p><b>{{message.created_at | date :'MMMM d, yyyy'}}</b></p>
+    </div>
+    <div class="item item-body">
+      <p>{{message.content}}</p>
+    </div>
+    <div class="item tabs tabs-secondary tabs-icon-left">
+      <a class="tab-item" ng-click="closemessageDetailModal(message)">
+        <i class="icon ion-chevron-left"></i>
+        Back
+      </a>
+      <a class="tab-item" ng-click="deleteMessage(message)">
+        <i class="icon ion-trash-b"></i>
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+</ion-modal-view>
+
+
+

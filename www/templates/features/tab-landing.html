@@ -58,10 +58,10 @@
     </div>
 
 <!-- Feed/Messages -->
-<div ng-show="!addHousemates && !NoHouse && noMessageDetail && showFeed">
+<div ng-show="!addHousemates && !NoHouse && showFeed">
   <div class="list">
     <div ng-repeat="message in messages">
-      <a ng-class="{ read: message.view.read, unread: !message.view.read }" class="item item-avatar {{message.type}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-click="showMessageDetail($index)">
+      <a ng-class="{ read: message.view.read, unread: !message.view.read }" class="item item-avatar {{message.type}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-click="openMessageDetailModal(message)">
         <img ng-src="{{message.image}}?sz=40">
         <i ng-class="{ read: message.view.read, unread: !message.view.read }" class="icon ion-ios7-circle-filled unread-beacon"></i>
         <h2><b>{{message.type}}</b></h2>
@@ -72,28 +72,7 @@
 </div>
 
 <!-- Message Detail -->
-<div ng-repeat="message in messages" ng-show="message{{message.id}}" id="target">
-  <div class="list card">
-    <div class="item item-avatar">
-      <img ng-src="{{message.image}}?sz=40">
-      <h2><b>{{message.fname}}</b></h2>
-      <p><b>{{message.created_at | date :'MMMM d, yyyy'}}</b></p>
-    </div>
-    <div class="item item-body">
-      <p>{{message.content}}</p>
-    </div>
-    <div class="item tabs tabs-secondary tabs-icon-left">
-      <a class="tab-item" ng-click="closeMessageDetail(message)">
-        <i class="icon ion-chevron-left"></i>
-        Back
-      </a>
-      <a class="tab-item" ng-click="deleteMessage(message)">
-        <i class="icon ion-trash-b"></i>
-        Delete
-      </a>
-    </div>
-  </div>
-</div>
+
 
 <!-- feed filter -->
 <div ng-show="showFilter">

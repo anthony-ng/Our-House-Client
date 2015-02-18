@@ -23,7 +23,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
+.controller('HomeCtrl', function($scope, $ionicModal, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
   //set default values based on user state
   $scope.checked = {}
   $scope.Notif = true;
@@ -31,7 +31,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   $scope.Activity = true;
   $scope.showFeed = true;
   $scope.showFilter = false;
-  $scope.noMessageDetail = true;
   $scope.currentUser = store.get('currentUser')
   $scope.house = {}
   $scope.checked.task = true;
@@ -45,23 +44,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   $scope.showFeedFilter = function(){
     $scope.showFeed = !$scope.showFeed;
     $scope.showFilter = !$scope.showFilter;
-    // debugger;
-
-
-  }
-
-  $scope.showMessageDetail = function(messageIndex){
-    message = $scope.messages[messageIndex]
-    message.view.read = true;
-    messageService.readMessage(message.view.id)
-    var id = "message" + message.id
-    $scope.noMessageDetail = false
-    $scope[id] = true
-  }
-  $scope.closeMessageDetail = function(message){
-    var id = "message" + message.id
-    $scope.noMessageDetail = true
-    $scope[id] = false
   }
 
   $scope.deleteMessage = function(message){
@@ -71,6 +53,42 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope[id] = false
     $scope.messages.splice($scope.messages.indexOf(message),1)
   }
+
+
+  //show message detail modal
+  $ionicModal.fromTemplateUrl('templates/tab-message-detail-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.messageDetailModal = modal;
+  });
+  $scope.openMessageDetailModal = function(message) {
+    var id = "message" + message.id
+    $scope[id] = true
+    $scope.messageDetailModal.show();
+    message.view.read = true;
+    messageService.readMessage(message.view.id)
+  };
+  $scope.closemessageDetailModal = function(message) {
+    $scope.messageDetailModal.hide();
+    var id = "message" + message.id
+    $scope[id] = false;
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.messageDetailModal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('messageDetailModal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('messageDetailModal.removed', function() {
+    // Execute action
+  });
+
+
+
 
 
   //logic to decide if they need to add/create a house
