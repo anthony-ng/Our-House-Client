@@ -163,6 +163,21 @@ angular.module('starter.services', [])
       })
     },
 
+    deleteMessage: function(viewId){
+      return $http.put("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/messages_users/"
+                      + viewId,
+                      {"view": {"removed":0}})
+
+      .then(function(response){
+        message = response.data;
+        return message;
+      })
+    },
+
     getMessage: function(messageId){
       return $http.get("http://localhost:3000/users/"
                       + currentUser.id

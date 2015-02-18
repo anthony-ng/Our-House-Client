@@ -47,6 +47,14 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope[id] = false
   }
 
+  $scope.deleteMessage = function(message){
+    //locate and slice object from array
+    messageService.deleteMessage(message.view.id)
+    var id = "message" + message.id
+    $scope.noMessageDetail = true
+    $scope[id] = false
+  }
+
 
   //logic to decide if they need to add/create a house
   if ($scope.currentUser.house_id === null) {

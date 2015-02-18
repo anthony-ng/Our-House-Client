@@ -73,8 +73,8 @@ Messages
 <div class="list card">
   <div class="item item-avatar">
     <img ng-src="{{message.image}}?sz=40">
-    <h2>{{message.name}}</h2>
-    <p>November 05, 1955</p>
+    <h2><b>{{message.fname}}</b></h2>
+    <p><b>{{message.created_at | date :'MMMM d, yyyy'}}</b></p>
   </div>
   <div class="item item-body">
     <p>{{message.content}}</p>
@@ -84,7 +84,7 @@ Messages
       <i class="icon ion-chevron-left"></i>
       Back
     </a>
-    <a class="tab-item" href="#">
+    <a class="tab-item" ng-click="deleteMessage(message)">
       <i class="icon ion-trash-b"></i>
       Delete
     </a>
