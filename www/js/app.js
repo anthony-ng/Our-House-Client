@@ -66,18 +66,6 @@ angular.module('starter', ['ionic',
     }
   })
 
-  .state('tab.welcome', {
-    url: '/welcome',
-    views: {
-      'tab-welcome': {
-        templateUrl: 'templates/features/tab-welcome.html',
-        controller: 'WelcomeCtrl',
-        data: {
-        }
-      }
-    }
-  })
-
   .state('tab.home', {
     url: '/home',
     views: {
@@ -122,7 +110,7 @@ angular.module('starter', ['ionic',
     views: {
       'tab-development': {
         templateUrl: 'templates/features/tab-development.html',
-        controller: 'HousemateCtrl',
+        controller: 'developmentCtrl',
         data: {
           requiresLogin: true
         }
@@ -168,18 +156,3 @@ angular.module('starter', ['ionic',
 
   });
 });
-
-  // .state('tab.messages', {
-  //     url: '/messages',
-  //     views: {
-  //       'tab-messages': {
-  //         templateUrl: 'templates/features/tab-messages.html',
-  //         controller: 'MessagesCtrl',
-  //         data: {
-  //           requiresLogin: true
-  //         }
-  //       }
-  //     }
-  //   })
-
-
