@@ -23,11 +23,19 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory) {
+.controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory, messageService) {
   //set default values based on user state
+  $scope.Notif = true;
+  $scope.Task = true;
+  $scope.Activity = true;
+  $scope.noMessageDetail = true;
   $scope.currentUser = store.get('currentUser')
   $scope.house = {}
   $scope.addHousemates = false;
+  messageService.getMessages().then(function(response){
+    $scope.messages = response;
+  })
+
 
   //logic to decide if they need to add/create a house
   if ($scope.currentUser.house_id === null) {
