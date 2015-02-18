@@ -26,11 +26,12 @@
     <div class="row">
       <div class="col col-100">
         <div class="list">
-          <div ng-repeat="message in messages">
+          <div ng-repeat="message in messages | orderBy: 'created_at':true">
             <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-if="message.type === 'Task' && message.user_id === currentUserProfile.id">
             <img ng-src="{{message.image}}?sz=40">
             <h2><b>{{message.type}}</b></h2>
             <p>{{message.content}}</p>
+            <p>{{message.created_at | date :'MMMM d, yyyy HH:mm:ss'}}</p>
             </a>
           </div>
         </div>
