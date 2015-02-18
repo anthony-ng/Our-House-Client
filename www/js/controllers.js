@@ -1,9 +1,6 @@
-
-
-
 angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
-// LOGIN CONTROLLER
+// ******************************** LOGIN CONTROLLER **********************************************
 .controller('LoginCtrl', function($scope, auth, $state, store, $http) {
   auth.signin({
     closable: false,
@@ -82,12 +79,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   $scope.sendInvite = function() {
     $scope.addHousemates = false; //hides the add housemate section
   }
-
 })
 
-
-// HOUSEMATE CONTROLLER
-.controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
+// ******************************** HOUSEMATE CONTROLLER *******************************************
+.controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal, messageService) {
 
   // Feature code for Housemates View
   $scope.newHousematesToBeAdded = [ { "email": "" } ];
@@ -101,48 +96,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   userFactory.getHousemates().then(function(data){
     $scope.housemates = data
   });
-
-// ACHIEVEMENTS MODAL
-  $ionicModal.fromTemplateUrl('templates/features/achievementsModal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.achievementsModal = modal;
-  });
-  $scope.openAchievementsModal = function() {
-    $scope.achievementsModal.show();
-  }
-  $scope.closeAchievementsModal = function() {
-    $scope.achievementsModal.hide();
-  }
-
-// MESSAGES MODAL
-  $ionicModal.fromTemplateUrl('templates/features/messagesModal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.messagesModal = modal;
-  });
-  $scope.openMessagesModal = function() {
-    $scope.messagesModal.show();
-  }
-  $scope.closeMessagesModal = function() {
-    $scope.messagesModal.hide();
-  }
-
-// ACTIVITIES MODAL
-  $ionicModal.fromTemplateUrl('templates/features/activitiesModal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.activitiesModal = modal;
-  });
-  $scope.openActivitiesModal = function() {
-    $scope.activitiesModal.show();
-  }
-  $scope.closeActivitiesModal = function() {
-    $scope.activitiesModal.hide();
-  }
 
 // HOUSEMATE MODAL
   $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
@@ -194,12 +147,53 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   // Execute action on remove modal
   $scope.$on('profileModal.removed', function() {
     // Execute action
+  }); // END PROFILE MODAL
+
+// PROFILE DETAILS
+// ACHIEVEMENTS MODAL
+  $ionicModal.fromTemplateUrl('templates/features/achievementsModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.achievementsModal = modal;
   });
+  $scope.openAchievementsModal = function() {
+    $scope.achievementsModal.show();
+  }
+  $scope.closeAchievementsModal = function() {
+    $scope.achievementsModal.hide();
+  }
 
-}) // housemate controller
+// MESSAGES MODAL
+  $ionicModal.fromTemplateUrl('templates/features/messagesModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.messagesModal = modal;
+  });
+  $scope.openMessagesModal = function() {
+    $scope.messagesModal.show();
+  }
+  $scope.closeMessagesModal = function() {
+    $scope.messagesModal.hide();
+  }
 
+// ACTIVITIES MODAL
+  $ionicModal.fromTemplateUrl('templates/features/activitiesModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.activitiesModal = modal;
+  });
+  $scope.openActivitiesModal = function() {
+    $scope.activitiesModal.show();
+  }
+  $scope.closeActivitiesModal = function() {
+    $scope.activitiesModal.hide();
+  }
+})
 
-// PAYMENT CONTROLLER
+// ******************************** PAYMENT CONTROLLER ********************************************
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   $scope.payment = {}
 
@@ -223,7 +217,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   }
 })
 
-// HOUSE CONTROLLER
+// ******************************** HOUSE CONTROLLER **********************************************
 .controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http, userService){
 // removed content - this contained only development functions
 })
