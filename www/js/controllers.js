@@ -69,6 +69,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     })
   }
 
+// HOUSEMATE MODAL
 $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -82,18 +83,19 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     $scope.addHousemateModal.hide();
   };
   //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.addHousemateModal.remove();
-  });
-  // Execute action on hide modal
-  $scope.$on('addHousemateModal.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove modal
-  $scope.$on('addHousemateModal.removed', function() {
-    // Execute action
-  });
+  // $scope.$on('$destroy', function() {
+  //   $scope.addHousemateModal.remove();
+  // });
+  // // Execute action on hide modal
+  // $scope.$on('addHousemateModal.hidden', function() {
+  //   // Execute action
+  // });
+  // // Execute action on remove modal
+  // $scope.$on('addHousemateModal.removed', function() {
+  //   // Execute action
+  // });
 
+// PROFILE Modal
 $ionicModal.fromTemplateUrl('templates/tab-profile.html', {
     scope: $scope,
     animation: 'slide-in-up'
