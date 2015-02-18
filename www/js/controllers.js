@@ -225,6 +225,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 // PAYMENT CONTROLLER
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   $scope.payment = {}
+  
+  $scope.currentUser = store.get('currentUser');
 
   $scope.sendPayment = function() {
     $http.post('http://localhost:3000/venmo', $scope.payment).then(function(response){
