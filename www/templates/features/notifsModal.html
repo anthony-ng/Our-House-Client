@@ -22,5 +22,18 @@
         <!-- Insert Activities Count -->
       </div>
     </div>
+    <div class="row">
+      <div class="col col-100">
+        <div class="list">
+          <div ng-repeat="message in messages | orderBy: 'created_at':true">
+            <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-if="message.type === 'Notif' && message.user_id === currentUserProfile.id">
+            <img ng-src="{{message.image}}?sz=40">
+            <p>{{message.content}}</p>
+            <p>{{message.created_at | date :'MMMM d, yyyy HH:mm:ss'}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-modal-view>
