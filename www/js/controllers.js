@@ -56,7 +56,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.messages.slice($scope.messages.indexOf(message),1)
   }
 
-
   //logic to decide if they need to add/create a house
   if ($scope.currentUser.house_id === null) {
     $scope.NoHouse = true;
@@ -72,7 +71,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   $scope.addNewHousemate = function() {
     $scope.newHousemates.push({"email":"" })
   }
-
 
   $scope.findOrCreateHouse = function() {
     houseService.createHouse($scope.house.name, $scope.currentUser.id).then(function(){
@@ -98,35 +96,11 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.newHousematesToBeAdded.push({"email":""});
   }
 
-
-  // refactor into a helper???
-  $scope.logout = function() {
-    auth.signout();
-    store.remove('token');
-    store.remove('profile');
-    store.remove('refreshToken');
-    $state.go('login');
-  };
-
   $scope.currentUser = store.get('currentUser');
 
   userFactory.getHousemates().then(function(data){
     $scope.housemates = data
   });
-
-  // DEVELOPMENT ONLY
-  $scope.clickToGetUsers = function() {
-    userFactory.getHousemates().then(function(data){
-      console.log(data);
-    })
-  };
-
-  // DEVELOPMENT ONLY
-  $scope.getHousemate = function(userId) {
-    userFactory.getHousemate(userId).then(function(data){
-      console.log(data);
-    })
-  }
 
 // ACHIEVEMENTS MODAL
   $ionicModal.fromTemplateUrl('templates/features/achievementsModal.html', {
@@ -170,9 +144,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.activitiesModal.hide();
   }
 
-
-
-
 // HOUSEMATE MODAL
   $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     scope: $scope,
@@ -191,24 +162,9 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   $scope.submitAddHousemateModal = function() {
     // invoke a factory to submit a post request to update the users
     // and invite them to the house
-
     // $scope.newHousemates
-
     $scope.addHousemateModal.hide();
   }
-  // TEMPLATE CODE FOR MODAL
-  //Cleanup the modal when we're done with it!
-  // $scope.$on('$destroy', function() {
-  //   $scope.addHousemateModal.remove();
-  // });
-  // // Execute action on hide modal
-  // $scope.$on('addHousemateModal.hidden', function() {
-  //   // Execute action
-  // });
-  // // Execute action on remove modal
-  // $scope.$on('addHousemateModal.removed', function() {
-  //   // Execute action
-  // });
 
 // PROFILE Modal
   $ionicModal.fromTemplateUrl('templates/profileOverviewModal.html', {
@@ -243,30 +199,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 }) // housemate controller
 
 
-
-
-//DEVELOPMENT CONTROLLER
-.controller('developmentCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal, userService) {
-  $scope.userId = userService.currentUser().id;
-  console.log('INSIDE USERCTRL')
-  // refactor into a helper???
-  $scope.logout = function() {
-    auth.signout();
-    store.remove('token');
-    store.remove('profile');
-    store.remove('refreshToken');
-    store.remove('currentUser');
-    $state.go('login');
-  }
-
-
-}) // end development controller
-
-
-
-
-
-
 // PAYMENT CONTROLLER
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   $scope.payment = {}
@@ -289,50 +221,11 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       }
     })
   }
-
-  // DEVELOPMENT ONLY
-  paymentService.getPayments().then(function(data){
-    $scope.payments = data;
-  })
-
-  // DEVELOPMENT ONLY ***** replace hard coded payment ID *******
-  paymentService.getPayment(1).then(function(data){
-    $scope.payment = data;
-  })
-
-  // DEVELOPMENT ONLY
-  $scope.clickToGetPayments = function() {
-    paymentService.getPayments().then(function(data){
-      console.log(data); // returns an array
-      // $scope.payment = data;
-    })
-  }
-
-  // DEVELOPMENT ONLY
-  $scope.getPayment = function(paymentId) {
-    paymentService.getPayment(paymentId).then(function(data){
-      console.log(data.description);
-      // $scope.payment = data;
-    })
-  }
 })
 
 // HOUSE CONTROLLER
 .controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http, userService){
-
-  // DEVELOPMENT ONLY
-  $scope.clickToCreate = function(house, userId) {
-    houseService.createHouse(house, userId).then(function(data){
-      console.log(data);
-    })
-  }
-
-  // DEVELOPMENT ONLY
-  $scope.clickToGetHouse = function() {
-    houseService.getHouse().then(function(data){
-      console.log("House name: " + data.name);
-    })
-  }
+// removed content - this contained only development functions
 })
 
 
@@ -346,27 +239,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       $scope.message = { content: "", type: "" };
     })
   }
-  // $scope.task = false;
-  // DEVELOPMENT ONLY
-  // $scope.clickToGetMessages = function() {
-  //   messageService.getMessages().then(function(data){
-  //     console.log(data);
-  //   })
-  // }
-
-  // // DEVELOPMENT ONLY
-  // $scope.getMessage = function(messageId) {
-  //   messageService.getMessage(messageId).then(function(data){
-  //     console.log(data);
-  //   })
-  // }
-
-  // // DEVELOPMENT ONLY
-  // $scope.createMessage = function(message) {
-  //   messageService.createMessage(message).then(function(data){
-  //     console.log(data);
-  //   })
-  // }
 })
 
 
