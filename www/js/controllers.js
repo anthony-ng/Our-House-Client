@@ -59,9 +59,22 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 })
 
+// CREATEMESSAGES CONTROLLER
+.controller('CreateMessagesCtrl', function($scope, store, $state, $http){
+  $scope.createmessages = {}
+
+})
+
 .controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
 
-  console.log('INSIDE USERCTRL')
+  // Feature code for Housemates View
+  $scope.newHousematesToBeAdded = [ { "email": "" } ];
+  // Set up basic templating function
+  $scope.addNewHousemate = function() {
+    $scope.newHousematesToBeAdded.push({"email":""});
+  }
+
+
   // refactor into a helper???
   $scope.logout = function() {
     auth.signout();
@@ -97,35 +110,36 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     })
   }
 
-  $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.addHousemateModal = modal;
-    });
-    $scope.openAddHousemateModal = function() {
-      $scope.addHousemateModal.show();
-    };
-    $scope.closeAddHousemateModal = function() {
-      $scope.addHousemateModal.hide();
-    };
-    //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-      $scope.addHousemateModal.remove();
-    });
-    // Execute action on hide modal
-    $scope.$on('addHousemateModal.hidden', function() {
-      // Execute action
-    });
-    // Execute action on remove modal
-    $scope.$on('addHousemateModal.removed', function() {
-      // Execute action
-    });
-  })
+$ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
+  scope: $scope,
+  animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.addHousemateModal = modal;
+  });
+  $scope.openAddHousemateModal = function() {
+    $scope.addHousemateModal.show();
+  };
+  $scope.closeAddHousemateModal = function() {
+    $scope.addHousemateModal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.addHousemateModal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('addHousemateModal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('addHousemateModal.removed', function() {
+    // Execute action
+  });
+})
+
 
 //DEVELOPMENT CONTROLLER
-.controller('developmentCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
-
+.controller('developmentCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal, userService) {
+  $scope.userId = userService.currentUser().id;
   console.log('INSIDE USERCTRL')
   // refactor into a helper???
   $scope.logout = function() {
@@ -136,10 +150,16 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('currentUser');
     $state.go('login');
   }
-    $scope.currentUser = store.get('currentUser')
+  $scope.currentUser = store.get('currentUser')
+  userFactory.getHousemates().then(function(data){
+    $scope.housemates = data
+  })
+
+ $scope.clickToGetUsers = function() {
     userFactory.getHousemates().then(function(data){
-      $scope.housemates = data
+    console.log(data);
     })
+  };
 })
 
 
@@ -196,12 +216,12 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 })
 
 // HOUSE CONTROLLER
-.controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http){
+.controller('HouseCtrl', function($scope, houseService, auth, store, $state, $http, userService){
 
   // DEVELOPMENT ONLY
-  $scope.clickToCreate = function(house) {
-    houseService.createHouse(house).then(function(data){
-      console.log(data.data);
+  $scope.clickToCreate = function(house, userId) {
+    houseService.createHouse(house, userId).then(function(data){
+      console.log(data);
     })
   }
 
