@@ -53,6 +53,19 @@ angular.module('starter', ['ionic',
     }
   })
 
+  .state('tab.createmessages', {
+    url: '/createmessages',
+    views: {
+      'tab-createmessages': {
+        templateUrl: 'templates/features/tab-createmessages.html',
+        controller: 'CreateMessagesCtrl',
+        data: {
+          requiresLogin: true
+        }
+      }
+    }
+  })
+
   .state('tab.welcome', {
     url: '/welcome',
     views: {
@@ -89,7 +102,7 @@ angular.module('starter', ['ionic',
         }
       }
     }
-  })  
+  })
 
   .state('tab.housemates', {
     url: '/housemates',

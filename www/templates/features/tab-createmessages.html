@@ -1,0 +1,42 @@
+<ion-view view-title="New Message">
+
+<ion-nav-buttons side="right">
+  <!-- ng-click="sendMessage()" is currently not attached to anything -->
+  <button class="button button-icon button-clear ion-paper-airplane" ng-click="sendMessage()"></button>
+</ion-nav-buttons>
+
+<ion-content>
+  <div class="list">
+    <label class="item item-radio">
+      <input type="radio" name="group">
+      <div class="item-content">
+        Task
+      </div>
+      <i class="radio-icon ion-checkmark"></i>
+    </label>
+    <label class="item item-radio">
+      <input type="radio" name="group">
+      <div class="item-content">
+        Notification
+      </div>
+      <i class="radio-icon ion-checkmark"></i>
+    </label>
+    <label class="item item-radio">
+      <input type="radio" name="group">
+      <div class="item-content">
+        Activity
+      </div>
+      <i class="radio-icon ion-checkmark"></i>
+    </label>
+<!--   <label class="item item-input">
+    <span class="input-label">
+      Content
+    </span>
+    <input type="text">
+  </label> -->
+    <label class="item item-input">
+      <input class="box" type="text" placeholder="Content">
+    </label>
+  </div>
+</ion-content>
+</ion-view>

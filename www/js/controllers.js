@@ -37,6 +37,12 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   }
 })
 
+// CREATEMESSAGES CONTROLLER
+.controller('CreateMessagesCtrl', function($scope, store, $state, $http){
+  $scope.createmessages = {}
+
+})
+
 .controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
 
   console.log('INSIDE USERCTRL')
