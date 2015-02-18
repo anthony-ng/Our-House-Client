@@ -60,11 +60,16 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 })
 
 // CREATEMESSAGES CONTROLLER
-.controller('CreateMessagesCtrl', function($scope, store, $state, $http){
+.controller('CreateMessagesCtrl', function($scope, store, $state, $http) {
   $scope.createmessages = {}
 
 })
 
+
+
+
+
+// HOUSEMATE CONTROLLER
 .controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal) {
 
   // Feature code for Housemates View
@@ -81,13 +86,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('token');
     store.remove('profile');
     store.remove('refreshToken');
-    store.remove('currentUser');
     $state.go('login');
-  }
-
-  $scope.newHousemates = [{"email":"" }]
-  $scope.addNewHousemate = function() {
-    $scope.newHousemates.push({"email":"" })
   };
 
   $scope.currentUser = store.get('currentUser');
@@ -110,9 +109,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     })
   }
 
-$ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
-  scope: $scope,
-  animation: 'slide-in-up'
+// HOUSEMATE MODAL
+  $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.addHousemateModal = modal;
   });
@@ -121,20 +121,64 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
   };
   $scope.closeAddHousemateModal = function() {
     $scope.addHousemateModal.hide();
+    // empty out the template form
+    $scope.newHousemates = [ {"email": ""}]
+  };
+  $scope.submitAddHousemateModal = function() {
+    // invoke a factory to submit a post request to update the users
+    // and invite them to the house
+
+    // $scope.newHousemates
+
+    $scope.addHousemateModal.hide();
+  }
+  // TEMPLATE CODE FOR MODAL
+  //Cleanup the modal when we're done with it!
+  // $scope.$on('$destroy', function() {
+  //   $scope.addHousemateModal.remove();
+  // });
+  // // Execute action on hide modal
+  // $scope.$on('addHousemateModal.hidden', function() {
+  //   // Execute action
+  // });
+  // // Execute action on remove modal
+  // $scope.$on('addHousemateModal.removed', function() {
+  //   // Execute action
+  // });
+
+// PROFILE Modal
+  $ionicModal.fromTemplateUrl('templates/tab-profile.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.profileModal = modal;
+  });
+  // Get Individual Profile Modal
+  $scope.openProfileModal = function(userId) {
+    userFactory.getHousemate(userId).then(function(data) {
+      $scope.currentUserProfile = data;
+    })
+    $scope.profileModal.show();
+  };
+  $scope.closeProfileModal = function() {
+    $scope.profileModal.hide();
   };
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
-    $scope.addHousemateModal.remove();
+    $scope.profileModal.remove();
   });
   // Execute action on hide modal
-  $scope.$on('addHousemateModal.hidden', function() {
+  $scope.$on('profileModal.hidden', function() {
     // Execute action
   });
   // Execute action on remove modal
-  $scope.$on('addHousemateModal.removed', function() {
+  $scope.$on('profileModal.removed', function() {
     // Execute action
   });
-})
+
+}) // housemate controller
+
+
 
 
 //DEVELOPMENT CONTROLLER
@@ -150,17 +194,11 @@ $ionicModal.fromTemplateUrl('templates/addHousemateModal.html', {
     store.remove('currentUser');
     $state.go('login');
   }
-  $scope.currentUser = store.get('currentUser')
-  userFactory.getHousemates().then(function(data){
-    $scope.housemates = data
-  })
 
- $scope.clickToGetUsers = function() {
-    userFactory.getHousemates().then(function(data){
-    console.log(data);
-    })
-  };
-})
+
+}) // end development controller
+
+
 
 
 
