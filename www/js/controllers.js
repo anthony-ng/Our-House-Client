@@ -156,14 +156,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     console.log($scope.messages);
   });
 
-    // TASKS SCOPED FOR THE INDIVIDUAL'S PROFILE
-    // response.forEach(function(message) {
-    //     $scope.tasks.push(message);
-    // })
-
-    // console.log("Tasks Are");
-    // console.log($scope.tasks);
-
 // PROFILE DETAILS
 // ACHIEVEMENTS MODAL
   $ionicModal.fromTemplateUrl('templates/features/achievementsModal.html', {
@@ -189,6 +181,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.notifsModal = modal;
   });
   $scope.openNotifsModal = function() {
+    $scope.activitiesModal.hide();
+    $scope.achievementsModal.hide();
     $scope.notifsModal.show();
   }
   $scope.closeNotifsModal = function() {
@@ -203,6 +197,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.activitiesModal = modal;
   });
   $scope.openActivitiesModal = function() {
+    $scope.notifsModal.hide();
+    $scope.achievementsModal.hide();
     $scope.activitiesModal.show();
   }
   $scope.closeActivitiesModal = function() {
