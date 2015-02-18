@@ -25,18 +25,34 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 .controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory, messageService) {
   //set default values based on user state
+  $scope.checked = {}
   $scope.Notif = true;
   $scope.Task = true;
   $scope.Activity = true;
+  $scope.showFeed = true;
+  $scope.showFilter = false;
   $scope.noMessageDetail = true;
   $scope.currentUser = store.get('currentUser')
   $scope.house = {}
+  $scope.checked.task = true;
+  $scope.checked.notif = true;
+  $scope.checked.activity = true;
   $scope.addHousemates = false;
   messageService.getMessages().then(function(response){
     $scope.messages = response;
   })
 
-  $scope.showMessageDetail = function(message){
+  $scope.showFeedFilter = function(){
+    $scope.showFeed = !$scope.showFeed;
+    $scope.showFilter = !$scope.showFilter;
+    // debugger;
+
+
+  }
+
+  $scope.showMessageDetail = function(messageIndex){
+    message = $scope.messages[messageIndex]
+    message.view.read = true;
     messageService.readMessage(message.view.id)
     var id = "message" + message.id
     $scope.noMessageDetail = false
@@ -53,7 +69,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     messageService.deleteMessage(message.view.id)
     $scope.noMessageDetail = true
     $scope[id] = false
-    $scope.messages.slice($scope.messages.indexOf(message),1)
+    $scope.messages.splice($scope.messages.indexOf(message),1)
   }
 
 

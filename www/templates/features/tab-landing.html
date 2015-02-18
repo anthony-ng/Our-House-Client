@@ -1,4 +1,7 @@
 <ion-view view-title="Welcome to OurHouse">
+<ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon-round" ng-click="showFeedFilter()"></button>
+  </ion-nav-buttons>
   <ion-content class="padding">
     <div class="add-house" ng-show="NoHouse">
       <div class="row">
@@ -54,12 +57,13 @@
       </div>
     </div>
 
-<!-- Messages -->
-<div ng-show="!addHousemates && !NoHouse && noMessageDetail">
+<!-- Feed/Messages -->
+<div ng-show="!addHousemates && !NoHouse && noMessageDetail && showFeed">
   <div class="list">
-    <div ng-repeat="message in messages"
-      <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-click="showMessageDetail(message)">
+    <div ng-repeat="message in messages">
+      <a ng-class="{ read: message.view.read, unread: !message.view.read }" class="item item-avatar {{message.type}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-click="showMessageDetail($index)">
         <img ng-src="{{message.image}}?sz=40">
+        <i ng-class="{ read: message.view.read, unread: !message.view.read }" class="icon ion-ios7-circle-filled unread-beacon"></i>
         <h2><b>{{message.type}}</b></h2>
         <p>{{message.content}}</p>
       </a>
@@ -68,26 +72,62 @@
 </div>
 
 <!-- Message Detail -->
-<div ng-repeat="message in messages"ng-show="message{{message.id}}">
-<div class="list card">
-  <div class="item item-avatar">
-    <img ng-src="{{message.image}}?sz=40">
-    <h2><b>{{message.fname}}</b></h2>
-    <p><b>{{message.created_at | date :'MMMM d, yyyy'}}</b></p>
+<div ng-repeat="message in messages" ng-show="message{{message.id}}">
+  <div class="list card">
+    <div class="item item-avatar">
+      <img ng-src="{{message.image}}?sz=40">
+      <h2><b>{{message.fname}}</b></h2>
+      <p><b>{{message.created_at | date :'MMMM d, yyyy'}}</b></p>
+    </div>
+    <div class="item item-body">
+      <p>{{message.content}}</p>
+    </div>
+    <div class="item tabs tabs-secondary tabs-icon-left">
+      <a class="tab-item" ng-click="closeMessageDetail(message)">
+        <i class="icon ion-chevron-left"></i>
+        Back
+      </a>
+      <a class="tab-item" ng-click="deleteMessage(message)">
+        <i class="icon ion-trash-b"></i>
+        Delete
+      </a>
+    </div>
   </div>
-  <div class="item item-body">
-    <p>{{message.content}}</p>
-  </div>
-  <div class="item tabs tabs-secondary tabs-icon-left">
-    <a class="tab-item" ng-click="closeMessageDetail(message)">
-      <i class="icon ion-chevron-left"></i>
-      Back
-    </a>
-    <a class="tab-item" ng-click="deleteMessage(message)">
-      <i class="icon ion-trash-b"></i>
-      Delete
-    </a>
-  </div>
+</div>
+
+<!-- feed filter -->
+<div ng-show="showFilter">
+  <ul class="list">
+    <li class="item item-toggle">
+     Activities
+     <label class="toggle toggle-balanced">
+       <input ng-model="Activity" ng-checked="Activity" type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+   </li>
+
+   <li class="item item-toggle">
+     Notifications
+     <label class="toggle toggle-balanced">
+       <input ng-model="Notif" ng-checked="Notif" type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+   </li>
+
+   <li class="item item-toggle">
+     Tasks
+     <label class="toggle toggle-balanced">
+       <input ng-model="Task" ng-checked="Task" type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+   </li>
+ </ul>
 </div>
 
   </ion-content>

@@ -45,29 +45,34 @@
   margin-left: 80px;
 }
 
-.Activity.read-false {
+/*.Activity.unread {
   background-color: rgba(74,135,238,0.4);
 }
 
-.Task.read-false {
+.Task.unread {
   background-color: rgba(102,204,51,0.4);
 }
 
-.Notif.read-false {
+.Notif.unread {
   background-color: rgba(67,206,230,0.4);
 }
 
-.Activity.read-true {
+
+.Activity.read {
   background-color: rgba(74,135,238,0.1);
 }
 
-.Task.read-true {
+.Task.read {
   background-color: rgba(102,204,51,0.1);
 }
 
-.Notif.read-true {
+
+.Notif.read {
   background-color: rgba(67,206,230,0.1);
-}
+}*/
+
+
+
 
 .removed-true {
   display: none;
@@ -76,4 +81,16 @@
 
 #profileImage {
   width: 50%;
+}
+
+.unread-beacon.unread {
+  position: absolute;
+  right: 10px;
+  bottom: 40px;
+  color: blue;
+  opacity: .6;
+}
+
+.unread-beacon.read {
+  display: none;
 }
