@@ -20,20 +20,36 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory, messageService) {
+.controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
   //set default values based on user state
+  $scope.checked = {}
   $scope.Notif = true;
   $scope.Task = true;
   $scope.Activity = true;
+  $scope.showFeed = true;
+  $scope.showFilter = false;
   $scope.noMessageDetail = true;
   $scope.currentUser = store.get('currentUser')
   $scope.house = {}
+  $scope.checked.task = true;
+  $scope.checked.notif = true;
+  $scope.checked.activity = true;
   $scope.addHousemates = false;
   messageService.getMessages().then(function(response){
     $scope.messages = response;
   })
 
-  $scope.showMessageDetail = function(message){
+  $scope.showFeedFilter = function(){
+    $scope.showFeed = !$scope.showFeed;
+    $scope.showFilter = !$scope.showFilter;
+    // debugger;
+
+
+  }
+
+  $scope.showMessageDetail = function(messageIndex){
+    message = $scope.messages[messageIndex]
+    message.view.read = true;
     messageService.readMessage(message.view.id)
     var id = "message" + message.id
     $scope.noMessageDetail = false
@@ -50,7 +66,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     messageService.deleteMessage(message.view.id)
     $scope.noMessageDetail = true
     $scope[id] = false
-    $scope.messages.slice($scope.messages.indexOf(message),1)
+    $scope.messages.splice($scope.messages.indexOf(message),1)
   }
 
   //logic to decide if they need to add/create a house
@@ -78,6 +94,16 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
   $scope.sendInvite = function() {
     $scope.addHousemates = false; //hides the add housemate section
+  }
+
+  //logging out, duh
+  $scope.logout = function() {
+    auth.signout();
+    store.remove('token');
+    store.remove('profile');
+    store.remove('refreshToken');
+    store.remove('currentUser');
+    $state.go('login');
   }
 })
 
@@ -209,6 +235,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 // ******************************** PAYMENT CONTROLLER ********************************************
 .controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
   $scope.payment = {}
+  $scope.currentUser = store.get('currentUser');
 
   $scope.sendPayment = function() {
     $http.post('http://localhost:3000/venmo', $scope.payment).then(function(response){
