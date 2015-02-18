@@ -271,8 +271,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 })
 
 
-
-
 .controller('CreateMessageCtrl', function($scope, messageService, auth, store, $state, $http){
   $scope.message = { content: "", type: "" };
 
