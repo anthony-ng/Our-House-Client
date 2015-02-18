@@ -27,12 +27,8 @@
         </form>
       </div>
     </div>
-    <h5>booleans</h5>
-    1{{addHousemates}}
-    2{{NoHouse}}
 
-
-
+    <!-- Add Friends - Only shows up once -->
     <div class="add-roommates" ng-show="addHousemates">
       <div class="row">
         <h5 style="text-align: center;">Looks like you don't have any roommates yet</h5>
@@ -51,11 +47,26 @@
           </button>
         </div>
         <div class="col col-50" style="text-align: right;">
-          <button class="button button-icon" ng-click="addNewHousemate()">
+          <button class="button button-icon" ng-click="sendInvite()">
             <i class="icon ion-checkmark-circled"></i>
           </button>
         </div>
       </div>
     </div>
+<!--
+show if
+-->
+<div ng-show="!addHousemates && !NoHouse">
+  <div class="list">
+
+    <a class="item item-avatar" href="#">
+      <img src="venkman.jpg">
+      <h2>Venkman</h2>
+      <p>Back off, man. I'm a scientist.</p>
+    </a>
+  </div>
+</div>
+
+
   </ion-content>
 </ion-view>

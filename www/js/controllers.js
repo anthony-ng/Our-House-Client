@@ -24,19 +24,20 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 })
 
 .controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory) {
+  //set default values based on user state
   $scope.currentUser = store.get('currentUser')
   $scope.house = {}
   $scope.addHousemates = false;
+
+  //logic to decide if they need to add/create a house
   if ($scope.currentUser.house_id === null) {
     $scope.NoHouse = true;
-    debugger;
   } else {
     $scope.NoHouse = false;
-    debugger;
   }
   userFactory.getHousemates().then(function(data){
       $scope.housemates = data
-    })
+  })
 
   //for adding housemates
   $scope.newHousemates = [{"email":"" }]
@@ -50,7 +51,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       $scope.addHousemates = true;
       $scope.NoHouse = false;
     })
+  }
 
+  $scope.sendInvite = function() {
+    $scope.addHousemates = false; //hides the add housemate section
   }
 
 })
