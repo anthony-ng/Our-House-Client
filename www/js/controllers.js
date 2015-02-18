@@ -34,9 +34,11 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   $scope.addHousemates = false;
   messageService.getMessages().then(function(response){
     $scope.messages = response;
+    debugger;
   })
 
   $scope.showMessageDetail = function(message){
+    messageService.readMessage(message.view.id)
     var id = "message" + message.id
     $scope.noMessageDetail = false
     $scope[id] = true
@@ -49,10 +51,12 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
   $scope.deleteMessage = function(message){
     //locate and slice object from array
-    messageService.deleteMessage(message.view.id)
+    // debugger;
     var id = "message" + message.id
+    messageService.deleteMessage(message.view.id)
     $scope.noMessageDetail = true
     $scope[id] = false
+    $scope.messages.slice($scope.messages.indexOf(message),1)
   }
 
 

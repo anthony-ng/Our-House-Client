@@ -170,7 +170,21 @@ angular.module('starter.services', [])
                       + currentUser.house_id
                       + "/messages_users/"
                       + viewId,
-                      {"view": {"removed":0}})
+                      {"view": {"removed":1}})
+
+      .then(function(response){
+        message = response.data;
+        return message;
+      })
+    },
+    readMessage: function(viewId){
+      return $http.put("http://localhost:3000/users/"
+                      + currentUser.id
+                      + "/houses/"
+                      + currentUser.house_id
+                      + "/messages_users/"
+                      + viewId,
+                      {"view": {"read":1}})
 
       .then(function(response){
         message = response.data;

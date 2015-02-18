@@ -53,13 +53,12 @@
         </div>
       </div>
     </div>
-<!--
-Messages
--->
+
+<!-- Messages -->
 <div ng-show="!addHousemates && !NoHouse && noMessageDetail">
   <div class="list">
     <div ng-repeat="message in messages"
-      <a class="item item-avatar {{message.type}}" ng-show="{{message.type}}" ng-click="showMessageDetail(message)">
+      <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-click="showMessageDetail(message)">
         <img ng-src="{{message.image}}?sz=40">
         <h2><b>{{message.type}}</b></h2>
         <p>{{message.content}}</p>
@@ -68,8 +67,8 @@ Messages
   </div>
 </div>
 
-
-<div ng-repeat="message in messages" ng-show="message{{message.id}}">
+<!-- Message Detail -->
+<div ng-repeat="message in messages"ng-show="message{{message.id}}">
 <div class="list card">
   <div class="item item-avatar">
     <img ng-src="{{message.image}}?sz=40">
