@@ -16,16 +16,24 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.set('refreshToken', refreshToken);
     $http.post('http://localhost:3000/users', store.inMemoryCache.profile).then(function(response){
       store.set('currentUser', response.data);
+      $state.go('tab.home');
     })
-    $state.go('tab.home');
   }, function(error) {
     console.log("There was an error logging in", error);
   });
 })
 
 .controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory) {
-  $scope.house = {}
   $scope.currentUser = store.get('currentUser')
+  $scope.house = {}
+  $scope.addHousemates = false;
+  if ($scope.currentUser.house_id === null) {
+    $scope.NoHouse = true;
+    debugger;
+  } else {
+    $scope.NoHouse = false;
+    debugger;
+  }
   userFactory.getHousemates().then(function(data){
       $scope.housemates = data
     })
@@ -38,10 +46,11 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 
   $scope.findOrCreateHouse = function() {
-    houseService.createHouse($scope.house.name).then(function(){
-      userService.updateCurrentUser($scope.currentUser)
-      $scope.currentUser = store.get('currentUser')
+    houseService.createHouse($scope.house.name, $scope.currentUser.id).then(function(){
+      $scope.addHousemates = true;
+      $scope.NoHouse = false;
     })
+
   }
 
 })
@@ -55,6 +64,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('token');
     store.remove('profile');
     store.remove('refreshToken');
+    store.remove('currentUser');
     $state.go('login');
   }
 
@@ -119,6 +129,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('token');
     store.remove('profile');
     store.remove('refreshToken');
+    store.remove('currentUser');
     $state.go('login');
   }
     $scope.currentUser = store.get('currentUser')

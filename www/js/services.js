@@ -52,8 +52,8 @@ angular.module('starter.services', [])
 
 .factory('userService', function(store, $http) {
   return {
-    updateCurrentUser: function(user){
-      $http.get('http://localhost:3000/users/'+ user.id).then(function(response){
+    updateCurrentUser: function(userId){
+      $http.get('http://localhost:3000/users/'+ userId).then(function(response){
         store.set('currentUser', response.data);
       })
     },
@@ -129,14 +129,18 @@ angular.module('starter.services', [])
     findHouse: function(code){
       return $http.post("http://localhost:3000/users/" + store.get('currentUser').id + "/houses", code)
     },
-    createHouse: function(house){
-
+    createHouse: function(house, userId){
       return $http.post("http://localhost:3000/users/"
-                        + currentUser.id
+                        + userId
                         + "/houses",
 
-                       { "house": { "name": house.name } },
+                       { "house": { "name": house } },
                        { headers: { 'Content-Type': 'application/json' } })
+      .then(function(response){
+        userService.updateCurrentUser(userId);
+      }, function(error){
+        //handle failure
+      })
     }
   }
 })
