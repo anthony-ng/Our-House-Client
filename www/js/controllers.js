@@ -23,7 +23,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory, messageService) {
+.controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
   //set default values based on user state
   $scope.checked = {}
   $scope.Notif = true;
@@ -99,6 +99,16 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
   $scope.sendInvite = function() {
     $scope.addHousemates = false; //hides the add housemate section
+  }
+
+  //logging out, duh
+  $scope.logout = function() {
+    auth.signout();
+    store.remove('token');
+    store.remove('profile');
+    store.remove('refreshToken');
+    store.remove('currentUser');
+    $state.go('login');
   }
 
 })
