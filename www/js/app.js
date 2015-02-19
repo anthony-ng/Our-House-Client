@@ -5,115 +5,154 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth'])
+angular.module('starter', ['ionic',
+  'starter.controllers',
+  'starter.services',
+  'auth0',
+  'angular-storage',
+  'ngCordova',
+  'angular-jwt'])
 
-.config(function($authProvider) {
-  $authProvider.configure({
-    apiUrl: 'http://localhost:3000' //your api's url
-  });
-})
 
 
-.run(function($ionicPlatform, $rootScope, $location, Auth) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
+    if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if (window.StatusBar) {
+    if(window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
   });
-
-  $rootScope.$on('$stateChangeStart',
-    function(event, toState, toParams, fromState, fromParams){
-      // debugger
-      if (Auth.loggedIn()) {
-        return $location.path('/dash')
-      }
-    // transitionTo() promise will be rejected with
-    // a 'transition prevented' error
-  });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+
+.config(function($stateProvider, $urlRouterProvider, authProvider, $httpProvider,
+  jwtInterceptorProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-  // setup an abstract state for the tabs directive
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl',
+  })
 
   .state('tab', {
     url: "/tab",
     abstract: true,
-    templateUrl: "templates/tabs.html"
+    templateUrl: "templates/tabs.html",
+    data: {
+        requiresLogin: true
+    }
   })
-  // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.createmessages', {
+    url: '/createmessages',
     views: {
-      'poopsandwich': {
-        templateUrl: 'templates/tab-landing.html',
-        controller: 'DashCtrl'
+      'tab-createmessages': {
+        templateUrl: 'templates/features/tab-createmessages.html',
+        controller: 'CreateMessageCtrl',
+        data: {
+          requiresLogin: true
+        }
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.home', {
+    url: '/home',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-landing': {
+        templateUrl: 'templates/features/tab-landing.html',
+        controller: 'HomeCtrl',
+        data: {
+        requiresLogin: true
+        }
+      }
+    }
+  })
+
+  .state('tab.payments', {
+    url: '/payments',
+    views: {
+      'tab-payments': {
+        templateUrl: 'templates/features/tab-payments.html',
+        controller: 'PaymentCtrl',
+        data: {
+          requiresLogin: true
+        }
+      }
+    }
+  })
+
+  .state('tab.housemates', {
+    url: '/housemates',
+    views: {
+      'tab-housemates': {
+        templateUrl: 'templates/features/tab-housemates.html',
+        controller: 'HousemateCtrl',
+        data: {
+          requiresLogin: true
+        }
+      }
+    }
+  })
+
+  .state('tab.development', {
+    url: '/development',
+    views: {
+      'tab-development': {
+        templateUrl: 'templates/features/tab-development.html',
+        controller: 'developmentCtrl',
+        data: {
+          requiresLogin: true
+        }
       }
     }
   });
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  // Configure Auth0
+  authProvider.init({
+    domain: AUTH0_DOMAIN,
+    clientID: AUTH0_CLIENT_ID,
+    loginState: 'login'
+  });
 
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/tab/home');
+
+  jwtInterceptorProvider.tokenGetter = function(store, jwtHelper, auth) {
+    var idToken = store.get('token');
+    var refreshToken = store.get('refreshToken');
+    if (!idToken || !refreshToken) {
+      return null;
+    }
+    if (jwtHelper.isTokenExpired(idToken)) {
+      return auth.refreshIdToken(refreshToken).then(function(idToken) {
+        store.set('token', idToken);
+        return idToken;
+      });
+    } else {
+      return idToken;
+    }
+  }
+
+  $httpProvider.interceptors.push('jwtInterceptor');
+}).run(function($rootScope, auth, store) {
+  $rootScope.$on('$locationChangeStart', function() {
+    if (!auth.isAuthenticated) {
+      var token = store.get('token');
+      if (token) {
+        auth.authenticate(store.get('profile'), token);
+      }
+    }
+
+  });
 });

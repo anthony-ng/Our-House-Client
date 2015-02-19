@@ -1,0 +1,29 @@
+<ion-view view-title="Housemates">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-plus" ng-click="openAddHousemateModal()"></button>
+
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="left">
+    <i id="modalBackButton" class="ion-log-out" ng-click="logout()"></i>
+    
+  </ion-nav-buttons>
+
+<ion-content class="housemates">
+  <div ng-repeat="housemate in housemates">
+    <div class="row" ng-if="$even">
+      <div class="col col-50">
+          <img class="housemateImage" ng-click="openProfileModal({{housemates[$index].id}})" ng-src="{{housemates[$index].image}}?sz=115"/><br>
+          {{housemates[$index].name}}
+
+      </div>
+      <div class="col col-50">
+          <img class="housemateImage" ng-click="openProfileModal({{housemates[$index + 1].id}})" ng-src="{{housemates[$index + 1].image}}?sz=115"/><br>
+          {{housemates[$index + 1].name}}
+
+      </div>
+    </div>
+  </div>
+</div>
+</ion-content>
+</ion-view>
