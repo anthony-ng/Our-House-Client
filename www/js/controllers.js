@@ -23,46 +23,17 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('HomeCtrl', function($scope, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
-  //set default values based on user state
-  $scope.checked = {}
-  $scope.Notif = true;
-  $scope.Task = true;
-  $scope.Activity = true;
-  $scope.showFeed = true;
-  $scope.showFilter = false;
-  $scope.noMessageDetail = true;
+.controller('HomeCtrl', function($scope, $ionicModal, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
+  $scope.check = {};
+  $scope.check.Notif = true;
+  $scope.check.Activity = true;
+  $scope.check.Task = true;
   $scope.currentUser = store.get('currentUser')
   $scope.house = {}
-  $scope.checked.task = true;
-  $scope.checked.notif = true;
-  $scope.checked.activity = true;
   $scope.addHousemates = false;
   messageService.getMessages().then(function(response){
     $scope.messages = response;
   })
-
-  $scope.showFeedFilter = function(){
-    $scope.showFeed = !$scope.showFeed;
-    $scope.showFilter = !$scope.showFilter;
-    // debugger;
-
-
-  }
-
-  $scope.showMessageDetail = function(messageIndex){
-    message = $scope.messages[messageIndex]
-    message.view.read = true;
-    messageService.readMessage(message.view.id)
-    var id = "message" + message.id
-    $scope.noMessageDetail = false
-    $scope[id] = true
-  }
-  $scope.closeMessageDetail = function(message){
-    var id = "message" + message.id
-    $scope.noMessageDetail = true
-    $scope[id] = false
-  }
 
   $scope.deleteMessage = function(message){
     var id = "message" + message.id
@@ -71,6 +42,58 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope[id] = false
     $scope.messages.splice($scope.messages.indexOf(message),1)
   }
+
+
+  //show message detail modal
+  $ionicModal.fromTemplateUrl('templates/tab-message-detail-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.messageDetailModal = modal;
+  });
+  $scope.openMessageDetailModal = function(message) {
+    var id = "message" + message.id
+    $scope[id] = true
+    $scope.messageDetailModal.show();
+    message.view.read = true;
+    messageService.readMessage(message.view.id)
+  };
+  $scope.closemessageDetailModal = function(message) {
+    $scope.messageDetailModal.hide();
+    var id = "message" + message.id
+    $scope[id] = false;
+  };
+  $scope.$on('$destroy', function() {
+    $scope.messageDetailModal.remove();
+  });
+  $scope.$on('messageDetailModal.hidden', function() {
+  });
+  $scope.$on('messageDetailModal.removed', function() {
+  });
+
+
+  //show feed filter modal
+  $ionicModal.fromTemplateUrl('templates/viewFeedFilterHome.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.feedFilterModal = modal;
+  });
+  $scope.openfeedFilterModal = function() {
+    $scope.feedFilterModal.show();
+  };
+  $scope.closefeedFilterModal = function() {
+    $scope.feedFilterModal.hide();
+  };
+  $scope.$on('$destroy', function() {
+    $scope.feedFilterModal.remove();
+  });
+  $scope.$on('feedFilterModal.hidden', function() {
+  });
+  $scope.$on('feedFilterModal.removed', function() {
+  });
+
+
 
 
   //logic to decide if they need to add/create a house
