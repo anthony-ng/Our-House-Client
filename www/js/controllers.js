@@ -23,7 +23,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('HomeCtrl', function($scope, $ionicModal, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
+.controller('HomeCtrl', function($timeout, $scope, $ionicModal, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
   $scope.check = {};
   $scope.check.Notif = true;
   $scope.check.Activity = true;
@@ -35,12 +35,17 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.messages = response;
   })
 
+  $scope.doRefresh = function() {
+    messageService.getMessages().then(function(response){
+      $scope.messages = response;
+      $scope.$broadcast('scroll.refreshComplete');
+    })
+  };
+
   $scope.deleteMessage = function(message){
-    var id = "message" + message.id
     messageService.deleteMessage(message.view.id)
-    $scope.noMessageDetail = true
-    $scope[id] = false
     $scope.messages.splice($scope.messages.indexOf(message),1)
+    $scope.closemessageDetailModal(message)
   }
 
 
@@ -59,9 +64,9 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     messageService.readMessage(message.view.id)
   };
   $scope.closemessageDetailModal = function(message) {
-    $scope.messageDetailModal.hide();
     var id = "message" + message.id
     $scope[id] = false;
+    $scope.messageDetailModal.hide();
   };
   $scope.$on('$destroy', function() {
     $scope.messageDetailModal.remove();
@@ -272,13 +277,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 
 // PAYMENT CONTROLLER
-.controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
+.controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http, $ionicPopup){
   $scope.payment = {}
   $scope.currentUser = store.get('currentUser');
 
   $scope.sendPayment = function() {
     $http.post('http://localhost:3000/venmo', $scope.payment).then(function(response){
       //DO SOMETHING ON SUCCESS (REMOVE FIELDS, SUCCESS MODAL...ETC)
+      $scope.showAlert()
+      $scope.payment = {}
     })
   }
   var user = store.inMemoryCache.profile.user_id
@@ -294,6 +301,14 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       }
     })
   }
+
+  $scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: "Payment Successfully Sent"
+   });
+   alertPopup.then(function(res) {
+   });
+ };
 
   // DEVELOPMENT ONLY
   paymentService.getPayments().then(function(data){
