@@ -219,10 +219,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     }
   };
 
-  $scope.slideTo = function(index) {
+  $scope.slideTop = function(index) {
     console.log("slideTo invoked");
-    $ionicSlideBoxDelegate.slide(index);
-    $scope.updateSelectedTab(index);
+    // $ionicSlideBoxDelegate.slide(index);
+    // $scope.updateSelectedTab(index);
   };
 
   var getSliderIndex = function() {
