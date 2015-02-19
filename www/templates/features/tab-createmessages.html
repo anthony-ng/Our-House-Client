@@ -9,39 +9,27 @@
   <div class="list">
     <form ng-submit="createMessage()">
       <div class="row">
-        <div class="col col-30">
+        <div class="col col-30 col_task">
           <label class="item item-radio">
             <input type="radio" name="message" ng-model="message.type" value="Task">
-            <div class="item-content">
-              Task
-            </div>
-            <i class="radio-icon ion-checkmark"></i>
+            <div class="item-content">Task</div>
+            <!-- <i class="radio-icon ion-checkmark"></i> -->
           </label>
         </div>
-        <div class="col col-30">
+        <div class="col col-30 col_notif">
           <label class="item item-radio">
             <input type="radio" name="message" ng-model="message.type" value="Notif">
-            <div class="item-content">
-              Notification
-            </div>
-            <i class="radio-icon ion-checkmark"></i>
+            <div class="item-content">Notif</div>
+            <!-- <i class="radio-icon ion-checkmark"></i> -->
           </label>
         </div>
-        <div class="col col-30">
+        <div class="col col-30 col_activity">
           <label class="item item-radio">
             <input type="radio" name="message" ng-model="message.type" value="Activity">
-            <div class="item-content">
-              Activity
-            </div>
-            <i class="radio-icon ion-checkmark"></i>
+            <div class="item-content">Activity</div>
+            <!-- <i class="radio-icon ion-checkmark"></i> -->
           </label>
         </div>
-    <!--   <label class="item item-input">
-        <span class="input-label">
-          Content
-        </span>
-        <input type="text">
-      </label> -->
     </div>
     <div class="row">
       <div class="col col-100">
