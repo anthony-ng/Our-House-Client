@@ -1,0 +1,80 @@
+<ion-modal-view>
+      <ion-header-bar class="bar-header">
+        <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeProfileDetailModal()"></i>
+      </ion-header-bar>
+
+      <ion-header-bar class="bar bar-subheader">
+        <h1 ng-if="firstTab" class="title">Tasks Completed</h1>
+        <h1 ng-if="secondTab" class="title">Messages Sent</h1>
+        <h1 ng-if="thirdTab" class="title">Activities Attended</h1>
+      </ion-header-bar>
+
+      <ion-content class="profile">
+        <div class="row" id="profile-icons">
+          <div class="col col-33">
+            <i ng-class="{'ion-ios7-paper-outline': firstTab!=true, 'detail-icon-active': firstTab==true, 'ion-ios7-paper': firstTab==true}"></i>
+          </div>
+          <div class="col col-33">
+            <i ng-class="{'ion-ios7-chatboxes-outline': secondTab!=true, 'detail-icon-active': secondTab==true, 'ion-ios7-chatboxes': secondTab==true}"></i>
+          </div>
+          <div class="col col-33">
+            <i ng-class="{'ion-ios7-people-outline': thirdTab!=true, 'detail-icon-active': thirdTab==true, 'ion-ios7-people': thirdTab==true}"></i>
+          </div>
+        </div>
+      </ion-content>
+  <ion-slide-box on-slide-changed="updateSelectedTab($index)">
+    <ion-slide>
+      <ion-content>
+        <div class="row">
+          <div class="col col-100">
+            <div class="list">
+              <div ng-repeat="message in messages | orderBy: 'created_at':true">
+                <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-if="message.type === 'Task' && message.user_id === currentUserProfile.id">
+                <img ng-src="{{message.image}}?sz=40">
+                <p>{{message.content}}</p>
+                <p>{{message.created_at | date :'MMMM d, yyyy HH:mm:ss'}}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </ion-slide>
+
+    <ion-slide on-slide-changed="updateSelectedTab($index)">
+      <ion-content>
+        <div class="row">
+          <div class="col col-100">
+            <div class="list">
+              <div ng-repeat="message in messages | orderBy: 'created_at':true">
+                <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-if="message.type === 'Notif' && message.user_id === currentUserProfile.id">
+                <img ng-src="{{message.image}}?sz=40">
+                <p>{{message.content}}</p>
+                <p>{{message.created_at | date :'MMMM d, yyyy HH:mm:ss'}}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </ion-slide>
+
+    <ion-slide on-slide-changed="updateSelectedTab($index)">
+      <ion-content>
+        <div class="row">
+          <div class="col col-100">
+            <div class="list">
+              <div ng-repeat="message in messages | orderBy: 'created_at':true">
+                <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-if="message.type === 'Activity' && message.user_id === currentUserProfile.id">
+                <img ng-src="{{message.image}}?sz=40">
+                <p>{{message.content}}</p>
+                <p>{{message.created_at | date :'MMMM d, yyyy HH:mm:ss'}}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </ion-slide>
+</ion-slide-box>
+</ion-modal-view>

@@ -3,6 +3,31 @@
   border: 3px solid #69708C;
 }
 
+.ion-ios7-paper, .ion-ios7-chatboxes, .ion-ios7-people {
+  color: #0066FF;
+}
+
+
+
+#first-tab {
+  border-bottom: 1px solid black;
+}
+
+.detail-icon-active {
+  padding-bottom: 3px;
+  border-bottom: .2em solid lightgray;
+}
+
+.slider-slides {
+  padding-top: 5em;
+  height: 41em;
+  text-align: center;
+}
+
+.scroll {
+  height: 100%;
+}
+
 .housemateImage {
   border-radius: 55px;
 }
@@ -83,7 +108,8 @@
   display: none;
 }
 
-.bottom{
+
+.bottom {
   top: 280px;
   position: relative;
 }
