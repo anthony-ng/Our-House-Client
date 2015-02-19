@@ -3,6 +3,16 @@
   border: 3px solid #69708C;
 }
 
+.slider-slides {
+  padding-top: 3em;
+  height: 41em;
+  text-align: center;
+}
+
+.scroll {
+  height: 100%;
+}
+
 .housemateImage {
   border-radius: 55px;
 }
