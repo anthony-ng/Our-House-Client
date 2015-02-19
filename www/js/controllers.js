@@ -23,7 +23,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   });
 })
 
-.controller('HomeCtrl', function($scope, $ionicModal, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
+.controller('HomeCtrl', function($timeout, $scope, $ionicModal, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
   $scope.check = {};
   $scope.check.Notif = true;
   $scope.check.Activity = true;
@@ -35,11 +35,17 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     $scope.messages = response;
   })
 
+  $scope.doRefresh = function() {
+    messageService.getMessages().then(function(response){
+      $scope.messages = response;
+      $scope.$broadcast('scroll.refreshComplete');
+    })
+  };
+
   $scope.deleteMessage = function(message){
     var id = "message" + message.id
     messageService.deleteMessage(message.view.id)
-    $scope.noMessageDetail = true
-    $scope[id] = false
+    $scope.closemessageDetailModal()
     $scope.messages.splice($scope.messages.indexOf(message),1)
   }
 

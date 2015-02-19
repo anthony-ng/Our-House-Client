@@ -3,6 +3,7 @@
     <button class="button button-icon button-clear ion-navicon-round" ng-click="openfeedFilterModal()"></button>
   </ion-nav-buttons>
   <ion-content class="padding">
+  <ion-refresher on-refresh="doRefresh()"></ion-refresher>
     <div class="add-house" ng-show="NoHouse">
       <div class="row">
         <div class="col">
