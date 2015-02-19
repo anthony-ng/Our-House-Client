@@ -25,26 +25,19 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 .controller('HomeCtrl', function($scope, $ionicModal, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
   //set default values based on user state
-  $scope.checked = {}
-  $scope.Notif = true;
-  $scope.Task = true;
-  $scope.Activity = true;
-  $scope.showFeed = true;
-  $scope.showFilter = false;
+  // $scope.Notif = true;
+  // $scope.Task = true;
+  // $scope.Activity = true;
+  $scope.check = {};
+  $scope.check.Notif = true;
+  $scope.check.Activity = true;
+  $scope.check.Task = true;
   $scope.currentUser = store.get('currentUser')
   $scope.house = {}
-  $scope.checked.task = true;
-  $scope.checked.notif = true;
-  $scope.checked.activity = true;
   $scope.addHousemates = false;
   messageService.getMessages().then(function(response){
     $scope.messages = response;
   })
-
-  // $scope.showFeedFilter = function(){
-  //   $scope.showFeed = !$scope.showFeed;
-  //   $scope.showFilter = !$scope.showFilter;
-  // }
 
   $scope.deleteMessage = function(message){
     var id = "message" + message.id

@@ -58,10 +58,10 @@
     </div>
 
 <!-- Feed/Messages -->
-<div ng-show="!addHousemates && !NoHouse && showFeed">
+<div ng-show="!addHousemates && !NoHouse">
   <div class="list">
     <div ng-repeat="message in messages">
-      <a ng-class="{ read: message.view.read, unread: !message.view.read }" class="item item-avatar {{message.type}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-click="openMessageDetailModal(message)">
+      <a ng-class="{ read: message.view.read, unread: !message.view.read }" class="item item-avatar {{message.type}} removed-{{message.view.removed}}" ng-show="check.{{message.type}}" ng-click="openMessageDetailModal(message)">
         <img ng-src="{{message.image}}?sz=40">
         <i ng-class="{ read: message.view.read, unread: !message.view.read }" class="icon ion-ios7-circle-filled unread-beacon"></i>
         <h2><b>{{message.type}}</b></h2>
@@ -69,45 +69,6 @@
       </a>
     </div>
   </div>
-</div>
-
-<!-- Message Detail -->
-
-
-<!-- feed filter -->
-<div ng-show="showFilter">
-  <ul class="list">
-    <li class="item item-toggle">
-     Activities
-     <label class="toggle toggle-balanced">
-       <input ng-model="Activity" ng-checked="Activity" type="checkbox">
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-   </li>
-
-   <li class="item item-toggle">
-     Notifications
-     <label class="toggle toggle-balanced">
-       <input ng-model="Notif" ng-checked="Notif" type="checkbox">
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-   </li>
-
-   <li class="item item-toggle">
-     Tasks
-     <label class="toggle toggle-balanced">
-       <input ng-model="Task" ng-checked="Task" type="checkbox">
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-   </li>
- </ul>
- <button class="button button-positive button-block" ng-click="logout()">Logout</button>
 </div>
 
   </ion-content>

@@ -1,6 +1,6 @@
 <ion-modal-view>
 <ion-header-bar class="bar-header">
-  <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closefeedFilterModal()"></i>
+  <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closefeedFilterModal(Activity, Notif, Task)"></i>
   <h1 class="title">Filter:</h1>
 </ion-header-bar>
 
@@ -9,7 +9,7 @@
   <li class="item item-toggle">
    Activities
    <label class="toggle toggle-balanced">
-     <input ng-model="Activity" ng-checked="Activity" type="checkbox">
+     <input ng-model="check.Activity" ng-checked="check.Activity" type="checkbox">
      <div class="track">
        <div class="handle"></div>
      </div>
@@ -19,7 +19,7 @@
  <li class="item item-toggle">
    Notifications
    <label class="toggle toggle-balanced">
-     <input ng-model="Notif" ng-checked="Notif" type="checkbox">
+     <input ng-model="check.Notif" ng-checked="check.Notif" type="checkbox">
      <div class="track">
        <div class="handle"></div>
      </div>
@@ -29,13 +29,14 @@
  <li class="item item-toggle">
    Tasks
    <label class="toggle toggle-balanced">
-     <input ng-model="Task" ng-checked="Task" type="checkbox">
+     <input ng-model="check.Task" ng-checked="check.Task" type="checkbox">
      <div class="track">
        <div class="handle"></div>
      </div>
    </label>
  </li>
 </ul>
+
   <div class='bottom'>
    <button class="button button-positive button-block modal-footer" ng-click="logout()">Logout</button>
   </div>
