@@ -1,0 +1,76 @@
+<ion-view view-title="Welcome to OurHouse">
+<ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon-round" ng-click="openfeedFilterModal()"></button>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+  <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+    <div class="add-house" ng-show="NoHouse">
+      <div class="row">
+        <div class="col">
+          <h6>It looks like you're not linked up to a house yet:</h6>
+        </div>
+      </div>
+      <div class="row">
+        <form ng-submit="findOrCreateHouse()">
+          <div ng-hide="house.joinCode">
+            <h5 style="text-align: center;">Create a new house</h5>
+            <label class="item item-input" ng-hide="house.joinCode">
+              <span class="input-label">House Name</span>
+              <input ng-model="house.name" placeholder="i.e. DevBootCamp House" type="text"></input>
+            </label>
+          </div>
+          <div ng-hide="house.name">
+            <h5 style="text-align: center;">Connect to an existing house</h5>
+            <label class="item item-input">
+              <span class="input-label">Join Code</span>
+              <input ng-model="house.joinCode" placeholder="5xYw485" type="text"></input>
+            </label>
+          </div>
+          <button class="button button-block button-calm" ng-show="house.joinCode" type="submit">Connect me!</button>
+          <button class="button button-block button-positive" ng-show="house.name" type="submit">Create House</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Friends - Only shows up once -->
+    <div class="add-roommates" ng-show="addHousemates">
+      <div class="row">
+        <h5 style="text-align: center;">Looks like you don't have any roommates yet</h5>
+      </div>
+      <div class="row">
+        <div class="list col col-100">
+          <label class="item item-input" ng-repeat="field in newHousemates">
+            <input ng-model="field.email" placeholder="Email" type="text"></input>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          <button class="button button-icon" ng-click="addNewHousemate()">
+            <i class="icon ion-plus-circled"></i>
+          </button>
+        </div>
+        <div class="col col-50" style="text-align: right;">
+          <button class="button button-icon" ng-click="sendInvite()">
+            <i class="icon ion-checkmark-circled"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+<!-- Feed/Messages -->
+<div ng-show="!addHousemates && !NoHouse">
+  <div class="list animated fadeIn">
+    <div ng-repeat="message in messages">
+      <a ng-class="{ read: message.view.read, unread: !message.view.read }" class="item item-avatar {{message.type}} removed-{{message.view.removed}}" ng-show="check.{{message.type}}" ng-click="openMessageDetailModal(message)">
+        <img ng-src="{{message.image}}?sz=40">
+        <i ng-class="{ read: message.view.read, unread: !message.view.read }" class="icon ion-ios7-circle-filled unread-beacon"></i>
+        <h2><b>{{message.type}}</b></h2>
+        <p>{{message.content}}</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+  </ion-content>
+</ion-view>

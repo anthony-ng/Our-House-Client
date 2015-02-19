@@ -1,0 +1,39 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-header">
+    <!-- <div class="buttons"> -->
+    <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeActivitiesModal()"></i>
+    <h1 class="title">Activities Attended</h1>
+  </ion-header-bar>
+    <ion-content class="profile">
+    <div class="row" id="profile-icons">
+      <div class="col col-33">
+        Tasks
+        <i class="ion-ribbon-a" ng-click="openAchievementsModal()"></i>
+        <!-- Insert Tasks Count -->
+      </div>
+      <div class="col col-33">
+        Notifs
+        <i class="ion-chatbox" ng-click="openNotifsModal()"></i>
+        <!-- Insert Notif Count -->
+      </div>
+      <div class="col col-33">
+        Activities
+        <i class="ion-wineglass" ng-click="openActivitiesModal()"></i>
+        <!-- Insert Activities Count -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-100">
+        <div class="list">
+          <div ng-repeat="message in messages | orderBy: 'created_at':true">
+            <a class="item item-avatar {{message.type}} read-{{message.view.read}} removed-{{message.view.removed}}" ng-show="{{message.type}}" ng-if="message.type === 'Activity' && message.user_id === currentUserProfile.id">
+            <img ng-src="{{message.image}}?sz=40">
+            <p>{{message.content}}</p>
+            <p>{{message.created_at | date :'MMMM d, yyyy HH:mm:ss'}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>
