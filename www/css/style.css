@@ -3,6 +3,30 @@
   border: 3px solid #69708C;
 }
 
+ .test.ion-ios7-paper, .test.ion-ios7-chatboxes, .test.ion-ios7-people {
+  color: #0066FF;
+}
+
+
+#first-tab {
+  border-bottom: 1px solid black;
+}
+
+.detail-icon-active {
+  padding-bottom: 3px;
+  border-bottom: .2em solid lightgray;
+}
+
+.slider-slides {
+  padding-top: 5em;
+  height: 41em;
+  text-align: center;
+}
+
+.scroll {
+  height: 100%;
+}
+
 .housemateImage {
   border-radius: 55px;
 }
@@ -49,6 +73,11 @@
   margin-left: 80px;
 }
 
+.style_tabs {
+  background-color:#BDBDBD !important;
+}
+
+
 .col {
   display: inline;
 }
@@ -78,7 +107,8 @@
   display: none;
 }
 
-.bottom{
+
+.bottom {
   top: 280px;
   position: relative;
 }
@@ -101,3 +131,15 @@
     left: 105px;
 
   }
+
+#task_text {
+  padding-left: 30px;
+}
+
+#notif_text {
+  padding-left: 28px;
+}
+
+#activity_text {
+  padding-left: 18px;
+}
