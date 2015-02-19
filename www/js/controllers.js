@@ -24,10 +24,6 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 })
 
 .controller('HomeCtrl', function($scope, $ionicModal, $http, store, $state, userService, houseService, userFactory, messageService, auth) {
-  //set default values based on user state
-  // $scope.Notif = true;
-  // $scope.Task = true;
-  // $scope.Activity = true;
   $scope.check = {};
   $scope.check.Notif = true;
   $scope.check.Activity = true;
