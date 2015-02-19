@@ -3,10 +3,9 @@
   border: 3px solid #69708C;
 }
 
-.ion-ios7-paper, .ion-ios7-chatboxes, .ion-ios7-people {
+ .test.ion-ios7-paper, .test.ion-ios7-chatboxes, .test.ion-ios7-people {
   color: #0066FF;
 }
-
 
 
 #first-tab {
