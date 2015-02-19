@@ -1,0 +1,28 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive tabs-stable">
+
+  <!-- Dashboard Tab -->
+  <ion-tab class="style_tabs" title="Home" icon-off="ion-ios7-home-outline" icon-on="ion-ios7-home" href="#/tab/dash">
+    <ion-nav-view name="tab-landing"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Create Message Tab -->
+  <ion-tab class="style_tabs" title="Message" icon-off="ion-ios7-email-outline" icon-on="ion-ios7-email-outline" href="#/tab/createmessages">
+    <ion-nav-view name="tab-createmessages"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Payments Tab -->
+  <ion-tab class="style_tabs" title="Payments" icon-off="ion-social-usd" icon-on="ion-social-usd" href="#/tab/payments">
+    <ion-nav-view name="tab-payments"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Housemates Tab -->
+  <ion-tab class="style_tabs" title="Housemates" id="notBlue" icon-off="ion-ios7-people" icon-on="ion-ios7-people" href="#/tab/housemates">
+    <ion-nav-view name="tab-housemates"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>
