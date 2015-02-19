@@ -272,13 +272,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 
 // PAYMENT CONTROLLER
-.controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http){
+.controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http, $ionicPopup){
   $scope.payment = {}
   $scope.currentUser = store.get('currentUser');
 
   $scope.sendPayment = function() {
     $http.post('http://localhost:3000/venmo', $scope.payment).then(function(response){
       //DO SOMETHING ON SUCCESS (REMOVE FIELDS, SUCCESS MODAL...ETC)
+      $scope.showAlert()
+      $scope.payment = {}
     })
   }
   var user = store.inMemoryCache.profile.user_id
@@ -294,6 +296,14 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       }
     })
   }
+
+  $scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: "Payment Successfully Sent"
+   });
+   alertPopup.then(function(res) {
+   });
+ };
 
   // DEVELOPMENT ONLY
   paymentService.getPayments().then(function(data){
