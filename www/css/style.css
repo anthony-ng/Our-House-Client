@@ -85,6 +85,11 @@
 .col_activity {
   margin-left: 0px;
 }*/
+
+.style_tabs {
+  background-color:#BDBDBD !important;
+}
+
 .col {
   display: inline;
 }
