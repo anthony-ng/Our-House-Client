@@ -75,8 +75,19 @@
   background-color: rgba(67,206,230,0.1);
 }*/
 
-
-
+/*.col_task {
+  margin-right: 0px;
+}
+.col_notif {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.col_activity {
+  margin-left: 0px;
+}*/
+.col {
+  display: inline-block;
+}
 
 .removed-true {
   display: none;
