@@ -132,7 +132,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     store.remove('refreshToken');
     store.remove('currentUser');
     $state.go('login');
-  }
+  };
 })
 
 // ******************************** HOUSEMATE CONTROLLER *******************************************
