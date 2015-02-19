@@ -86,13 +86,17 @@
   margin-left: 0px;
 }*/
 .col {
-  display: inline-block;
+  display: inline;
 }
 
 .removed-true {
   display: none;
 }
 
+.item-content {
+  text-align: center;
+  font-weight: bold;
+}
 
 #profileImage {
   width: 50%;
