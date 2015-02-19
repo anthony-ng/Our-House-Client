@@ -270,12 +270,16 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 
 // ******************************** PAYMENT CONTROLLER ********************************************
-.controller('PaymentCtrl', function($scope, paymentService, auth, store, $state, $http, $ionicPopup){
+.controller('PaymentCtrl', function($scope, userFactory, paymentService, auth, store, $state, $http, $ionicPopup){
 
   $scope.payment = {}
+  userFactory.getHousemates().then(function(data){
+    $scope.housemates = data
+  })
   $scope.currentUser = store.get('currentUser');
 
-  $scope.sendPayment = function() {
+  $scope.sendPayment = function(receiver) {
+    $scope.payment.email = receiver.email;
     $http.post('http://localhost:3000/venmo', $scope.payment).then(function(response){
       $scope.showAlert()
       $scope.payment = {}
