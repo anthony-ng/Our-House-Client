@@ -17,22 +17,7 @@
         <h4>{{currentUserProfile.email}}</h4>
       </div>
     </div>
-    <div class="row" id="profile-icons">
-      <div class="col col-33">
-        Tasks
-        <i class="ion-ribbon-a" ng-click="openAchievementsModal()"></i>
-        <!-- Insert Tasks Count -->
-      </div>
-      <div class="col col-33">
-        Notifs
-        <i class="ion-chatbox" ng-click="openNotifsModal()"></i>
-        <!-- Insert Notif Count -->
-      </div>
-      <div class="col col-33">
-        Activities
-        <i class="ion-wineglass" ng-click="openActivitiesModal()"></i>
-        <!-- Insert Activities Count -->
-      </div>
-    </div>
+    <button class="button button-royal" ng-click="openProfileDetailModal()">View History</button>
+
   </ion-content>
 </ion-modal-view>

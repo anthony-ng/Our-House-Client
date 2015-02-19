@@ -1,30 +1,36 @@
 <ion-modal-view>
       <ion-header-bar class="bar-header">
         <!-- <div class="buttons"> -->
-        <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeAchievementsModal()"></i>
-        <h1 class="title">Tasks Completed</h1>
+        <i id="modalBackButton" class="ion-chevron-left icon" ng-click="closeProfileDetailModal()"></i>
+      </ion-header-bar>
+
+      <ion-header-bar class="bar bar-subheader">
+        <h1 ng-if="firstTab" class="title">Tasks Completed</h1>
+        <h1 ng-if="secondTab" class="title">Messages Sent</h1>
+        <h1 ng-if="thirdTab" class="title">Activities Attended</h1>
       </ion-header-bar>
 
       <ion-content class="profile">
         <div class="row" id="profile-icons">
-          <div class="col col-33">
-            Tasks
-            <i class="ion-ribbon-a" ng-click="openAchievementsModal()"></i>
+
+          <div class="col col-33" ng-click="slideTo(1)">
+             <!-- {{firstTab}} -->
+            <i ng-class="{'ion-ribbon-a': 1==1, 'detail-icon-active': firstTab==true}"></i>
             <!-- Insert Tasks Count -->
           </div>
           <div class="col col-33">
-            Notifs
-            <i class="ion-chatbox" ng-click="openNotifsModal()"></i>
+             <!-- {{secondTab}} -->
+            <i ng-click="slideTo(2)" ng-class="{'ion-chatbox': 1==1, 'detail-icon-active': secondTab==true}"></i>
             <!-- Insert Notif Count -->
           </div>
           <div class="col col-33">
-            Activities
-            <i class="ion-wineglass" ng-click="openActivitiesModal()"></i>
+             <!-- {{thirdTab}} -->
+            <i ng-click="slideTo(3)" ng-class="{'ion-wineglass': 1==1, 'detail-icon-active': thirdTab==true}"></i>
             <!-- Insert Activities Count -->
           </div>
         </div>
       </ion-content>
-  <ion-slide-box>
+  <ion-slide-box on-slide-changed="updateSelectedTab($index)">
     <ion-slide>
       <ion-content>
         <div class="row">
@@ -43,7 +49,7 @@
       </ion-content>
     </ion-slide>
 
-    <ion-slide>
+    <ion-slide on-slide-changed="updateSelectedTab($index)">
       <ion-content>
         <div class="row">
           <div class="col col-100">
@@ -61,7 +67,7 @@
       </ion-content>
     </ion-slide>
 
-    <ion-slide>
+    <ion-slide on-slide-changed="updateSelectedTab($index)">
       <ion-content>
         <div class="row">
           <div class="col col-100">

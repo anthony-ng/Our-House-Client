@@ -108,7 +108,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 })
 
 // ******************************** HOUSEMATE CONTROLLER *******************************************
-.controller('HousemateCtrl', function($scope, userFactory, auth, store, $state, $http, $ionicModal, messageService) {
+.controller('HousemateCtrl', function($scope, userFactory, auth, store,
+                                      $state, $http, $ionicModal, messageService, $ionicSlideBoxDelegate) {
 
   // Feature code for Housemates View
   $scope.newHousematesToBeAdded = [ { "email": "" } ];
@@ -182,54 +183,52 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     console.log($scope.messages);
   });
 
-// PROFILE DETAILS
-// ACHIEVEMENTS MODAL
-  $ionicModal.fromTemplateUrl('templates/features/achievementsModal.html', {
+// PROFILE DETAILS MODAL
+  $ionicModal.fromTemplateUrl('templates/features/profileDetailModal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
-    $scope.achievementsModal = modal;
+    $scope.profileDetailModal = modal;
   });
-  $scope.openAchievementsModal = function() {
-    $scope.notifsModal.hide();
-    $scope.activitiesModal.hide();
-    $scope.achievementsModal.show();
+  $scope.openProfileDetailModal = function() {
+    console.log($ionicSlideBoxDelegate.currentIndex());
+    $scope.profileDetailModal.show();
   }
-  $scope.closeAchievementsModal = function() {
-    $scope.achievementsModal.hide();
+  $scope.closeProfileDetailModal = function() {
+    $scope.profileDetailModal.hide();
   }
 
-// NOTIFS MODAL
-  $ionicModal.fromTemplateUrl('templates/features/notifsModal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.notifsModal = modal;
-  });
-  $scope.openNotifsModal = function() {
-    $scope.activitiesModal.hide();
-    $scope.achievementsModal.hide();
-    $scope.notifsModal.show();
-  }
-  $scope.closeNotifsModal = function() {
-    $scope.notifsModal.hide();
-  }
+  $scope.firstTab = true;
+  $scope.updateSelectedTab = function(index) {
+    console.log("running updateSelectedTab function");
+    console.log(index);
 
-// ACTIVITIES MODAL
-  $ionicModal.fromTemplateUrl('templates/features/activitiesModal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.activitiesModal = modal;
-  });
-  $scope.openActivitiesModal = function() {
-    $scope.notifsModal.hide();
-    $scope.achievementsModal.hide();
-    $scope.activitiesModal.show();
-  }
-  $scope.closeActivitiesModal = function() {
-    $scope.activitiesModal.hide();
-  }
+    $scope.firstTab = false;
+    $scope.secondTab = false;
+    $scope.thirdTab = false;
+    switch (index){
+      case 0:
+        $scope.firstTab = true;
+        break;
+      case 1:
+        $scope.secondTab = true;
+        break;
+      case 2:
+        $scope.thirdTab = true;
+        break;
+    }
+  };
+
+  $scope.slideTo = function(index) {
+    console.log("slideTo invoked");
+    $ionicSlideBoxDelegate.slide(index);
+    $scope.updateSelectedTab(index);
+  };
+
+  var getSliderIndex = function() {
+    return $ionicSlideBoxDelegate.currentIndex();
+  };
+
 })
 
 // ******************************** PAYMENT CONTROLLER ********************************************

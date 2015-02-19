@@ -3,8 +3,17 @@
   border: 3px solid #69708C;
 }
 
+#first-tab {
+  border-bottom: 1px solid black;
+}
+
+.detail-icon-active {
+  padding-bottom: 3px;
+  border-bottom: .2em solid lightgray;
+}
+
 .slider-slides {
-  padding-top: 4em;
+  padding-top: 5em;
   height: 41em;
   text-align: center;
 }
