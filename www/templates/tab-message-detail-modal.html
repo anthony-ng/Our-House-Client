@@ -9,7 +9,15 @@
     </div>
     <div class="item item-body">
       <p>{{message.content}}</p>
-    </div>
+      <div ng-if="message.type != 'Notif'">
+        <div class="mark-complete" ng-if="message.type == 'Activity'"> &nbsp; &nbsp; Join Activity</div>
+        <div class="mark-complete" ng-if="message.type == 'Task'">Mark Complete</div>
+          <div class="checkbox">
+            <input type="checkbox" />
+            <label for="cb"></label>
+          </div>
+        </div>
+      </div>
     <div class="item tabs tabs-secondary tabs-icon-left">
       <a class="tab-item" ng-click="closemessageDetailModal(message)">
         <i class="icon ion-chevron-left"></i>

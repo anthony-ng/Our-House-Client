@@ -49,46 +49,10 @@
   margin-left: 80px;
 }
 
-/*.Activity.unread {
-  background-color: rgba(74,135,238,0.4);
-}
-
-.Task.unread {
-  background-color: rgba(102,204,51,0.4);
-}
-
-.Notif.unread {
-  background-color: rgba(67,206,230,0.4);
-}
-
-
-.Activity.read {
-  background-color: rgba(74,135,238,0.1);
-}
-
-.Task.read {
-  background-color: rgba(102,204,51,0.1);
-}
-
-
-.Notif.read {
-  background-color: rgba(67,206,230,0.1);
-}*/
-
-/*.col_task {
-  margin-right: 0px;
-}
-.col_notif {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-.col_activity {
-  margin-left: 0px;
-}*/
-
 .style_tabs {
   background-color:#BDBDBD !important;
 }
+
 
 .col {
   display: inline;
@@ -123,3 +87,22 @@
   top: 280px;
   position: relative;
 }
+
+.checkbox, .checkbox-alt {
+  background-color: #fff;
+  display: inline-block;
+  height: 50px;
+  margin: 0 0.25em;
+  width: 50px;
+  margin-left: 110px;
+  }
+
+  .mark-complete {
+    opacity: .7;
+    font-size: 12px;
+    text-align: center;
+    position: absolute;
+    bottom: 5px;
+    left: 105px;
+
+  }
