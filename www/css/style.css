@@ -132,3 +132,15 @@
     left: 105px;
 
   }
+
+#task_text {
+  padding-left: 30px;
+}
+
+#notif_text {
+  padding-left: 28px;
+}
+
+#activity_text {
+  padding-left: 18px;
+}
