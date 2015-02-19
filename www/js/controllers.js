@@ -43,10 +43,9 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   };
 
   $scope.deleteMessage = function(message){
-    var id = "message" + message.id
     messageService.deleteMessage(message.view.id)
-    $scope.closemessageDetailModal()
     $scope.messages.splice($scope.messages.indexOf(message),1)
+    $scope.closemessageDetailModal(message)
   }
 
 
@@ -65,9 +64,9 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     messageService.readMessage(message.view.id)
   };
   $scope.closemessageDetailModal = function(message) {
-    $scope.messageDetailModal.hide();
     var id = "message" + message.id
     $scope[id] = false;
+    $scope.messageDetailModal.hide();
   };
   $scope.$on('$destroy', function() {
     $scope.messageDetailModal.remove();
