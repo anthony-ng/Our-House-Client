@@ -49,6 +49,11 @@
   margin-left: 80px;
 }
 
+.style_tabs {
+  background-color:#BDBDBD !important;
+}
+
+
 .col {
   display: inline;
 }
