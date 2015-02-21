@@ -4,7 +4,7 @@ Our House makes it easy to connect with your housemates. It is a social network 
 
 ## Technologies
 
-### Back-End
+### [Back-End](https://github.com/anthony-ng/Our-House-Server)
 
 * Ruby on Rails
 * Auth0
