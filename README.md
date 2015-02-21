@@ -13,3 +13,11 @@ Our House makes it easy to connect with your housemates. It is a social network 
 * User can also send payments like rent, electric bill, and grocery cost on the Payment tab by connecting to Venmo.
 
 * Finally, user can view all the housemate profiles on the Profile tab. A message histroy dashboard can be opened by clicking the profile picture.
+
+## Team
+
+* Anthony Ng
+* Joseph Won
+* Charles Kim
+* Brian Vogelgesang
+* Ali Esmalli
